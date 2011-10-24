@@ -1,0 +1,9 @@
+<div class="product-grid-item " id="product-{{ product.variants.first.id }}">
+	<a href="{{ product.url | within: collection }}" class="product-link" title="{{product.title}}">
+		<span class="product-price">{{ product.price | money }}</span>
+    <img src="{{ product.featured_image | product_img_url: 'compact' }}" class="product-photo" alt="{{ product.title | escape }}" />
+	</a>
+	<div class="product-information">
+		<a href="{{ product.url | within: collection }}">{{product.title}}</a>										
+	</div>						
+</div>		

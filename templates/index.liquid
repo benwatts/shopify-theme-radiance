@@ -1,0 +1,65 @@
+<div id="col-left">
+	
+	{% if settings.home_featuredproducts_visible == true %}
+		{%if settings.home_featuredproducts_collection and settings.home_featuredproducts_collection != "" %}
+		
+			{% if collections[settings.home_featuredproducts_collection].products.size > 0 %}
+			<!-- Featured Products -->
+			<section class="products-prominent diagonal-divider">
+				<div class="section-details">
+					<h2>{{collections.featured.title}}</h2>
+				</div>			
+
+				<ul class="products-grid-large">
+					{% for product in collections[settings.home_featuredproducts_collection].products offset: 0 limit: 3 %}
+					<li class="product{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
+						 <a href="{{ product.url | within: collection }}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title }}" /></a>
+						<div class="product-information">
+							<span class="price">{{product.price | money}}</span>
+							<h3><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>
+							<p>{{product.description | strip_html | truncatewords: 40 }}</p>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</section>
+			{% endif %}
+			
+		{% else %}
+			<p class="notice">Please select a collection of items to display here on the <a href="/admin/themes/current/settings">settings page</a>, or disable featured products on the homepage.</p>
+		{% endif %}		
+	{% endif %}
+	
+	
+	
+	{% if settings.home_productgrid_visible == true %}
+		{% if settings.home_productgrid_collection and settings.home_productgrid_collection != "" %}
+	
+		{% if collections[settings.home_productgrid_collection].products.size > 0 %}
+		<!-- A collection of products -->
+		<section class="products-4up diagonal-divider">
+			<div class="section-details">
+				<h2>{{collections[settings.home_productgrid_collection].title}}</h2>
+			</div>		
+			<table cellpadding="0" cellspacing="0" class="products-grid">
+	  		{% tablerow product in collections[settings.home_productgrid_collection].products cols: 4 limit: 8 %}      		
+	      	{% include 'product-grid-item' %}
+	      {% endtablerow %}					
+			</table>
+		</section>
+		{% endif %}
+		
+		{% else %}
+			<p class="notice">Please select a collection of items to display here on the <a href="/admin/themes/current/settings">settings page</a>, or disable the product grid on the homepage.</p>
+		{% endif %}	
+	{% endif %}
+	
+
+</div><!-- /#col-left -->
+
+
+<div id="col-right">
+	{% include 'widget-text' %}
+	{% include 'widget-twitter' %}
+	{% include 'widget-btns' %}	
+</div><!-- /#col-right -->

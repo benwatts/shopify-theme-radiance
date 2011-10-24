@@ -1,0 +1,84 @@
+<div id="col-left">
+
+	<div id="single-product" class="{{ product.handle }} clearfix">
+	
+		<div id="product-photos" class="left">
+			<div class="large-thumb">
+	    	<a class="gallery" rel="product-gallery" href="{{ product.featured_image | product_img_url: 'grande' }}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title }}" id="{{ product.variants.first.id }}" /></a>
+			</div>
+			
+			{% if product.images.size > 1 %}
+			<ul id="product-thumbs">
+	      {% for image in product.images offset:1 %}
+				<li class="{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
+		      <a class="gallery" rel="product-gallery" href="{{ image | product_img_url: 'large' }}">
+		        <img src="{{ image | product_img_url: 'thumb' }}" alt="{{ product.title | escape }}" />
+		      </a>
+				</li>
+	      {% endfor %}
+			</ul>
+			{% endif %}				
+		</div>
+
+		<div id="product-details" class="right">
+			<div class="product-name diagonal-divider">
+				<h1>{{ product.title }}</h1>
+				<span class="price">{{ product.price_min | money }}</span>
+			</div>
+
+			<div class="options">
+				{% if product.available %}  
+			  <form action="/cart/add" method="post" class="variants clearfix">
+		      <div class="price"></div>
+		      <select id="product-select" name='id'>
+		        {% for variant in product.variants %}
+		        <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+		        {% endfor %}
+		      </select>
+		      <input class="btn" type="submit" name="add" id="add-to-cart" value="Add to Cart" />
+		    </form>
+				{% else %}
+					<p>Unfortunately, this product is no longer available.</p>
+				{% endif %}
+			</div>
+			
+			<div class="description">
+				{{ product.description }}
+			</div>			
+			
+		</div><!-- /#product-details -->
+
+	</div><!-- /#single-product -->
+
+
+	{% if settings.product_collection_visible == true %}
+		{% if settings.product_collection_name and settings.product_collection_name != "" %}
+	
+		{% if collections[settings.product_collection_name].products.size > 0 %}
+		<!-- A collection of products -->
+		<section class="products-4up diagonal-divider">
+			<div class="section-details">
+				<h2>{{collections[settings.product_collection_name].title}}</h2>
+			</div>		
+			<table cellpadding="0" cellspacing="0" class="products-grid">
+	  		{% tablerow product in collections[settings.product_collection_name].products cols: 4 %}      		
+	      	{% include 'product-grid-item' %}
+	      {% endtablerow %}					
+			</table>
+		</section>
+		{% endif %}
+		
+		{% else %}
+			<p class="notice">Please select a collection of items to display here on the <a href="/admin/themes/current/settings">settings page</a>, or disable this item so it no longer appears here on the product page.</p>
+		{% endif %}	
+	{% endif %}	
+
+
+</div><!-- /#col-left -->
+
+
+
+<div id="col-right">
+	{% include 'widget-twitter' %}
+	{% include 'widget-btns' %}	
+</div><!-- /#col-right -->

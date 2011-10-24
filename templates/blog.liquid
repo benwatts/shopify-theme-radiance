@@ -1,0 +1,46 @@
+<div id="page" class="blog">
+	
+	<div id="col-left" class="content">
+	  <h1 class="title">{{ blog.title }}</h1>
+
+	  {% paginate blog.articles by 100 %}
+	  <div class="articles">
+		
+	    {% for article in blog.articles %}
+	    <div class="article clearfix">
+	      <div class="date-posted"><span class="year">{{ article.created_at | date: "%Y" }}</span>/<span class="month">{{ article.created_at | date: "%m" }}</span>/<span class="day">{{ article.created_at | date: "%d" }}</span></div>
+        <h2 class="title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+        {{ article.article.excerpt_or_content }}
+
+				<div class="article-extras">
+					<p class="author">Written by {{ article.author }}</p>
+					<p class="comments-link">
+						{% if article.comments_enabled? %}
+					
+							{% if article.comments_count > 0 %}
+								<a class="btn" href="{{article.url}}#comments" title="Add your thoughts"><span class="count">{{ article.comments_count }}</span> comments</a>
+							{% elsif article.comments_count == 1 %}
+								<a class="btn" href="{{article.url}}#comments" title="Add your thoughts"><span class="count">{{ article.comments_count }}</span> comment</a>
+							{% else %}
+								<a class="btn" href="{{article.url}}#comments" title="Add your thoughts">Add a comment</a>
+							{% endif %}
+						
+						{% else %}
+							Comments disabled
+						{% endif %}
+					</div>
+	    </div> <!-- end .article -->
+	    {% endfor %}
+
+	  </div> <!-- end .articles -->
+	  {% include 'pagination' %}
+	  {% endpaginate %}
+	</div> <!-- end #col-left -->
+
+	<div id="col-right">
+		{% include 'widget-text' %}
+		{% include 'widget-twitter' %}
+		{% include 'widget-btns' %}	
+	</div>
+
+</div><!--  /#page.blog -->

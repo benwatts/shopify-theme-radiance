@@ -1,0 +1,14 @@
+<div id="page" class="{{ page.handle }}">
+
+  <div id="col-left" class="content">
+	  <h1 class="title">{{ page.title }}</h1>	
+    {{ page.content }}
+	</div><!-- /#col-left -->
+
+	<div id="col-right">
+		{% include 'widget-text' %}
+		{% include 'widget-twitter' %}
+		{% include 'widget-btns' %}	
+	</div><!-- /#col-right -->
+
+</div> <!-- end #page -->

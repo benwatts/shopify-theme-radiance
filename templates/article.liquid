@@ -1,0 +1,89 @@
+<div id="page" class="blog">
+
+	<div id="col-left" class="content">
+	
+	  <div class="article clearfix">
+      <div class="date-posted"><span class="year">{{ article.created_at | date: "%Y" }}</span>/<span class="month">{{ article.created_at | date: "%m" }}</span>/<span class="day">{{ article.created_at | date: "%d" }}</span></div>
+       <h1 class="title">{{ article.title }}</h1>
+     	{{ article.content }}
+       <p class="author">by {{ article.author }}</p>	
+	  </div> <!-- end .article-body -->
+	
+	
+	  {% if blog.comments_enabled? %}
+	  {% if article.comments.size > 0 %}
+		{% paginate article.comments by 100 %}
+	
+	  <div id="comments" class="comments">
+	    <h2 class="title">Comments</h2>
+	    {% for comment in article.comments reversed %}
+	    <div class="comment clearfix">
+		
+		    <div class="comment-posted"><span class="year">{{ comment.created_at | date: "%Y" }}</span>/<span class="month">{{ comment.created_at | date: "%m" }}</span>/<span class="day">{{ comment.created_at | date: "%d" }}</span></div>
+	  
+	      <div class="comment-content">
+	        <p class="comment-author">{{ comment.author }} said:</p>
+	        {{ comment.content }}
+	      </div>
+	    </div> <!-- end .comment -->
+	    {% endfor %}	
+	
+		 	{% include 'pagination' %}
+	
+	  </div> <!-- end #comments -->
+		{% endpaginate %}		
+	  {% endif %}
+
+    {% form article %}
+	  <div class="comment_form">
+
+	    {% if form.posted_successfully? %}
+	      {% if blog.moderated? %}
+	        <div class="notice">
+	          Successfully posted your comment.<br />
+	          It will have to be approved by the blog owner first before showing up.
+	        </div>
+	      {% else %}
+	        <div class="notice">Successfully posted your comment.</div>
+	      {% endif %}
+	    {% endif %}
+
+	    {% if form.errors %}
+	      <div class="notice error">Not all the fields have been filled out correctly!</div>
+	    {% endif %}
+
+			<h2 class="title">Leave a comment</h2>
+
+	    <div class="clearfix">
+	      <label for="comment_author" class="{% if form.errors contains 'author' %}error{% endif %}">Name</label>
+	      <input type="text" id="comment_author" name="comment[author]" size="40" value="{{form.author}}" class="text {% if form.errors contains 'author' %}input-error{% endif %}" />
+	    </div>
+	    <div class="clearfix">
+	      <label for="comment_email" class="{% if form.errors contains 'email' %}error{% endif %}">Email</label>
+	      <input type="text" id="comment_email" name="comment[email]" size="40" value="{{form.email}}" class="text {% if form.errors contains 'email' %}input-error{% endif %}" />
+	    </div>
+	    <div class="clearfix">
+	      <label for="comment_body" class="{% if form.errors contains 'body' %}error{% endif %}">Comment</label>
+	      <textarea id="comment_body" name="comment[body]" cols="40" rows="5" class="text {% if form.errors contains 'body' %}input-error{% endif %}">{{form.body}}</textarea>
+	    </div> 
+
+	    <input type="submit" value="Post comment" id="comment-submit" class="btn" />
+
+		{% if blog.moderated? %}
+	    <div class="notice">Comments have to be approved before showing up</div>
+	    {% endif %}   
+	    {% endform %}
+	  </div> <!-- end div.comment_form -->
+	  {% endif %}
+	
+
+</div> <!-- end #article -->
+
+
+<div id="col-right">
+	{% include 'widget-text' %}
+	{% include 'widget-twitter' %}
+	{% include 'widget-btns' %}	
+</div>
+
+</div><!--  /#page.blog -->

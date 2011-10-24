@@ -1,0 +1,17 @@
+<section class="widget-btns">
+	
+	{% if settings.twitterbtn_visible == true %}
+	<a href="{{ settings.twitterbtn_link }}">
+		<img src="{{ 'icon-twitter-16x16.png' | asset_url }}" alt="Twitter icon" />
+		<span class="btn-text">{{ settings.twitterbtn_text }}</span>
+	</a> 
+	{% endif %}
+	
+	{% if settings.facebookbtn_visible == true %}
+		<a href="{{ settings.facebookbtn_link }}">
+			<img src="{{ 'icon-facebook-16x16.png' | asset_url }}" alt="Facebook icon" />
+			<span class="btn-text">{{ settings.facebookbtn_text }}</span>
+		</a>
+	{% endif %}
+	
+</section>
