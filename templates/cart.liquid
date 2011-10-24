@@ -1,5 +1,6 @@
 <div id="page">
 
+
 	<div id="col-left" class="full content">
 
 		<script type="text/javascript">
@@ -8,12 +9,13 @@
 		  document.getElementById('cartform').submit();
 		}
 		</script>
+
 		<div id="cart">
 		  <h2>Shopping Cart</h2>
 		  {% if cart.item_count == 0 %} 
 		  <div class="empty">Your shopping cart is empty. Check out our <a href="/collections/all">catalog</a> to see what's available.</div>
 
-			
+
 		  {% else %}
 		  <form action="/cart" method="post" id="cartform" class="clearfix">
 		
@@ -71,7 +73,7 @@
 	      </div>
 		
 				<div id="checkout-proceed">
-					<input class="btn-reversed" type="submit" id="update-cart" class="checkout-button" name="checkout" value="Proceed to Checkout &rarr;" />
+					<input class="btn-reversed btn" type="submit" id="update-cart" class="checkout-button" name="checkout" value="Proceed to Checkout &rarr;" />
 					{% if additional_checkout_buttons %}
 					<div id="additional-checkout-buttons">
 						<span id="additional-checkout-buttons-label">Or checkout using:</span>
@@ -85,4 +87,6 @@
 		</div> <!-- end #cart -->
 	
 	</div><!--/#col-left -->
-</div>
+
+
+</div><!-- /#page -->

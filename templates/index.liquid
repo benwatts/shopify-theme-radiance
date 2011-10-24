@@ -1,65 +1,53 @@
 <div id="col-left">
-	
-	{% if settings.home_featuredproducts_visible == true %}
-		{%if settings.home_featuredproducts_collection and settings.home_featuredproducts_collection != "" %}
-		
-			{% if collections[settings.home_featuredproducts_collection].products.size > 0 %}
-			<!-- Featured Products -->
-			<section class="products-prominent diagonal-divider">
-				<div class="section-details">
-					<h2>{{collections.featured.title}}</h2>
-				</div>			
 
-				<ul class="products-grid-large">
-					{% for product in collections[settings.home_featuredproducts_collection].products offset: 0 limit: 3 %}
-					<li class="product{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
-						 <a href="{{ product.url | within: collection }}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title }}" /></a>
-						<div class="product-information">
-							<span class="price">{{product.price | money}}</span>
-							<h3><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>
-							<p>{{product.description | strip_html | truncatewords: 40 }}</p>
-						</div>
-					</li>
-					{% endfor %}
-				</ul>
-			</section>
-			{% endif %}
-			
-		{% else %}
-			<p class="notice">Please select a collection of items to display here on the <a href="/admin/themes/current/settings">settings page</a>, or disable featured products on the homepage.</p>
-		{% endif %}		
-	{% endif %}
-	
-	
-	
-	{% if settings.home_productgrid_visible == true %}
-		{% if settings.home_productgrid_collection and settings.home_productgrid_collection != "" %}
-	
-		{% if collections[settings.home_productgrid_collection].products.size > 0 %}
-		<!-- A collection of products -->
-		<section class="products-4up diagonal-divider">
-			<div class="section-details">
-				<h2>{{collections[settings.home_productgrid_collection].title}}</h2>
-			</div>		
-			<table cellpadding="0" cellspacing="0" class="products-grid">
-	  		{% tablerow product in collections[settings.home_productgrid_collection].products cols: 4 limit: 8 %}      		
-	      	{% include 'product-grid-item' %}
-	      {% endtablerow %}					
-			</table>
-		</section>
-		{% endif %}
-		
-		{% else %}
-			<p class="notice">Please select a collection of items to display here on the <a href="/admin/themes/current/settings">settings page</a>, or disable the product grid on the homepage.</p>
-		{% endif %}	
-	{% endif %}
-	
+
+  {% if settings.home_featured_collection != "" and collections[settings.home_featured_collection].products.size > 0 %}
+    <!-- Three featured products -->
+    <section class="products-prominent diagonal-divider">
+      <ul class="product-grid wide" id="featured-grid">
+
+        {% for product in collections[settings.home_featured_collection].products offset: 0 limit: 3 %}
+        <li class="product{% if forloop.last %} last-in-row{% endif %}">
+           <a class="product-photo" href="{{ product.url | within: collection }}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title }}" /></a>
+          <div class="product-information">
+            <span class="product-price">{% if product.price_varies %}<small>from</small> {{ product.price_min | money }}{% else %}{{ product.price_min | money }}{% endif %}</span>
+            <h3><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>
+            {% if settings.show_featured_desc %}
+            <p>{{product.description | strip_html | truncatewords: 40 }}</p>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+
+      </ul>
+    </section>
+  {% endif %}
+  
+
+  {% if settings.home_products_collection != "" and collections[settings.home_products_collection].products.size > 0 %}
+    <!-- A collection of products -->
+    <section class="diagonal-divider">
+
+      <div class="section-details">
+        <h2>{{collections[settings.home_products_collection].title | link_to: collections[settings.home_products_collection].url }}</h2>
+
+        {% if (collections[settings.home_products_collection].products.size + 0) > (settings.home_products_limit + 0) %}
+          <div class="view-more">{{ 'View More &raquo;' | link_to: collections[settings.home_products_collection].url }}</div>
+        {% endif %}
+      </div>    
+
+      <ul class="product-grid" id="secondary-grid">
+        {% for product in collections[settings.home_products_collection].products limit: settings.home_products_limit %}
+        <li{% cycle '', '', '', ' class="last-in-row"' %}>
+          {% include 'product-grid-item' %}
+        </li>
+        {% endfor %}
+      </ul>      
+
+    </section>
+  {% endif %}
+
 
 </div><!-- /#col-left -->
 
-
-<div id="col-right">
-	{% include 'widget-text' %}
-	{% include 'widget-twitter' %}
-	{% include 'widget-btns' %}	
-</div><!-- /#col-right -->
+{% include 'right-column' %}

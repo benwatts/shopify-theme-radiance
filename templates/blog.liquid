@@ -8,12 +8,12 @@
 		
 	    {% for article in blog.articles %}
 	    <div class="article clearfix">
-	      <div class="date-posted"><span class="year">{{ article.created_at | date: "%Y" }}</span>/<span class="month">{{ article.created_at | date: "%m" }}</span>/<span class="day">{{ article.created_at | date: "%d" }}</span></div>
-        <h2 class="title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
-        {{ article.article.excerpt_or_content }}
 
-				<div class="article-extras">
-					<p class="author">Written by {{ article.author }}</p>
+        <h2 class="title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+        {{ article.excerpt_or_content }}
+
+				<div class="article-extras clearfix">
+					<p class="author">Written by {{ article.author }} &mdash; {{ article.created_at | date: "%B %d, %Y" }}</p>
 					<p class="comments-link">
 						{% if article.comments_enabled? %}
 					
@@ -26,7 +26,7 @@
 							{% endif %}
 						
 						{% else %}
-							Comments disabled
+							<span class="disabled">Comments disabled</span>
 						{% endif %}
 					</div>
 	    </div> <!-- end .article -->
@@ -40,7 +40,6 @@
 	<div id="col-right">
 		{% include 'widget-text' %}
 		{% include 'widget-twitter' %}
-		{% include 'widget-btns' %}	
 	</div>
 
 </div><!--  /#page.blog -->

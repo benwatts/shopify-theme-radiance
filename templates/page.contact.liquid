@@ -3,7 +3,7 @@
   <div id="col-left" class="content">
 	  <h1 class="title">{{ page.title }}</h1>	
     {{ page.content }}
-    
+
     {% form 'contact' %}
     
       {% if form.posted_successfully? %}
@@ -23,7 +23,7 @@
       <ul id="contact-form">
         <li class="clearfix type-text">
           <label for="name">Name</label>
-          <input type="name" id="name" name="contact[email]" />
+          <input type="text" id="name" name="contact[email]" />
         </li> 
         <li class="clearfix type-text">
           <label for="email">Email</label>
@@ -31,13 +31,15 @@
         </li>   
         <li class="clearfix type-textarea">
           <label for="message">Message</label>
-          <textarea id="message" name="contact[message]"></textarea>
+          <textarea id="message" name="contact[body]"></textarea>
         </li>
         <li class="clearfix type-submit">
           <input type="submit" class="submit btn" value="Send" />
         </li>
       </ul>
     {% endform %}
+
+    
 	</div><!-- /#col-left -->
 
   {% include 'right-column' %}

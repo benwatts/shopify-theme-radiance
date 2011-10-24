@@ -1,38 +1,36 @@
 <div id="col-left" class="{{ collection.handle }}">
-	
-	<section class="products-4up diagonal-divider {{ collection.handle }}">
-		<div class="section-details">
-    	<h2 class="title">{{ collection.title }}</h2>
-			<div class="description">{{ collection.description }}</div>
-		</div>
 
-		{% paginate collection.products by 16 %}
-			{% if collection.products.size > 0 %}
-		
-				<table cellpadding="0" cellspacing="0" class="products-grid">
-		  		{% tablerow product in collection.products cols: 4 %}      		
-						{% include "product-grid-item" %}		
-		  		{% endtablerow %}
-				</table>
+  <section class="diagonal-divider {{ collection.handle }}">
+    <div class="section-details">
+      <h2 class="title">{{ collection.title }}</h2>
+      {% if collection.description != '' %}
+      <div class="description content">{{ collection.description }}</div>
+      {% endif %}
+    </div>
 
-				{% if paginate.pages > 1 %}
-				 	{% include 'pagination' %}
-				{% endif %}
-			
-			{% else %}		
-				<strong>No products found in this collection.</strong>
-			{% endif %}
-	  {% endpaginate %}
-	</section>
-	
+    {% paginate collection.products by 16 %}
+      {% if collection.products.size > 0 %}
+    
+        <ul class="product-grid clearfix">
+        {% for product in collection.products %}
+          <li{% cycle '', '', '', ' class="last-in-row"' %}>
+            {% include 'product-grid-item' %}
+          </li>
+        {% endfor %}
+        </ul>
+
+        {% if paginate.pages > 1 %}
+          {% include 'pagination' %}
+        {% endif %}
+      
+      {% else %}    
+        <strong>No products found in this collection.</strong>
+      {% endif %}
+    {% endpaginate %}
+  </section>
+  
 </div> <!-- end #collection -->
 
 
 
-<div id="col-right">
-	
-	{% include 'widget-text' %}
-	{% include 'widget-twitter' %}
-	{% include 'widget-btns' %}	
-		
-</div>
+{% include 'right-column' %}

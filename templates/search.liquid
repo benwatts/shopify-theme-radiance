@@ -15,31 +15,30 @@
 			  {% paginate search.results by 10 %}  
 
 			  {% if search.results == empty %}  
-			  <div class="empty">
-			    Your search for "{{search.terms | escape}}" did not yield any results
-			  </div>              
+
+				  <div class="empty">
+				    Your search for "{{search.terms | escape}}" did not yield any results
+				  </div>              
+
 			  {% else %}  
 
-
-		  <div class="results diagonal-divider">
-		    {% for item in search.results %} 
-		    <div class="item clearfix">			
-					<div class="thumbnail">
-		      {% if item.featured_image %}
-		        <a href="{{ item.url }}">{{ item.featured_image | product_img_url: 'thumb' | img_tag }}</a>
-					{% else %}
-						<a href="{{ item.url }}"><img src="{{ "thumb-page.png" | asset_url }}" alt="Generic page thumbnail" /></a>					
-		      {% endif %}
-	      	</div>			
-	
-		      <div class="content">
-		        <h3>{{ item.title | link_to: item.url }}</h3>
-		        {{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }}
-		      </div>
-		    </div> <!-- end .item -->
-		    {% endfor %}
-		  </div> <!-- end .results -->
-
+				  <div class="results diagonal-divider">
+				    {% for item in search.results %} 
+				    <div class="item clearfix">			
+							<div class="thumbnail">
+				      {% if item.featured_image %}
+				        <a href="{{ item.url }}">{{ item.featured_image | product_img_url: 'thumb' | img_tag }}</a>
+				      {% endif %}
+			      	</div>			
+			
+				      <div class="search-excerpt">
+				        <h3>{{ item.title | link_to: item.url }}</h3>
+				        {{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }}
+				      </div>
+				    </div> <!-- end .item -->
+				    {% endfor %}
+				  </div> <!-- end .results -->
+					  
 		  {% endif %}
 
 		  {% include 'pagination' %}
@@ -51,7 +50,6 @@
 	<div id="col-right">
 		{% include 'widget-text' %}
 		{% include 'widget-twitter' %}
-		{% include 'widget-btns' %}	
 	</div>
 
 </div>

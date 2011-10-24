@@ -1,9 +1,18 @@
 <div class="product-grid-item " id="product-{{ product.variants.first.id }}">
-	<a href="{{ product.url | within: collection }}" class="product-link" title="{{product.title}}">
-		<span class="product-price">{{ product.price | money }}</span>
-    <img src="{{ product.featured_image | product_img_url: 'compact' }}" class="product-photo" alt="{{ product.title | escape }}" />
-	</a>
-	<div class="product-information">
-		<a href="{{ product.url | within: collection }}">{{product.title}}</a>										
-	</div>						
-</div>		
+
+  <a href="{{ product.url | within: collection }}" class="product-link" title="{{product.title}}">
+    <span class="product-price">
+    {% if product.price_varies %} 
+      <small>from</small> {{ product.price_min | money }}
+    {% else %}
+      {{ product.price_min | money }}
+    {% endif %}
+    </span>
+    <img src="{{ product.featured_image | product_img_url: 'medium' }}" class="product-photo" alt="{{ product.title | escape }}" />
+  </a>
+  
+  <div class="product-information">
+    <a href="{{ product.url | within: collection }}">{{ product.title | escape | truncate: 35 }}</a>                    
+  </div>    
+          
+</div>    

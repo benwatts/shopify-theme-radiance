@@ -1,84 +1,100 @@
 <div id="col-left">
 
-	<div id="single-product" class="{{ product.handle }} clearfix">
-	
-		<div id="product-photos" class="left">
-			<div class="large-thumb">
-	    	<a class="gallery" rel="product-gallery" href="{{ product.featured_image | product_img_url: 'grande' }}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title }}" id="{{ product.variants.first.id }}" /></a>
-			</div>
-			
-			{% if product.images.size > 1 %}
-			<ul id="product-thumbs">
-	      {% for image in product.images offset:1 %}
-				<li class="{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
-		      <a class="gallery" rel="product-gallery" href="{{ image | product_img_url: 'large' }}">
-		        <img src="{{ image | product_img_url: 'thumb' }}" alt="{{ product.title | escape }}" />
-		      </a>
-				</li>
-	      {% endfor %}
-			</ul>
-			{% endif %}				
-		</div>
 
-		<div id="product-details" class="right">
-			<div class="product-name diagonal-divider">
-				<h1>{{ product.title }}</h1>
-				<span class="price">{{ product.price_min | money }}</span>
-			</div>
+  <div id="product" class="clearfix content">
 
-			<div class="options">
-				{% if product.available %}  
-			  <form action="/cart/add" method="post" class="variants clearfix">
-		      <div class="price"></div>
-		      <select id="product-select" name='id'>
-		        {% for variant in product.variants %}
-		        <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-		        {% endfor %}
-		      </select>
-		      <input class="btn" type="submit" name="add" id="add-to-cart" value="Add to Cart" />
-		    </form>
-				{% else %}
-					<p>Unfortunately, this product is no longer available.</p>
-				{% endif %}
-			</div>
-			
-			<div class="description">
-				{{ product.description }}
-			</div>			
-			
-		</div><!-- /#product-details -->
+    <div id="product-information">
 
-	</div><!-- /#single-product -->
+      <div id="add-to-cart-msg"></div>
+
+      <div id="product-header" class="diagonal-divider clearfix">
+        <h1>{{ product.title }}</h1>
+
+        {% if product.available %}
+          <form action="/cart/add" method="post" class="variants" id="product-actions">
+            <div class="options clearfix">  
+
+              <div class="variants-wrapper
+                  {%if product.variants.size == 1 and product.options.size == 1 %} visuallyhidden{% endif %}
+                  {%if product.variants.size > 1 and product.options.size == 1 %} one-variant{% endif %}
+              "> {% comment %} Hide the dropdown if we've only got one variant and one option to show. {% endcomment %}
+                <select id="product-select" name="id">
+                  {% for variant in product.variants %}
+                  <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+                  {% endfor %}
+                </select>
+              </div>            
+                
+              <div id="purchase">
+                <p class="price"></p>                                 
+                <input class="btn" type="submit" name="add" id="add-to-cart" value="Add to Cart" />
+              </div>
+                                            
+            </div><!-- /.options -->
+          </form>
+
+        {% else %}
+          <div id="product-actions" class="sold-out">
+            <div id="purchase">
+              <p class="price">Sold out.</p>      
+            </div>
+          </div>      
+        {% endif %}
+      </div><!-- /#product-header -->
+
+      
+      <div class="description">
+        {{ product.description }}
+        {% include 'social-sharing' %} 
+      </div>            
+
+    </div><!-- /#product-information -->
+    
+    <div id="product-gallery">
+
+      <div id="active-wrapper">      
+        <img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title }}" id="large-thumb" />
+      </div>
+
+      <ul id="thumbs"{% if product.images.size <= 1 %} class="hidden"{% endif %}>
+        {% for image in product.images %}
+        <li class="{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
+          <a class="gallery" rel="product-gallery" href="{{ image | product_img_url: 'original' }}">
+            <img src="{{ image | product_img_url: 'thumb' }}" alt="{{ product.title | escape }}" />
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div><!-- /#product-gallery -->
+
+  </div><!-- /#product -->
 
 
-	{% if settings.product_collection_visible == true %}
-		{% if settings.product_collection_name and settings.product_collection_name != "" %}
-	
-		{% if collections[settings.product_collection_name].products.size > 0 %}
-		<!-- A collection of products -->
-		<section class="products-4up diagonal-divider">
-			<div class="section-details">
-				<h2>{{collections[settings.product_collection_name].title}}</h2>
-			</div>		
-			<table cellpadding="0" cellspacing="0" class="products-grid">
-	  		{% tablerow product in collections[settings.product_collection_name].products cols: 4 %}      		
-	      	{% include 'product-grid-item' %}
-	      {% endtablerow %}					
-			</table>
-		</section>
-		{% endif %}
-		
-		{% else %}
-			<p class="notice">Please select a collection of items to display here on the <a href="/admin/themes/current/settings">settings page</a>, or disable this item so it no longer appears here on the product page.</p>
-		{% endif %}	
-	{% endif %}	
+  {% if settings.productspg_featured_collection != "" and collections[settings.productspg_featured_collection].products.size > 0 %}
+    <!-- A collection of products -->
+    <section class="diagonal-divider">
+
+      <div class="section-details">
+        <h2>{{collections[settings.productspg_featured_collection].title | link_to: collections[settings.productspg_featured_collection].url }}</h2>
+
+        {% if (collections[settings.productspg_featured_collection].products.size + 0) > (settings.productspg_featured_limit + 0) %}
+          <div class="view-more">{{ 'View More &raquo;' | link_to: collections[settings.productspg_featured_collection].url }}</div>
+        {% endif %}
+      </div>    
+
+      <ul class="product-grid" id="secondary-grid">
+        {% for product in collections[settings.productspg_featured_collection].products limit: settings.productspg_featured_limit %}
+        <li{% cycle '', '', '', ' class="last-in-row"' %}>
+          {% include 'product-grid-item' %}
+        </li>
+        {% endfor %}
+      </ul>      
+
+    </section>
+  {% endif %}
 
 
 </div><!-- /#col-left -->
 
 
-
-<div id="col-right">
-	{% include 'widget-twitter' %}
-	{% include 'widget-btns' %}	
-</div><!-- /#col-right -->
+{% include 'right-column' %}

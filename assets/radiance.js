@@ -1,159 +1,277 @@
-/* After images have loaded */
-$(window).load( function(){
-	equalizeFeaturedProductHeights();		
-	alignProductGridItems();		
-	alignCollectionGridItems();		
-});
-
-
-
-/* After the dom is ready */
-$(document).ready( function(){
-	
-	$('html').removeClass('no-js').addClass('js');
-	
-	/* Enable Fancybox thumbs during checkout */
-	$("a.gallery").fancybox({
-		'titlePosition'		: 'inside',
-		'transitionIn'	:	'elastic',
-		'transitionOut'	:	'elastic'
-	});
-	
-	/* Hide/show note field in checkout form */
-	$('#toggle-note').toggle(
-		function(){ $('#checkout-addnote').find('textarea').show(); }, 
-		function(){ $('#checkout-addnote').find('textarea').hide();  }			
-	);
-	
-	setupFlexiNav();
-	setupDropdownMenus();	
-	
-	
-});	
+/** 
+ * Radiance Theme JS
+ *
+ * Dependencies: 
+ * - hoverintent.jquery.js
+ *
+ */
 
 
 
 /** 
- * Change position of nav if it's too wide to fit beside the logo, also: align it to the bottom of an imagey logo.
- * Unfortunately, this won't help IE6 or IE7 (they can't calculate the width of #top-menu properly) 
- * Feel free to remove this if you don't expect your nav to get too wide. 
+ * Look under your chair! console.log FOR EVERYONE! 
+ *
+ * @see http://paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/
  */
-function setupFlexiNav(){
-	if( $('#sitetitle').outerWidth() + $('#top-menu').outerWidth() > $('.wrapper').outerWidth() ){
-		$('#top-menu').addClass('too-wide');
-	} else {
-		if( $('#sitetitle img').length > 0 ){
-			var d = 100 - $('#top-menu').outerHeight();
-			if( d > 0 ){
-				$('#top-menu').css('padding-top', d+'px');
-			}
-		}		
-	}
+(function(b){function c(){}for(var d="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,timeStamp,profile,profileEnd,time,timeEnd,trace,warn".split(","),a;a=d.pop();){b[a]=b[a]||c}})((function(){try
+{console.log();return window.console;}catch(err){return window.console={};}})());
+
+
+
+
+/** 
+ * Fire function based upon attributes on the body tag. 
+ * This is the reason for "template{{ template | camelize }}" in layout/theme.liquid
+ *
+ * @see http://paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution/
+ */
+var UTIL = {
+ 
+  fire : function(func,funcname, args){
+    var namespace = RADIANCE; 
+    funcname = (funcname === undefined) ? 'init' : funcname;
+    if (func !== '' && namespace[func] && typeof namespace[func][funcname] == 'function'){
+      namespace[func][funcname](args);
+    } 
+  }, 
+ 
+  loadEvents : function(){
+    var bodyId = document.body.id;
+
+    // hit up common first.
+    UTIL.fire('common');
+ 
+    // do all the classes too.
+    $.each(document.body.className.split(/\s+/),function(i,classnm){
+      UTIL.fire(classnm);
+      UTIL.fire(classnm,bodyId);
+    });
+  } 
+ 
+}; 
+$(document).ready(UTIL.loadEvents);
+
+
+
+/** 
+ * Page-specific call-backs 
+ * Called after dom has loaded.  
+ */
+var RADIANCE = {
+
+  common : {
+    init: function(){
+      console.info(' > DOM Ready > Init');
+      $('html').removeClass('no-js').addClass('js');
+      setupDropdownMenus(); 
+      searchPlaceholder();
+    }
+  },
+
+  templateIndex : {
+    init: function(){
+      console.info(' > Index Template');
+    }
+  },
+  
+  templateProduct : { 
+    init: function(){
+      console.info(' > Product Template');
+      $('#add-to-cart').click( addToCart ); 
+      $('#product-gallery').enhanceGallery();
+      $('#thumbs li:nth-child(4n+4)').addClass('last-in-row');
+    }
+  }, 
+
+  templateCart : {
+    init: function(){
+      console.info(' > Cart Template > Init');
+      $('#toggle-note').toggle(
+        function(){ $('#checkout-addnote').find('textarea').show(); }, 
+        function(){ $('#checkout-addnote').find('textarea').hide();  }      
+      );                
+    }
+  }
+
 }
+ 
+
+
+/** 
+ * Balances the height of rows of products/collections. 
+ * Finds the tallest item in a row, makes each <li> in that row as tall as the tallest. 
+ */
+$.fn.balanceRowHeight = function(numPerRow) {
+
+  //console.info('Balancing rows. Expected ', numPerRow, ' per row')
+  
+  var nPerRow = numPerRow || 4; 
+  var nItems = $(this).find('li').length;
+  var nRows = Math.round( nItems / nPerRow );
+
+  for( var row = 1; row <= nRows; row++ ){
+    var min = row * nPerRow - nPerRow;
+    var max = row * nPerRow;
+    var tallestInRow = 0;
+
+    $(this).find('li').slice(min, max).each(function(){
+      if( $(this).height() > tallestInRow ){
+        tallestInRow = $(this).height();     
+      }
+    }).height(tallestInRow).addClass('generated-height');
+
+    //console.log('Row #', row,  ' >> slice from ', min, ' to ', max);
+  }
+
+  return this;
+};
+
+/** 
+ * Balance product grid height after all images have loaded. 
+ */
+$(window).load( function(){
+  if( $('body').hasClass('templateIndex') ){ 
+    // homepage has two grids, needs a bit of special treatment:
+    $('#featured-grid').balanceRowHeight(3);
+    $('#secondary-grid').balanceRowHeight(4);
+  } else {
+    $('.product-grid').balanceRowHeight(4);
+  }
+});
 
 
 
 /** 
  * Support for dropdown menus 
- * Feel free to remove this if you don't want dropdown menus to show up (they're hidden with CSS by default, anyway).
  */
 function setupDropdownMenus(){
-	$('#top-menu .has-dropdown').hoverIntent( navRollOver, navRollOut );
-	
-	function navRollOver(e){
-		$(this).find('ul:first').css('top', $(this).height()).show();
-	}
-	
-	function navRollOut(e){
-		$(this).find('ul:first').hide();
-	}
+  $('#top-menu .has-dropdown').hoverIntent( navRollOver, navRollOut );
+  
+  function navRollOver(e){
+    $(this).addClass('active').find('ul:first').css('top', $(this).height()).show();
+  }
+  function navRollOut(e){
+    $(this).removeClass('active').find('ul:first').hide();
+  }
+
 }
 
 
 
 /** 
- * Homepage - equal height for featured items 
- * Feel free to remove this if you will be using nearly-consistent dimensions for product imagery. 
+ * Ajaxy add-to-cart 
  */
-function equalizeFeaturedProductHeights(){
-	var tallestFeaturedProd = 0;
-	$('.products-grid-large li').each( function(){
-		var currentItemsHeight = $(this).height();
-		if( currentItemsHeight > tallestFeaturedProd ){
-			tallestFeaturedProd = currentItemsHeight;
-		}
-	});
-	
-	$('.products-grid-large li').each( function(){
-		if( $(this).height() < tallestFeaturedProd ){
-			var d = tallestFeaturedProd - $(this).height();
-			var newHeight = $(this).find('.product-information').height() + d;
-			$(this).find('.product-information').css('height', newHeight + 'px');
-		}
-	});
+function addToCart(e){
+
+  console.info( $(this).parent('form') );
+
+  $.ajax({ 
+    type: 'POST',
+    url: '/cart/add.js',
+    async: false, 
+    cache: false, 
+    data: $(this).parents('form').serialize(),
+    dataType: 'json',
+    error: addToCartFail,
+    success: addToCartSuccess  
+  });
+  e.preventDefault();
+}
+  
+function addToCartSuccess (jqXHR, textStatus, errorThrown){
+  $.ajax({ 
+    type: 'GET',
+    url: '/cart.js',
+    async: false, 
+    cache: false, 
+    dataType: 'json',
+    success: updateCartDesc  
+  });         
+  $('#add-to-cart-msg').hide().addClass('success').html('Item added to cart! <a href="/cart" title="view cart">View cart and checkout &raquo;</a>').fadeIn();   
+}
+
+function addToCartFail(jqXHR, textStatus, errorThrown){
+  var response = $.parseJSON(jqXHR.responseText);
+  console.error('PROBLEM ADDING TO CART!', response.description);  
+  $('#add-to-cart-msg').addClass('error').text(response.description);
+}
+
+function updateCartDesc(data){
+  var $cartLinkText = $('.cart-link .icon:first');
+  
+  switch(data.item_count){
+    case 0: 
+      $cartLinkText.text('Your cart is empty');
+      break;
+    case 1:
+      $cartLinkText.text('1 item');
+      break;
+    default:
+      $cartLinkText.text(data.item_count+' items');
+      break;
+  }
 }
 
 
 
 /** 
- * Align the collections. 
- * Kind of gross and a little too similar equalizeFeaturedProductHeights() and alignProductGridItems(). Bleh. 
- * It's so close, yet so different because it's *not* a table, like the rest of the site.  
+ * Enable placeholder switcheroo in older browsers. 
+ * @see http://webdesignerwall.com/tutorials/cross-browser-html5-placeholder-text  
  */
-function alignCollectionGridItems(){
-	
-	if( $('#collection-listing').length ){
-		$('#collection-listing li:nth-child(4n+1)').addClass('row');
-	
-		$('#collection-listing .row').each( function(){
-			var rowItems = $(this).nextUntil('.row').add($(this));
-		
-			var tallest = 0;		
-			rowItems.each( function(){
-				if( $(this).find('.product-grid-item').outerHeight() > tallest )
-					tallest = $(this).outerHeight();		
-			});
-		
-			rowItems.each( function(){
-				var gridItem = $(this).find('.product-grid-item');
-				if( gridItem.outerHeight() < tallest ){
-					var d = tallest - gridItem.outerHeight();
-					gridItem.css('paddingTop', d + 'px');	
-				}
-			});		
-			
-		});
-	}
-	
+function searchPlaceholder(){
+
+  if(!Modernizr.input.placeholder){
+    $('#top-search-input').focus(function() {
+      var input = $(this);
+      if (input.val() == input.attr('placeholder')) {
+      input.val('');
+      input.removeClass('placeholder');
+      }
+    }).blur(function() {
+      var input = $(this);
+      if (input.val() == '' || input.val() == input.attr('placeholder')) {
+      input.addClass('placeholder');
+      input.val(input.attr('placeholder'));
+      }
+    }).blur();
+    $('[placeholder]').parents('form').submit(function() {
+      $(this).find('[placeholder]').each(function() {
+      var input = $(this);
+      if (input.val() == input.attr('placeholder')) {
+        input.val('');
+      }
+      })
+    });
+  }
+
 }
 
 
 
 /** 
- * Product Grids - use padding to have .product-grid-items align to the bottom of a <tr>. 
- * Kind of gross and a little too similar equalizeFeaturedProductHeights(). Bleh. 
- * Feel free to remove this if you will be using nearly-consistent dimensions for product imagery. 
- */ 
-function alignProductGridItems(){
-	if( $('.products-grid').length ){
-		
-		$('.products-grid tr').each( function(){
-		
-			var tallestGridItem = 0;
-			$(this).find('.product-grid-item').each( function(){
-				$(this).css('paddingTop', 0);
-				if( $(this).height() > tallestGridItem )
-					tallestGridItem = $(this).height();
-			});
-		
-			$(this).find('.product-grid-item').each( function(){
-				if( $(this).height() < tallestGridItem ){
-					var d = tallestGridItem - $(this).height();
-					$(this).css('paddingTop', d + 'px');
-				}
-			});				
-		
-		});
-		
-	}
+ * Contact Form 
+ * Client-side email validation. 
+ * Email validation function from: http://docs.jquery.com/Plugins/validation
+ */
+$('.contact-form').submit( function(e){
+  
+  var emailField = $(this).find('.email:first');
+  var errorMsg = '<label class="error-msg" for="'+emailField.attr('id')+'">Please enter a valid email.</label>';
+  
+  if( !validEmail(emailField.val()) === true ){   
+    if( emailField.parent().is('li') ){
+      emailField.parent().addClass('has-error').find('.error-msg').remove();
+      $('#email').after(errorMsg);
+    } else {
+      $(this).addClass('has-error').find('.error-msg').remove();
+      $(this).append(errorMsg);
+    }
+    e.preventDefault();   
+  }
+
+});
+  
+function validEmail(value){
+  return /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i.test(value);
 }
+

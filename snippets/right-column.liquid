@@ -1,0 +1,45 @@
+<div id="col-right">
+
+
+  {% include 'widget-text' %}
+
+
+  {% if settings.show_leftnav_allcollections %}
+  <!-- Widget: list all collections -->
+  <div class="widget widget-linklist" id="widget-allcollections">
+    <div class="widget-header">
+      <h3><a href="/collections">{{settings.allcollections_title}}</a></h3>
+    </div>
+    <div class="widget-content">
+      <ul>
+      {% for c in collections %}
+        <li class="{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
+          <a href="{{ c.url }}" title="{{ c.title }}">{{ c.title }}</a>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>    
+  </div><!-- /.widget -->
+  {% endif %}
+
+
+  {% if settings.show_leftnav_linklist1 %}
+    <!-- Link List Widget #1 -->
+    {% include 'widget-linklist' with settings.leftnav_linklist1 %}
+  {% endif %}
+
+  {% if settings.show_leftnav_linklist2 %}
+    <!-- Link List Widget #2 -->
+    {% include 'widget-linklist' with settings.leftnav_linklist2 %}
+  {% endif %}
+
+  {% if settings.show_leftnav_linklist3 %}
+    <!-- Link List Widget #3 -->
+    {% include 'widget-linklist' with settings.leftnav_linklist3 %}
+  {% endif %}
+
+
+  {% include 'widget-twitter' %}
+
+
+</div><!-- /#col-right -->

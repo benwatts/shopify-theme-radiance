@@ -1,0 +1,14 @@
+<div class="widget widget-linklist" id="widget-{{ linklists.[widget-linklist].handle }}">
+  <div class="widget-header">
+    <h3>{{linklists.[widget-linklist].title}}</h3>
+  </div>
+  <div class="widget-content">
+    <ul>
+    {% for link in linklists.[widget-linklist].links %}
+      <li class="{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
+        <a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>    
+</div><!-- /.widget -->

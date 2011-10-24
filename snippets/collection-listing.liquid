@@ -1,42 +1,38 @@
 <div id="col-left" class="all-collections">
 
-	<section class="products-4up diagonal-divider {{ collection.handle }}">
-		<div class="section-details">
-    	<h2 class="title">Product Collections</h2>
-		</div>
+  <section class="diagonal-divider {{ collection.handle }}">
+    <div class="section-details">
+      <h2 class="title">Product Collections</h2>
+    </div>
 
-	  <ul id="collection-listing">
-	  {% for collection in collections %}
-	  {% unless collection.handle == 'frontpage' %}
-	    <li class="{{ collection.handle }}-collection">
-	    {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
-	      <div class="product-grid-item">
-	        <div class="collection-image">
-	          <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
-	            {{ collection.products.first.featured_image | product_img_url: 'compact' | img_tag: collection_title }}
-	          </a>
-	        </div>
-	        <div class="product-information">
-	            <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
-	              {{ collection.title }}
-	            </a>
-	            <small class="hint">
-	              {{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }}
-	            </small>
-	        </div>
-	      </div>
-	    </li>
-	  {% endunless %}
-	  {% endfor %}
-	  </ul>
+    <ul id="collection-grid" class="product-grid">
+    {% for collection in collections %}
+    {% unless collection.handle == 'frontpage' %}
+      <li class="{{ collection.handle }}-collection {% cycle '', '', '', ' last-in-row' %}">
+      {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+        <div class="product-grid-item">
+          <div class="collection-image">
+            <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
+              {{ collection.products.first.featured_image | product_img_url: 'medium' | img_tag: collection_title }}
+            </a>
+          </div>
+          <div class="product-information">
+            <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
+              {{ collection.title }}
+            </a>
+            <small class="num-in-collection">
+              {{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }}
+            </small>
+          </div>
+        </div>
+      </li>
+    {% endunless %}
+    {% endfor %}
+    </ul>
 
-	</section>
-
+  </section>
+ 
 </div><!-- #col-left -->
 
 
-<div id="col-right">
-	{% include 'widget-text' %}
-	{% include 'widget-twitter' %}
-	{% include 'widget-btns' %}	
-</div><!-- #col-right -->
+{% include 'right-column' %}

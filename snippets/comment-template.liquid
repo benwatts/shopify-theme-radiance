@@ -1,0 +1,13 @@
+        <div class="comment clearfix">
+
+          <div class="comment-author">
+            {{ comment.author }}:
+          </div>
+      
+          <div class="comment-content">
+            <span class="comment-arrow">&#9664;</span>
+            {{ comment.content }}
+            <p class="comment-posted">{{ comment.created_at | date: "%B %d %Y at %I:%m %p" }}</p>            
+          </div>
+          
+        </div> <!-- end .comment -->

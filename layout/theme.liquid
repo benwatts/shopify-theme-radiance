@@ -4,193 +4,274 @@
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	
-  <title>{% if template == "index" %} {{ shop.name }} {% else %} {{ page_title }} &ndash; {{ shop.name }} {% endif %}</title>
-	
-  {{ content_for_header }}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	
-	{% if settings.header_font == "Chewy, arial, sans-serif" %}
-		<link href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
-	{% elsif settings.header_font == "Copse, arial, sans-serif" %}
-		<link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
-		{% elsif settings.header_font == "Play, arial, sans-serif" %}
-	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
-		{% elsif settings.header_font == "Arvo, arial, sans-serif" %}
-		<link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
-	{% elsif settings.header_font == "Lobster, arial, sans-serif" %}
-		<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-	{% endif %}	
+
+  {% comment %} 
+    Provide a *slightly* better product description for search engines. 
+    Descriptions don't affect rankings, but can influence click-throughs.
+  {% endcomment %}
+  {% if template contains "product" %}
+    <meta name="description" content="{{ product.description | strip_html | truncate: 50  }}, Price: {% if product.price_varies %} starting at {{ product.price_min | money }} {% else %} {{ product.price_min | money }} {% endif %}">
+  {% elsif template == "index" %}
+    <meta name="description" content="{{ settings.site_description }}">
+  {% endif %}
+
+
+  {% comment %} 
+    Open Graph tags for Facebook Like buttons 
+  {% endcomment %} 
+  <meta property="og:site_name" content="{{ shop.name }}" />
+  {% if template contains 'product' %}
+    <meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}" />
+  {% else %}
+    <meta property="og:image" content="{{ 'logo.png' | asset_url }}" />
+  {% endif %}  
+
+
+  <title>
+    {% if template == "index" %} {{ shop.name }} {% else %} {{ page_title }} &ndash; {{ shop.name }} {% endif %}
+  </title>
+
+
+  {{ content_for_header }}
+  
+  {% if settings.header_font == "Chewy, arial, sans-serif" %}
+    <link href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
+  {% elsif settings.header_font == "Copse, arial, sans-serif" %}
+    <link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
+  {% elsif settings.header_font == "Play, arial, sans-serif" %}
+    <link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+  {% elsif settings.header_font == "Arvo, arial, sans-serif" %}
+    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+  {% elsif settings.header_font == "Lobster, arial, sans-serif" %}
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+  {% endif %} 
 
   {{ 'style.css' | asset_url | stylesheet_tag }}
-	{{ 'option_selection.js' | asset_url | script_tag }}  
+  {{ 'modernizr.js' | asset_url | script_tag }}
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
 
-  {% capture active_url %}{% if template == "index" %}/{% elsif template == "collection" %}/collections/{{ collection.handle }}{% elsif template == "product" %}{% if collection %}/collections/{{ collection.handle }}{% endif %}/products/{{ product.handle }}{% elsif template == "page" %}/pages/{{ page.handle }}{% elsif template == "blog" %}/blogs/{{ blog.handle }}{% elsif template == "cart" %}/cart{% elsif template == "search" %}/search{% endif %}{% endcapture %}
 </head>
-<body>
-	
-	<div class="wrapper">
-		
-		<!-- Header -->
-		<header class="clearfix">
-			{% if template == "index" %} <h1 id="sitetitle"> {% else %} <strong id="sitetitle"> {% endif %}
-				<a href="/" title="Home">
-					{% if settings.use_logo_image == true %} <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" /> {% else %} {{ shop.name }} {% endif %}				
-				</a>
-			{% if template == "index" %} </h1> {% else %} </strong> {% endif %}
-			
-			<nav id="top-menu">
-				<ul>
-				  {% for link in linklists.main-menu.links %}
-				  <li{% if forloop.first %} class="first"{% endif %}{% if forloop.last %} class="last"{% endif %}>
-				    {% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
-				    {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
-						<div class="has-dropdown">
-					    <a href="{{ link.url }}">{{ link.title }}</a>
-						    <ul>
-						      {% for l in linklists[child_list_handle].links %}
-						      <li><a href="{{ l.url }}">{{ l.title }}</a></li>
-						      {% endfor %}
-						    </ul>
-						</div>
-						{% else %}
-				    	<a href="{{ link.url }}">{{ link.title }}</a>
-				    {% endif %}
-				  </li>
-				  {% endfor %}
-				</ul>
-			</nav>
-			
-			<div id="umbrella">
-				<ul class="clearfix">
-					
-					{% if shop.customer_accounts_enabled %}
-					<li class="customer-account-links">
-					  {% if customer %}
-					    <p>Welcome {{ customer.first_name }} {{ '(Logout)' | customer_logout_link }}</p>
-					  {% else %}
-					    <p>{{ 'Login' | customer_login_link }}</p>
-					  {% endif %}
-					</li>
-					{% endif %}			
-					
-					{% if customer %}
-					<li>
-						<a href="/account">My Account</a>
-					</li>
-					{% endif %}								
-					
-					<li class="cart-link">
-						<a href="/cart" class="num-items-in-cart">
-							<span class="icon">
-			         {{ cart.item_count }} item{% if cart.item_count != 1 %}s{% endif %}
-							</span>
-		        </a>						 
-					</li>
-					
-					<li class="checkout-link">
-						<a href="/checkout" class="btn">Checkout</a>						  
-					</li>
-					
-				</ul>
-			</div><!-- /#umbrella -->
-		</header>
-		
-		<!-- Content -->
-		<div class="content-wrapper clearfix {% if template contains 'customers' %}customer-accounts-section{% endif %}">
-			{% if flash.error %}<div class="flash error">{{ flash.error }}</div>{% endif %}
-			{% if flash.notice %}<div class="flash notice">{{ flash.notice }}</div>{% endif %}		
-		
-			{% if template == 'list-collections' %}
-				{% include 'collection-listing' %}
-			{% else %}
-				{{ content_for_layout }}
-			{% endif %}
-		</div><!-- /.content -->
-		
-		<!-- Footer -->
-		<footer>
-			{% if settings.footer_nav_visible == true %}
-				<ul id="footer-nav">
-				{% for link in linklists.footer.links %}
-		      <li{% if forloop.first %} class="first"{% endif %}{% if forloop.last %} class="last"{% endif %}><a href="{{ link.url }}"{% if link.url == active_url %} class="current"{% endif %}>{{ link.title }}</a></li>
-	      {% endfor %}
-				</ul>
-			{% endif %}
+
+<body class="{% if customer %}customer-logged-in{% endif %} template{{ template | camelize }}" id="{{ page_title | handle }}">
+  
+    
+  <div class="wrapper">
+    
+    <!-- Header -->
+    <header id="top" class="clearfix">
+
+      <h1 id="site-title">
+        <a href="/" title="Home">
+          {% if settings.use_logo_image %} 
+            <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" /> 
+          {% else %} 
+            {{ shop.name }} 
+          {% endif %}
+        </a>
+      </h1>
       
-			<span class="poweredby">{{ powered_by_link }}</span>
-		</footer>		
+      <nav id="top-menu" class="clearfix">
+        <ul>
+          {% for link in linklists.main-menu.links %}
+          <li{% if forloop.first %} class="first"{% endif %}{% if forloop.last %} class="last"{% endif %}>
+            {% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
+            {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+            <div class="has-dropdown">
+              <a href="{{ link.url }}" class="clearfix">
+                <span class="nav-label">{{ link.title }}</span> 
+                <span class="nav-arrow">&#9660;</span>
+              </a>
+              <ul>
+                {% for l in linklists[child_list_handle].links %}
+                <li><a href="{{ l.url }}">{{ l.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% else %}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+
+        {% if settings.show_header_search %}
+        <form id="header-search" action="/search" method="get">
+          <label for="top-search-input" class="visuallyhidden">Search</label>
+          <input type="text" id="top-search-input" name="q" class="search-input" value="" accesskey="4"  autocomplete="off" placeholder="Search" />
+          <input type="submit" id="top-search-submit" name="top-search-submit" class="search-submit ir" value="Search" />
+        </form>
+        {% endif %}
+      </nav>
+      
+      <div id="umbrella">
+        <ul class="clearfix">
+          
+          {% if shop.customer_accounts_enabled %}
+          <li class="customer-account-links">
+            {% if customer %}
+              <p>Welcome {{ customer.first_name }} {{ '(Logout)' | customer_logout_link }}</p>
+            {% else %}
+              <p>{{ 'Login' | customer_login_link }}</p>
+            {% endif %}
+          </li>
+          {% endif %}     
+          
+          {% if customer %}
+          <li>
+            <a href="/account">My Account</a>
+          </li>
+          {% endif %}               
+          
+          <li class="cart-link">
+            <a href="/cart" class="num-items-in-cart">
+              <span class="icon">
+               {{ cart.item_count }} item{% if cart.item_count != 1 %}s{% endif %}
+              </span>
+            </a>             
+          </li>
+          
+          <li class="checkout-link">
+            <a href="/checkout" class="btn">Checkout</a>              
+          </li>
+          
+        </ul>
+      </div><!-- /#umbrella -->
+    </header>
+    
+    <!-- Content -->
+    <div class="content-wrapper clearfix">
+      {% if template == 'list-collections' %}
+        {% include 'collection-listing' %}
+      {% else %}
+        {{ content_for_layout }}
+      {% endif %}
+    </div><!-- /.content -->
+    
+    <!-- Footer -->
+    <footer id="bottom">
+
+      <div id="footer-left">
+        <ul id="footer-nav" class="clearfix">
+        {% for link in linklists.[settings.footer_linklist].links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+        </ul>
+        <p id="powered-by-shopify">{{ powered_by_link }}</p>
+      </div>
+
+      {%if settings.sm_facebook || settings.sm_twitter || settings.sm_youtube || settings.sm_flickr %}
+      <div id="footer-right">
+        <ul id="sm-icons" class="clearfix">
+          {%if settings.sm_youtube %}<li id="sm-youtube"><a href="{{settings.sm_youtube_link}}" class="ir">YouTube</a></li>{% endif %}
+          {%if settings.sm_flickr %}<li id="sm-flickr"><a href="{{settings.sm_flickr_link}}" class="ir">Flickr</a></li>{% endif %}
+          {%if settings.sm_twitter %}<li id="sm-twitter"><a href="{{settings.sm_twitter_link}}" class="ir">Twitter</a></li>{% endif %}
+          {%if settings.sm_facebook %}<li id="sm-facebook"><a href="{{settings.sm_facebook_link}}" class="ir">Facebook</a></li>{% endif %}
+        </ul>
+      </div>
+      {% endif %}      
+  
+    </footer> 
 
   </div><!-- /.wrapper -->
 
-  <script src="http://www.google.com/jsapi"></script>
+
+
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+
+  <!--[if lt IE 8]>
   <script>
-      google.load("jquery", "1.5.2");
+    // IE 6+7 don't calculate the width of the #umbrella properly
+    $('#umbrella').width( $('#umbrella ul').width() );
   </script>
+  <![endif]-->
+    
+  {% if settings.twitterwidget_visible and settings.show_right_column %}
+    {{ 'jquery.tweet.js' | asset_url | script_tag }}    
+    <script>
+      $(".tweets-wrapper").tweet({
+        count: {{ settings.twitterwidget_numtweets }},
+        username: "{{ settings.twitterwidget_username }}",
+        loading_text: "loading tweets...",
+        template: function(i){ return i["text"]}    
+      });
+    </script>
+  {% endif %}
 
-	<!--[if lt IE 8]>
-	<script>
-		// IE 6+7 don't calculate the width of the #umbrella properly
-		var ulWidth = $('#umbrella ul').width();
-		$('#umbrella').width(ulWidth);
-	</script>
-	<![endif]-->
+  {%if product and product.available %}
+  <script>
 
-	<!-- FYI: Fancybox did not cooperate very well with jQuery 1.6 *in IE7* -->
-	{{ 'jquery.fancybox-1.3.4.pack.js' | asset_url | script_tag }}
-	
-	{{ 'jquery.hoverintent.js' | asset_url | script_tag }}
-	{{ 'radiance.js' | asset_url | script_tag }}	
-	
-	{%if product %}
-	<script>
-	// <![CDATA[  
-	var selectCallback = function(variant, selector) {
-	  if (variant && variant.available == true) {
-	    // selected a valid variant
-	    $('#add-to-cart').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
-	    if(variant.compare_at_price == null){
-	    	$('.product-name .price').html(Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}"));
-	    } else {
-	    	$('.product-name .price').html(Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}") + '<span class="compare_at_price">from <del>' + Shopify.formatMoney(variant.compare_at_price, "{{shop.money_with_currency_format}}") + '</del></span>');
-	    }
-	  } else {
-	    // variant doesn't exist
-	    $('#add-to-cart').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
-	    var message = variant ? "Sold Out" : "Unavailable";    
-	    $('.product-name .price').text(message); // update price-field message
-	  }
-	};
+    var selectCallback = function(variant, selector) {
+      if (variant && variant.available == true) {
+        // selected a valid variant
+        $('#add-to-cart').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+        if(variant.compare_at_price == null){
+          $('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}")+'</strong>');
+        } else {
+          $('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}") + '</strong> <span class="compare_at_price">was <del>' + Shopify.formatMoney(variant.compare_at_price, "{{shop.money_with_currency_format}}") + '</del></span>');
+        }
+      } else {
+        // variant doesn't exist
+        $('#add-to-cart').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+        var message = variant ? "Sold Out" : "Unavailable";    
+        $('.options .price').text(message); // update price-field message
+      }
+    };
 
-	// initialize multi selector for product
-	$(function() {
-	  new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
-	});
-	// ]]>
-	</script>
-	{% endif %}	
-	
-	{% if settings.twitterwidget_visible == true %}
-	{{ 'jquery.tweet.js' | asset_url | script_tag }}		
-	<script>
-	$(window).load( function(){
-		$(".tweets-wrapper").tweet({
-	    count: {{ settings.twitterwidget_numtweets }},
-	    username: "{{ settings.twitterwidget_username }}",
-			loading_text: "loading tweets...",
-	    template: function(i){ return i["text"]}		
-		});
-	});
-	</script>
-	{% endif %}
-	
+    // initialize multi selector for product
+    $(function() {
+      new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+      {% assign found_one_in_stock = false %}
+
+      {% for variant in product.variants %}
+        {% if variant.available and found_one_in_stock == false %}
+          {% assign found_one_in_stock = true %}
+          {% for option in product.options %}
+          $('.single-option-selector:eq(' + {{ forloop.index0 }} + ')').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+          {% endfor %}
+        {% endif %}
+      {% endfor %}  
+      
+    });
+  </script>
+  {% endif %}
+  
   {% if template contains 'customers' %}
     {{ "shopify_common.js" | shopify_asset_url | script_tag }}
     {{ "customer_area.js"  | shopify_asset_url | script_tag }}
   {% endif %}
-		
+
+  {{ 'enhance.jquery.js' | asset_url | script_tag }}
+  {{ 'hoverintent.jquery.js' | asset_url | script_tag }}
+  {{ 'radiance.js' | asset_url | script_tag }} 
+
+  {% if product %}
+  <!-- fb like button -->
+  <div id="fb-root"></div>
+  <script defer>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  
+  <!-- +1 button -->
+  <script defer type="text/javascript">
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
+
+  <!-- tweet btn -->
+  <script defer type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+  {% endif %}  
+    
 </body>
 </html>

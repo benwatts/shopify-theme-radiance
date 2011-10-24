@@ -1,61 +1,130 @@
 <fieldset>
   <legend>General</legend>
+
+  <h3>Content</h3>
   <table>
-	
     <tr>
-      <td><label for="primary_colour">Primary Colour</label><br /><small>Used for miscellaneous things throughout the design (tables, form fields)</small></td>
-      <td><input id="primary_colour" name="primary_colour" class="color" value="#554B60" /></td>
+      <td><label for="content_bg_colour">Content Background</label></td>
+      <td><input id="content_bg_colour" name="content_bg_colour" class="color" value="#282C2E" /></td>
+    </tr>   
+    <tr>
+      <td><label for="content_header_colour">Headers</label></td>
+      <td><input id="content_header_colour" name="content_header_colour" class="color" value="#ffffff" /></td>
+    </tr>   
+    <tr>
+      <td><label for="content_text_colour">Text</label></td>
+      <td><input id="content_text_colour" name="content_text_colour" class="color" value="#afafaf" /></td>
+      </tr>       
+    <tr>
+      <td><label for="content_link_colour">Links</label></td>
+      <td><input id="content_link_colour" name="content_link_colour" class="color" value="#dddddd" /></td>
+    </tr>          
+    <tr>
+      <td><label for="content_link_hover_colour">Link Hover</label></td>
+      <td><input id="content_link_hover_colour" name="content_link_hover_colour" class="color" value="#ffffff" /></td>
     </tr>
+    <tr>
+      <td><label for="content_secondary_colour">Secondary Colour</label></td>
+      <td><input id="content_secondary_colour" name="content_secondary_colour" class="color" value="#41474a" /></td>
+      <td><small>Used with borders, tables</small></td>
+    </tr>              
+  </table>
 
-		<tr>
-		  <th><label for="use_diagonal_motif">Use diagonal line pattern motif?</label><br /><small>(Used to separate blog posts and key sections)</small> </th>
-		  <td><input type="checkbox" id="use_diagonal_motif" name="use_diagonal_motif" value="1" checked="checked" /></td>
-		</tr>
+  <br />
+  <hr />    
 
+  <h3>Fonts</h3>
+  <table>
     <tr>
       <td><label for="header_font">Heading Font</label><br /><small>(site title, nav, headings)</small></td>
       <td>
-				<select class="font" name="header_font" id="header_font">
-		    	<option value="BebasNeueRegular, arial, sans-serif" selected="selected">Bebas Neue</option>
-					<option value="Lobster, arial, sans-serif">Lobster</option>
-					<option value="Arvo, arial, sans-serif">Arvo</option>
-					<option value="Chewy, arial, sans-serif">Chewy</option>
-					<option value="Copse, arial, sans-serif">Copse</option>
-					<option value="Play, arial, sans-serif">Play</option>
-		  	</select>
-			</td>
+        <select class="font" name="header_font" id="header_font">
+          <option value="BebasNeueRegular, arial, sans-serif" selected="selected">Bebas Neue</option>
+          <option value="Lobster, arial, sans-serif">Lobster</option>
+          <option value="Arvo, arial, sans-serif">Arvo</option>
+          <option value="Chewy, arial, sans-serif">Chewy</option>
+          <option value="Copse, arial, sans-serif">Copse</option>
+          <option value="Play, arial, sans-serif">Play</option>
+        </select>
+      </td>
     </tr>
 
     <tr>
       <td><label for="general_font">Body font</label><br /><small>(used everywhere else)</small></td>
       <td>
-				<select class="font" name="general_font" id="general_font">
-					<option value="Helvetica, Arial, sans-serif" selected="selected">Helvetica/Arial</option>
-		  	</select>
-			</td>
-    </tr>
-	
+        <select class="font" name="general_font" id="general_font">
+          <option value="Helvetica, Arial, sans-serif" selected="selected">Helvetica/Arial</option>
+        </select>
+      </td>
+    </tr>  
   </table>
+
+  <br />
+  <hr />    
+
+
+  <h3>Buttons</h3>
+  <p>Checkout, Update Quantities, Remove, Proceed to Checkout, Add Comment</p>
+  <table>
+    <tr>
+      <td><label for="btn_colour">Button colour</label></td>
+      <td><input id="btn_colour" name="btn_colour" class="color" value="#554B60" /></td>
+    </tr>
+    <tr>
+      <td><label for="btn_text_colour">Button text colour</label></td>
+      <td><input id="btn_text_colour" name="btn_text_colour" class="color" value="#ffffff" /></td>
+    </tr>
+    <tr>
+      <td><label for="btn_hover_colour">Button colour on hover</label></td>
+      <td><input id="btn_hover_colour" name="btn_hover_colour" class="color" value="#FCF3C1" /></td>
+    </tr>
+    <tr>
+      <td><label for="btn_hover_text_colour">Button text colour on hover</label></td>
+      <td><input id="btn_hover_text_colour" name="btn_hover_text_colour" class="color" value="#554B60" /></td>
+    </tr>
+  </table>
+
+  <br />
+  <hr />    
+
+  <h3>Miscellaneous</h3>
+  <p>
+    <input type="checkbox" id="use_diagonal_motif" name="use_diagonal_motif" value="1" checked="checked" />
+    <label for="use_diagonal_motif"> Use diagonal line pattern motif?</label>
+    <br /><small>(Used to separate blog posts and key sections)</small>
+  </p>
+
 </fieldset>
 
 
 <fieldset>
-<legend>Background</legend>
+<legend>Page Background</legend>
   <table>
-    <tr>
-      <td><label for="use_body_bg_img">Use a background image?</label></td>
-      <td><input type="checkbox" id="use_body_bg_img" name="use_body_bg_img" checked="checked" /></td>
-    </tr>
+
     <tr>
       <td><label for="body_bg_img">Background image</label></td>
       <td>
         <select name="body_bg_img" id="body_bg_img">
-          <option value="background-user-uploaded.jpg">User-uploaded</option>
+          <option value="background-user-uploaded.jpg">Custom</option>
           <option value="slate-bokehbg.jpg" selected="selected">Default (slate)</option>
           <option value="yellow-bokehbg.jpg">Default (pale yellow)</option>
+          <option value="none">No background image (solid colour)</option>
         </select>
       </td>
     </tr>
+
+    <tr>
+      <td><label for="body_bg_alignment">Background image alignment</label></td>
+      <td>
+        <select name="body_bg_alignment" id="body_bg_alignment">
+          <option value="center" selected="selected">Align to Center</option>
+          <option value="left">Align to Left</option>
+          <option value="right">Align to Right</option>
+          <option value="tile">Tile</option>
+        </select>
+      </td>
+    </tr>
+
     <tr>
       <td><label for="body_bg_upload">Upload a new background image</label></td>
       <td>
@@ -71,40 +140,18 @@
 
 
 
-<fieldset>
-<legend>Buttons</legend>
-	<p>Checkout, Update Quantities, Remove, Proceed to Checkout, Add Comment</p>
-  <table>
-    <tr>
-      <td><label for="btn_colour">Button colour</label></td>
-      <td><input id="btn_colour" name="btn_colour" class="color" value="#FCF3C1" /></td>
-    </tr>
-    <tr>
-      <td><label for="btn_text_colour">Button text colour</label></td>
-      <td><input id="btn_text_colour" name="btn_text_colour" class="color" value="#554B60" /></td>
-    </tr>
-    <tr>
-      <td><label for="btn_hover_colour">Button colour on hover</label></td>
-      <td><input id="btn_hover_colour" name="btn_hover_colour" class="color" value="#554B60" /></td>
-    </tr>
-    <tr>
-      <td><label for="btn_hover_text_colour">Button text colour on hover</label></td>
-      <td><input id="btn_hover_text_colour" name="btn_hover_text_colour" class="color" value="#ffffff" /></td>
-    </tr>
-  </table>
-</fieldset>
-
-
 
 <fieldset>
-<legend>Logo</legend>
+<legend>Header</legend>
+
+  <h3>Site Title/Logo</h3>
   <table>
     <tr>
-      <td><label for="use_logo_image">Use a custom site logo?</label></td>
+      <td><label for="use_logo_image">Use an image logo?</label></td>
       <td><input type="checkbox" id="use_logo_image" name="use_logo_image" data-max-height="100" data-max-width="400"/></td>
     </tr>
     <tr>
-      <td><label for="logo_image">Site logo (Ideally, dimensions should be about 215px wide by 75px tall)</label></td>
+      <td><label for="logo_image">Site logo</label></td>
       <td>
         <select name="logo_image" id="logo_image">
           <option value="logo.png" selected='selected'>logo.png</option>
@@ -112,10 +159,12 @@
       </td>
     </tr>
     <tr>
-      <td><label for="logo_image_upload">Upload a new site logo</label></td>
+      <td><label for="logo_image_upload">Custom logo</label></td>
       <td>
         <input type="file" id="logo_image_upload" name="logo.png" data-max-width="450" data-max-height="100" />
-      </td>
+        <small>(Recommended dimensions: 215px x 75px)</small>
+        <br />        
+      </td>      
     </tr>    
     <tr>
       <td><label for="logo_colour">Logo link colour</label></td>
@@ -125,46 +174,60 @@
       <td><label for="logo_hover_colour">Logo link hover colour</label></td>
       <td><input id="logo_hover_colour" name="logo_hover_colour" class="color" value="#554B60" /></td>
     </tr>
-
   </table>
-</fieldset>
+
+  <br />
+  <hr />
 
 
-
-<fieldset>
-<legend>Header</legend>
+  <h3>Cart/Checkout</h3>
   <table>
     <tr>
       <td><label for="cart_bg_colour">Cart background colour</label></td>
       <td><input id="cart_bg_colour" name="cart_bg_colour" class="color" value="#282C2E" /></td>
     </tr>	
     <tr>
-      <td><label for="cart_link_colour"># Cart items link colour</label></td>
-      <td><input id="cart_link_colour" name="cart_link_colour" class="color" value="#FCF3C1" /></td>
+      <td><label for="cart_link_colour">Link colour</label></td>
+      <td><input id="cart_link_colour" name="cart_link_colour" class="color" value="#afafaf" /></td>
     </tr>	
     <tr>
-      <td><label for="cart_link_hover_colour"># Cart items link hover colour</label></td>
+      <td><label for="cart_link_hover_colour">Link hover colour</label></td>
       <td><input id="cart_link_hover_colour" name="cart_link_hover_colour" class="color" value="#ffffff" /></td>
     </tr>	
     <tr>
-      <td><label for="cart_divider_colour">Divider between # cart items and checkout button </label></td>
+      <td><label for="cart_divider_colour">Divider colour</label></td>
       <td><input id="cart_divider_colour" name="cart_divider_colour" class="color" value="#444444" /></td>
     </tr>	
-
-
     <tr>
-      <td><label for="nav_link_colour">Nav link colour</label></td>
+      <td>
+        <label for="cart_icon_colour">Shopping cart icon:</label>
+      </td>
+      <td>
+        <select name="cart_icon_colour">
+          <option value="white" selected="selected">Transparent White</option>
+          <option value="black">Transparent Black</option>
+        </select>
+      </td>
+    </tr>    
+  </table>
+
+  <br />
+  <hr />
+
+  <h3>Navigation</h3>
+  <table>
+    <tr>
+      <td><label for="nav_link_colour">Link colour</label></td>
       <td><input id="nav_link_colour" name="nav_link_colour" class="color" value="#554b60" /></td>
     </tr>
     <tr>
-      <td><label for="nav_hover_colour">Nav link hover colour</label></td>
+      <td><label for="nav_hover_colour">Link hover colour</label></td>
       <td><input id="nav_hover_colour" name="nav_hover_colour" class="color" value="#282c2e" /></td>
     </tr>
     <tr>
-      <td><label for="nav_divider_colour">Colour of divider between nav links</label></td>
+      <td><label for="nav_divider_colour">Divider between nav links</label></td>
       <td><input id="nav_divider_colour" name="nav_divider_colour" class="color" value="#e7e7ce" /></td>
     </tr>
-
     <tr>
       <td><label for="dropdown_bg_colour">Dropdown menu background colour</label></td>
       <td><input id="dropdown_bg_colour" name="dropdown_bg_colour" class="color" value="#ffffff" /></td>
@@ -173,9 +236,24 @@
       <td><label for="dropdown_brd_colour">Dropdown menu border colour</label></td>
       <td><input id="dropdown_brd_colour" name="dropdown_brd_colour" class="color" value="#c5c3b3" /></td>
     </tr>
-
-
   </table>
+
+  <br />
+  <hr />
+
+  <h3>Search</h3>
+    <p>
+      <label for="show_header_search">Show search form beside nav?</label>
+      <input type="checkbox" id="show_header_search" name="show_header_search" value="1" checked="checked" />   
+    </p>
+    <p>
+      <label for="search_icon_colour">Search Icon Colour:</label>
+      <select name="search_icon_colour">
+        <option value="white">Transparent White</option>
+        <option value="black" selected="selected">Transparent Black</option>
+      </select>
+    </p>
+
 </fieldset>
 
 
@@ -183,272 +261,365 @@
 <fieldset>
   <legend>Homepage</legend>
 	<p>You may need to <a href="/admin/custom_collections">create some collections</a> before modifying these settings.</p>
-  <table>
-		<tr>
-		  <th><label for="home_featuredproducts_visible">Show featured products?</label></th>
-		  <td><input type="checkbox" id="home_featuredproducts_visible" name="home_featuredproducts_visible" value="1" checked="checked" /></td>
-		</tr>	
-		<tr>
-		  <th><label for="home_featuredproducts_collection">Collection to use for featured products: </label></th>
-		  <td><select class="collection" name="home_featuredproducts_collection" /></td>
-		</tr>	
-		
-		<tr>
-		  <th><label for="home_productgrid_visible">Show products below featured products?</label></th>
-		  <td><input type="checkbox" id="home_productgrid_visible" name="home_productgrid_visible" value="1" checked="checked" /></td>
-		</tr>	
-		<tr>
-		  <th><label for="home_productgrid_collection">Collection to use: </label></th>
-		  <td><select class="collection" name="home_productgrid_collection" /></td>
-		</tr>	
-  </table>
-</fieldset>
 
+  <h3>3 Featured Products</h3>
+	<p>
+    <label for="home_featured_collection">Collection to use for featured products: </label>
+		<select class="collection" name="home_featured_collection" />
+	</p>
 
+  <br />
+  <hr />  
 
-<fieldset>
-  <legend>Product Page</legend>
-	<p>You may need to <a href="/admin/custom_collections">create some collections</a> before modifying these settings.</p>
-  <table>
-    <tr>
-      <td><label for="secondary_colour">Secondary colour</label><br /><small>(hover state for links on a dark background)</small></td>
-      <td><input id="secondary_colour" name="secondary_colour" class="color" value="#FCF3C1" /></td>
-    </tr>
-		<tr>
-		  <th><label for="product_collection_visible">Show collection beneath product?</label></th>
-		  <td><input type="checkbox" id="product_collection_visible" name="product_collection_visible" value="1" checked="checked" /></td>
-		</tr>	
-		<tr>
-		  <th><label for="product_collection_name">Collection to use</label></th>
-		  <td><select class="collection" name="product_collection_name" /></td>
-		</tr>	
-    <tr>
-      <td><label for="product_description_bg">Product description background colour</label><br /><small>(on an individual product page)</small></td>
-      <td><input id="product_description_bg" name="product_description_bg" class="color" value="#1D1F20" /></td>
-    </tr>		
-  </table>
-</fieldset>
-
-
-
-<fieldset>
-  <legend>Blog</legend>
-  <table>
-		<tr>
-		  <th><label for="comment_bg_colour">Comment background colour</label></th>
-      <td><input id="comment_bg_colour" name="comment_bg_colour" class="color" value="#eeeeee" /></td>
-		</tr>	
-		<tr>
-		  <th><label for="comment_date_colour">Comment date colour</label></th>
-      <td><input id="comment_date_colour" name="comment_date_colour" class="color" value="#999999" /></td>
-		</tr>	
-  </table>
-</fieldset>
-
-
-
-<fieldset>
-<legend>Product Grid</legend>
-  <table>
-    <tr>
-      <td><label for="section_title_colour">Title colour</label></td>
-      <td><input id="section_title_colour" name="section_title_colour" class="color" value="#ffffff" /></td>
-    </tr>		
-    <tr>
-      <td><label for="product_desc_bgcolour">Product description background colour</label></td>
-      <td><input id="product_desc_bgcolour" name="product_desc_bgcolour" class="color" value="#3A3D3F" /></td>
-    </tr>
-    <tr>
-      <td><label for="prodgrid_link_colour">Link colour</label></td>
-      <td><input id="prodgrid_link_colour" name="prodgrid_link_colour" class="color" value="#fcf3c1" /></td>
-    </tr>
-    <tr>
-      <td><label for="prodgrid_link_hover_colour">Link hover colour</label></td>
-      <td><input id="prodgrid_link_hover_colour" name="prodgrid_link_hover_colour" class="color" value="#ffffff" /></td>
-    </tr>
-    <tr>
-      <td><label for="product_price_overlay">Background colour of price in grid</label></td>
-      <td><input id="product_price_overlay" name="product_price_overlay" class="color" value="#575A5B" /></td>
-    </tr>
-    <tr>
-      <td><label for="price_link_colour">Price colour</label></td>
-      <td><input id="price_link_colour" name="price_link_colour" class="color" value="#ffffff" /></td>
-    </tr>
-    <tr>
-      <td><label for="price_link_hover_colour">Price hover colour</label></td>
-      <td><input id="price_link_hover_colour" name="price_link_hover_colour" class="color" value="#fcf3c1" /></td>
-    </tr>
-    <tr>
-      <td><label for="pagination_border_colour">Border above and below pagination</label></td>
-      <td><input id="pagination_border_colour" name="pagination_border_colour" class="color" value="#2F3336" /></td>
-    </tr>
-  </table>
-</fieldset>
-
-
-
-<fieldset>
-<legend>Left Column</legend>
-  <table>
-    <tr>
-      <td><label for="textcolour_leftcol">Text colour</label></td>
-      <td><input id="textcolour_leftcol" name="textcolour_leftcol" class="color" value="#444444" /></td>
-    </tr>	
-    <tr>
-      <td><label for="leftcol_colour">Background colour</label></td>
-      <td><input id="leftcol_colour" name="leftcol_colour" class="color" value="#ffffff" /></td>
-    </tr>
-    <tr>
-      <td><label for="leftcol_accent_colour">Accent colour</label><br /><small>(used in pagination and checkout)</small></td>
-      <td><input id="leftcol_accent_colour" name="leftcol_accent_colour" class="color" value="#eeeeee" /></td>
-    </tr>
-    <tr>
-      <td><label for="leftcol_link_colour">Link colour</label></td>
-      <td><input id="leftcol_link_colour" name="leftcol_link_colour" class="color" value="#554B60" /></td>
-    </tr>	
-    <tr>
-      <td><label for="leftcol_link_hover_colour">Link hover colour</label></td>
-      <td><input id="leftcol_link_hover_colour" name="leftcol_link_hover_colour" class="color" value="#282C2E" /></td>
-    </tr>	
-  </table>
+  <h3>Product Grid Below Featured Products</h3>
+		<p>
+      <label for="home_products_collection">Collection to use: </label>
+		  <select class="collection" name="home_products_collection" />
+    </p>
+    <p>
+      <label for="home_products_limit">Maximum number of items to show: </label>
+      <select name="home_products_limit">
+        <option value="4">4</option>
+        <option value="8" selected="selected">8</option>
+        <option value="12">12</option>
+        <option value="16">16</option>
+        <option value="20">20</option>
+        <option value="24">24</option>
+      </select>        
+    </p>
 </fieldset>
 
 
 
 <fieldset>
   <legend>Right Column</legend>
+
+  <input type="checkbox" id="show_right_column" name="show_right_column" value="1" checked="checked" />
+  <label for="show_right_column">Show right column</label>
+
+  <br />
+  <hr />  
+
+  <h3>Colours</h3>
   <table>
-		<tr>
-		  <th><label for="rightcol_visible">Show right column</label></th>
-		  <td><input type="checkbox" id="rightcol_visible" name="rightcol_visible" value="1" checked="checked" /></td>
-		</tr>		
     <tr>
-      <td><label for="textcolour_rightcol">Text colour</label><br /><small>(right column, product description, on dark background)</small></td>
-      <td><input id="textcolour_rightcol" name="textcolour_rightcol" class="color" value="#AFAFAF" /></td>
+      <td><label for="widget_text_colour">Text</label></td>
+      <td><input id="widget_text_colour" name="widget_text_colour" class="color" value="#AFAFAF" /></td>
     </tr>
     <tr>
-      <td><label for="widget_bg_colour">Widget background colour</label></td>
+      <td><label for="widget_bg_colour">Widget background</label></td>
       <td><input id="widget_bg_colour" name="widget_bg_colour" class="color" value="#1D1F20" /></td>
     </tr>
     <tr>
-      <td><label for="widget_title_colour">Widget title colour</label></td>
+      <td><label for="widget_title_colour">Widget title</label></td>
       <td><input id="widget_title_colour" name="widget_title_colour" class="color" value="#ffffff" /></td>
-    </tr>		
+    </tr>   
     <tr>
-      <td><label for="rightcol_link_colour">Link colour</label></td>
-      <td><input id="rightcol_link_colour" name="rightcol_link_colour" class="color" value="#fcf3c1" /></td>
-    </tr>	
+      <td><label for="widget_link_colour">Link</label></td>
+      <td><input id="widget_link_colour" name="widget_link_colour" class="color" value="#fcf3c1" /></td>
+    </tr> 
     <tr>
-      <td><label for="rightcol_link_hover_colour">Link hover colour</label></td>
-      <td><input id="rightcol_link_hover_colour" name="rightcol_link_hover_colour" class="color" value="#ffffff" /></td>
-    </tr>	
+      <td><label for="widget_link_hover_colour">Link hover</label></td>
+      <td><input id="widget_link_hover_colour" name="widget_link_hover_colour" class="color" value="#ffffff" /></td>
+    </tr> 
+    <tr>
+      <td><label for="widget_divider_colour">Divider colour</label></td>
+      <td><input id="widget_divider_colour" name="widget_divider_colour" class="color" value="#3A3D3F" /></td>
+      </tr>    
   </table>
-</fieldset>
 
+  <br />
+  <hr />
 
-
-<fieldset>
-  <legend>Right Column -- Welcome Widget</legend>
+  <h3>Welcome Widget</h3>
   <table>
-		<tr>
-		  <th><label for="textwidget_visible">Show this widget</label></th>
-		  <td><input type="checkbox" id="textwidget_visible" name="textwidget_visible" value="1" checked="checked" /></td>
-		</tr>	
-		<tr>
-		  <th><label for="textwidget_title">Title</label></th>
-		  <td><input type="text" id="textwidget_title" name="textwidget_title" class="text" value="Welcome" /></td>
-		</tr>	
-		<tr>
-		  <th><label for="textwidget_content"></label></th>
-  		<td><textarea name="textwidget_content" cols="60" rows="5" id="textwidget_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pharetra, ligula non mollis pretium, lectus libero sodales augue, interdum auctor mauris dui non risus. Nulla facilisi. Nunc rutrum diam in elit sagittis eget viverra erat viverra. Morbi imperdiet aliquet libero vel rhoncus. Integer.</textarea></td>
-		</tr>	
-  </table>
-</fieldset>
-
-
-
-<fieldset>
-  <legend>Right Column -- Twitter Widget</legend>
-  <table>
-		<tr>
-		  <th><label for="twitterwidget_visible">Show this widget</label></th>
-		  <td><input type="checkbox" id="twitterwidget_visible" name="twitterwidget_visible" value="1" checked="checked" /></td>
-		</tr>	
-		<tr>
-		  <th><label for="twitterwidget_title">Title</label></th>
-		  <td><input type="text" id="twitterwidget_title" name="twitterwidget_title" class="text" value="Latest Tweets" /></td>
-		</tr>			
-		<tr>
-		  <th><label for="twitterwidget_username">Twitter Username</label></th>
-		  <td>
-				<input type="text" id="twitterwidget_username" name="twitterwidget_username" class="text" value="shopify" />
-			</td>
-		</tr>	
-		<tr>
-		  <th><label for="twitterwidget_numtweets">Number of tweets to display</label></th>
-		  <td>
-				<input type="text" id="twitterwidget_numtweets" name="twitterwidget_numtweets" class="text" value="5" />
-			</td>
-		</tr>	
     <tr>
-      <td><label for="tweet_widget_divider_colour">Colour of line used to separate tweets</label></td>
-      <td><input id="tweet_widget_divider_colour" name="tweet_widget_divider_colour" class="color" value="#3A3D3F" /></td>
+      <td><label for="textwidget_visible">Show this widget</label></td>
+      <td><input type="checkbox" id="textwidget_visible" name="textwidget_visible" value="1" checked="checked" /></td>
+    </tr> 
+    <tr>
+      <td><label for="textwidget_title">Title</label></td>
+      <td><input type="text" id="textwidget_title" name="textwidget_title" class="text" value="Welcome" /></td>
+    </tr> 
+    <tr>
+      <td><label for="textwidget_content"></label></td>
+      <td><textarea name="textwidget_content" cols="60" rows="5" id="textwidget_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pharetra, ligula non mollis pretium, lectus libero sodales augue, interdum auctor mauris dui non risus. Nulla facilisi. Nunc rutrum diam in elit sagittis eget viverra erat viverra. Morbi imperdiet aliquet libero vel rhoncus. Integer.</textarea></td>
+    </tr> 
+  </table>
+
+  <br />
+  <hr />
+
+  <h3>Twitter Widget</h3>
+  <table>
+    <tr>
+      <td><label for="twitterwidget_visible">Show this widget</label></td>
+      <td><input type="checkbox" id="twitterwidget_visible" name="twitterwidget_visible" value="1" checked="checked" /></td>
+    </tr> 
+    <tr>
+      <td><label for="twitterwidget_title">Title</label></td>
+      <td><input type="text" id="twitterwidget_title" name="twitterwidget_title" class="text" value="Latest Tweets" /></td>
+    </tr>     
+    <tr>
+      <td><label for="twitterwidget_username">Twitter Username</label></td>
+      <td>
+        <input type="text" id="twitterwidget_username" name="twitterwidget_username" class="text" value="shopify" />
+      </td>
+    </tr> 
+    <tr>
+      <td><label for="twitterwidget_numtweets">Number of tweets to display</label></td>
+      <td>
+        <input type="text" id="twitterwidget_numtweets" name="twitterwidget_numtweets" class="text" value="5" />
+      </td>
+    </tr> 
+  </table>
+
+  <br />
+  <hr /> 
+
+  <h3>Link Lists </h3>
+  <table>
+    <tr>
+      <th><label for="show_leftnav_allcollections">Show all collections?</label></th>
+      <td><input type="checkbox" id="show_leftnav_allcollections" name="show_leftnav_allcollections" value="1" checked="checked" /></td>
+      <th><label for="allcollections_title">Title</label></th>      
+      <td><input type="text" id="allcollections_title" name="allcollections_title" value="Product Categories" /></td>
+    </tr>
+    
+    <tr>
+      <th><label for="show_leftnav_linklist1">Show link list #1?</label></th>
+      <td><input type="checkbox" id="show_leftnav_linklist1" name="show_leftnav_linklist1" value="0" /></td>
+      <th><label for="leftnav_linklist1">Use list: </label></th>
+      <td><select class="linklist" id="leftnav_linklist1" name="leftnav_linklist1" /></td>
+    </tr>
+    
+    <tr>
+      <th><label for="show_leftnav_linklist2">Show link list #2?</label></th>
+      <td><input type="checkbox" id="show_leftnav_linklist2" name="show_leftnav_linklist2" value="0" /></td>
+      <th><label for="leftnav_linklist2">Use list: </label></th>
+      <td><select class="linklist" id="leftnav_linklist2" name="leftnav_linklist2" /></td>
+    </tr>
+
+    <tr>
+      <th><label for="show_leftnav_linklist3">Show link list #3?</label></th>
+      <td><input type="checkbox" id="show_leftnav_linklist3" name="show_leftnav_linklist3" value="0" /></td>
+      <th><label for="leftnav_linklist3">Use list: </label></th>
+      <td><select class="linklist" id="leftnav_linklist3" name="leftnav_linklist3" /></td>
     </tr>
   </table>
+ 
+
 </fieldset>
 
 
 
-<fieldset> <!-- double check -->
-	<legend>Right Column -- Facebook and Twitter Buttons</legend>
+<fieldset>
+  <legend>Product Grids</legend>
+  <p>Product grids contain the the thumbnail of your product, price, name, and a description (featured items on the homepage).</p>
+
+  <h3>Colours</h3>
   <table>
-		<tr>
-		  <th><label for="twitterbtn_visible">Show Twitter button</label></th>
-		  <td><input type="checkbox" id="twitterbtn_visible" name="twitterbtn_visible" value="1" checked="checked" /></td>
-		</tr>
-		<tr>
-		  <th><label for="twitterbtn_text">Twitter button text</label></th>
-			<td><input type="text" id="twitterbtn_text" name="twitterbtn_text" class="text" value="Follow us on Twitter" /></td>
-		</tr>			
-		<tr>
-		  <th><label for="twitterbtn_link">Twitter button link</label></th>
-			<td><input type="text" id="twitterbtn_link" name="twitterbtn_link" class="text" value="http://twitter.com/shopify" /></td>
-		</tr>	
-		<tr>
-		  <th><label for="facebookbtn_visible">Show Facebook button</label></th>
-		  <td><input type="checkbox" id="facebookbtn_visible" name="facebookbtn_visible" value="1" checked="checked" /></td>
-		</tr>	
-		<tr>
-		  <th><label for="facebookbtn_text">Facebook button text</label></th>
-			<td><input type="text" id="facebookbtn_text" name="facebookbtn_text" class="text" value="Become a fan on Facebook" /></td>
-		</tr>	
-		<tr>
-		  <th><label for="facebookbtn_link">Facebook button link</label></th>
-			<td><input type="text" id="facebookbtn_link" name="facebookbtn_link" class="text" value="https://www.facebook.com/pages/Shopify/20409006880?ref=ts" /></td>
-		</tr>	
-  </table>
+    <tr>
+      <td><label for="grid_header_colour">Header</label></td>
+      <td><input id="grid_header_colour" name="grid_header_colour" class="color" value="#ffffff" /></td>
+    </tr>          
+    <tr>
+      <td><label for="grid_bg_colour">Background behind product name</label></td>
+      <td><input id="grid_bg_colour" name="grid_bg_colour" class="color" value="#3A3D3F" /></td>
+    </tr> 
+    <tr>
+      <td><label for="grid_text_colour">Text</label></td>
+      <td><input id="grid_text_colour" name="grid_text_colour" class="color" value="#aaaaaa" /></td>
+      </tr>    
+    <tr>
+      <td><label for="grid_link_colour">Links</label></td>
+      <td><input id="grid_link_colour" name="grid_link_colour" class="color" value="#dddddd" /></td>
+    </tr>     
+    <tr>
+      <td><label for="grid_link_hover_colour">Link Hover</label></td>
+      <td><input id="grid_link_hover_colour" name="grid_link_hover_colour" class="color" value="#ffffff" /></td>
+    </tr>   
+    <tr>
+      <td><label for="grid_price_colour">Price</label></td>
+      <td><input id="grid_price_colour" name="grid_price_colour" class="color" value="#ffffff" /></td>
+    </tr>    
+    <tr>
+      <td><label for="grid_price_background_colour">Background behind price</label></td>
+      <td><input id="grid_price_background_colour" name="grid_price_background_colour" class="color" value="#575A5B" /></td>
+    </tr>        
+  </table>  
+
+  <br />
+  <hr />  
+
+  <h3>Featured Products (Homepage)</h3>
+  <p>
+    <input type="checkbox" id="show_featured_desc" name="show_featured_desc" value="1" checked="checked" />      
+    <label for="show_featured_desc">Show excerpt of description beneath product title?</label>
+  </p>
 </fieldset>
 
 
 
-<fieldset> <!-- good -->
+<fieldset>
+  <legend>Product Page</legend>
+
+  <h4>Colours</h4>
+  <table>
+    <tr>
+      <td><label for="added_to_cart_bg">"Item Added to Cart!" background colour</label></td>
+      <td><input id="added_to_cart_bg" name="added_to_cart_bg" class="color" value="#1D1F20" /></td>
+    </tr>   
+  </table>
+
+  <br />
+  <hr />       
+
+  <h3>Sharing Buttons</h3>
+  <table>
+    <tr>
+      <td>
+        <input type="checkbox" id="share_prod_on_twitter" name="share_prod_on_twitter" value="1" checked="checked" />      
+        <label for="share_prod_on_twitter">Tweet button</label> 
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="checkbox" id="share_prod_on_facebook" name="share_prod_on_facebook" value="1" checked="checked" />      
+        <label for="share_prod_on_facebook">Facebook Like button</label>
+      </td>
+    </tr> 
+    <tr>
+      <td>
+        <input type="checkbox" id="share_prod_on_googleplus" name="share_prod_on_googleplus" value="0" />      
+        <label for="share_prod_on_googleplus">Google +1 button</label>
+      </td>
+    </tr>     
+  </table>
+ 
+  <br />
+  <hr />   
+
+  <h3>Collection Beneath Product</h3>
+  <p>You may need to <a href="/admin/custom_collections">create some collections</a> before modifying these settings.</p>
+  <p>
+    <label for="productspg_featured_collection">Collection to show beneath the product information: </label>
+    <select class="collection" name="productspg_featured_collection" />
+  </p>
+  <p>
+    <label for="productspg_featured_limit">Maximum number of items to show: </label>
+    <select name="productspg_featured_limit">
+      <option value="4" selected="selected">4</option>
+      <option value="8">8</option>
+      <option value="12">12</option>
+      <option value="16">16</option>
+      <option value="20">20</option>
+      <option value="24">24</option>
+    </select>        
+  </p>
+
+</fieldset>
+
+
+
+<fieldset>
+  <legend>Blog</legend>
+
+  <h3>Comments</h3>
+  <table>
+    <tr>
+      <td><label for="comment_bg">Background</label></td>
+      <td><input id="comment_bg" name="comment_bg" class="color" value="#1D1F20" /></td>
+    </tr> 
+    <tr>
+      <td><label for="comment_text_colour">Text</label></td>
+      <td><input id="comment_text_colour" name="comment_text_colour" class="color" value="#AFAFAF" /></td>
+    </tr> 
+    <tr>
+      <td><label for="comment_author_colour">Author</label></td>
+      <td><input id="comment_author_colour" name="comment_author_colour" class="color" value="#FCF3C1" /></td>
+    </tr> 
+    <tr>
+      <td><label for="comment_date_colour">Date</label></td>
+      <td><input id="comment_date_colour" name="comment_date_colour" class="color" value="#3A3D3F" /></td>
+    </tr>     
+
+  </table>
+
+</fieldset>
+
+
+<fieldset> <!-- schwing --> 
   <legend>Footer</legend>
+
+  <h3>Colours</h3>
   <table>
-		<tr>
-		  <th><label for="footer_nav_visible">Show footer nav</label></th>
-		  <td><input type="checkbox" id="footer_nav_visible" name="footer_nav_visible" value="1" checked="checked" /></td>
-		</tr>	
     <tr>
-      <td><label for="footer_link_colour">Link colour</label></td>
-      <td><input id="footer_link_colour" name="footer_link_colour" class="color" value="#73787c" /></td>
-    </tr>			
+      <td><label for="footer_bg_colour">Background</label></td>
+      <td><input id="footer_bg_colour" name="footer_bg_colour" class="color" value="#3A3D3F" /></td>
+    </tr> 
     <tr>
-      <td><label for="footer_hover_colour">Link hover colour</label></td>
-      <td><input id="footer_hover_colour" name="footer_hover_colour" class="color" value="#FCF3C1" /></td>
-    </tr>				
+      <td><label for="footer_txt_colour">Text</label></td>
+      <td><input id="footer_txt_colour" name="footer_txt_colour" class="color" value="#777777" /></td>
+    </tr> 
     <tr>
-      <td><label for="footer_border_colour">Border colour</label></td>
-      <td><input id="footer_border_colour" name="footer_border_colour" class="color" value="#393d41" /></td>
-    </tr>				
+      <td><label for="footer_link_colour">Link</label></td>
+      <td><input id="footer_link_colour" name="footer_link_colour" class="color" value="#AFAFAF" /></td>
+    </tr>     
+    <tr>
+      <td><label for="footer_link_hover_colour">Link Hover</label></td>
+      <td><input id="footer_link_hover_colour" name="footer_link_hover_colour" class="color" value="#ffffff" /></td>
+    </tr>      
   </table>
+
+  <br />
+  <hr />
+
+  <h3>Footer Menu</h3>
+  <p>
+    <label for="footer_linklist">Footer link list:</label> 
+    <select class="linklist" name="footer_linklist">
+      <option value="footer">Footer</option>
+    </select>
+  </p>
+
+  <br />
+  <hr />
+
+  <h3>Social Media Icons</h3>
+  <p>
+    <label for="sm_colour">Icon colour: </label>
+    <select name="sm_colour">
+      <option value="white">Transparent White</option>
+      <option value="black">Transparent Black</option>
+    </select>
+  </p>
+
+  <table class="standard-table">
+    <tr>
+      <td></td>
+      <td>Show?</td>
+      <td>Link to</td>
+    </tr>
+    <tr class="even">
+      <td><strong>Facebook</strong></td>
+      <td><input type="checkbox" id="sm_facebook" name="sm_facebook" value="1" checked="checked" /></td>
+      <td><input type="text" id="sm_facebook_link" name="sm_facebook_link" value="http://www.facebook.com" class="long" /></td>
+    </tr>
+    <tr class="odd">
+      <td><strong>Twitter</strong></td>
+      <td><input type="checkbox" id="sm_twitter" name="sm_twitter" value="1" checked="checked" /></td>
+      <td><input type="text" id="sm_twitter_link" name="sm_twitter_link" value="http://www.twitter.com" class="long" /></td>
+    </tr>
+    <tr class="even">
+      <td><strong>YouTube</strong></td>
+      <td><input type="checkbox" id="sm_youtube" name="sm_youtube" value="1" checked="checked" /></td>
+      <td><input type="text" id="sm_youtube_link" name="sm_youtube_link" value="http://www.youtube.com" class="long" /></td>
+    </tr>
+    <tr class="odd">
+      <td><strong>Flickr</strong></td>
+      <td><input type="checkbox" id="sm_flickr" name="sm_flickr" value="1" checked="checked" /></td>
+      <td><input type="text" id="sm_flickr_link" name="sm_flickr_link" value="http://www.flickr.com" class="long" /></td>
+    </tr>
+  </table> 
 </fieldset>
