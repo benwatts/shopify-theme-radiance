@@ -267,6 +267,10 @@
     <label for="home_featured_collection">Collection to use for featured products: </label>
 		<select class="collection" name="home_featured_collection" />
 	</p>
+  <p>
+    <label for="home_featured_header_show">Show name of collection?</label>
+    <input type="checkbox" id="home_featured_header_show" name="home_featured_header_show" value="0" />   
+  </p>  
 
   <br />
   <hr />  
@@ -288,6 +292,101 @@
       </select>        
     </p>
 </fieldset>
+
+
+
+<fieldset>
+  <legend>Homepage Carousel</legend>
+
+  <p>Recommended dimensions of all carousel images: <strong>740px wide x 300px tall</strong></p>
+  <p>Leave the "Link to" field empty for no link.</p>  
+
+  <table>
+    <tr>
+      <td><label for="show_carousel">Show carousel?</label></td>
+      <td><input type="checkbox" id="show_carousel" name="show_carousel" value="0" /></td>
+    </tr>   
+    <tr>
+      <td><label for="carousel_height">Carousel Height</label></td>
+      <td><input type="text" id="carousel_height" name="carousel_height" value="300" class="short" /> <small>px</small></td>
+    </tr>   
+
+    <tr>
+      <td><label for="carousel_button_colour">Button colour</label></td>
+      <td><input id="carousel_button_colour" name="carousel_button_colour" class="color" value="#3A3D3F" /></td>
+    </tr>
+    <tr>
+      <td><label for="carousel_button_hover_colour">Button hover colour</label></td>
+      <td><input id="carousel_button_hover_colour" name="carousel_button_hover_colour" class="color" value="#1D1F20" /></td>
+    </tr> 
+
+    <tr>
+      <td><label for="carousel_arrow_colour">Button arrow colour</label></td>
+      <td><input id="carousel_arrow_colour" name="carousel_arrow_colour" class="color" value="#afafaf" /></td>
+    </tr>
+    <tr>
+      <td><label for="carousel_arrow_hover_colour">Button arrow hover colour</label></td>
+      <td><input id="carousel_arrow_hover_colour" name="carousel_arrow_hover_colour" class="color" value="#ffffff" /></td>
+    </tr>       
+
+  </table>    
+
+  <br />
+  <hr />
+  <br />
+
+  <table class="standard-table">
+    <tr>
+      <td> </td>
+      <td>Show?</td>
+      <td>Image</td>
+      <td>Link to</td>
+    </tr>
+    
+    <tr class="odd"><!-- CAROUSEL ITEM 1 -->
+      <td><label for="show_carousel_item_4">Slide #1</label></td> 
+      <td><input type="checkbox" id="show_carousel_item_1" name="show_carousel_item_1" value="1" checked="checked" /></td>
+      <td><input type="file" id="carousel_item_1_image" name="carousel-item-1.jpg" data-max-width="740" /></td>
+      <td><input type="text" id="carousel_item_1_link" name="carousel_item_1_link" /></td>
+    </tr>
+    
+    <tr class="even"><!-- CAROUSEL ITEM 2 -->
+      <td><label for="show_carousel_item_4">Slide #2</label></td>    
+      <td><input type="checkbox" id="show_carousel_item_2" name="show_carousel_item_2" value="1" checked="checked" /></td>
+      <td><input type="file" id="carousel_item_2_image" name="carousel-item-2.jpg" data-max-width="740" /></td>
+      <td><input type="text" id="carousel_item_2_link" name="carousel_item_2_link" /></td>
+    </tr>   
+    
+    <tr class="odd"><!-- CAROUSEL ITEM 3 -->
+      <td><label for="show_carousel_item_4">Slide #3</label></td>    
+      <td><input type="checkbox" id="show_carousel_item_3" name="show_carousel_item_3" value="1" checked="checked" /></td>
+      <td><input type="file" id="carousel_item_3_image" name="carousel-item-3.jpg" data-max-width="740" /></td>
+      <td><input type="text" id="carousel_item_3_link" name="carousel_item_3_link" /></td>
+    </tr> 
+        
+    <tr class="even"><!-- CAROUSEL ITEM 4 -->
+      <td><label for="show_carousel_item_4">Slide #4</label></td>
+      <td><input type="checkbox" id="show_carousel_item_4" name="show_carousel_item_4" value="0" /></td>
+      <td><input type="file" id="carousel_item_4_image" name="carousel-item-4.jpg" data-max-width="740" /></td>
+      <td><input type="text" id="carousel_item_4_link" name="carousel_item_4_link" /></td>
+    </tr>   
+        
+    <tr class="odd"><!-- CAROUSEL ITEM 5 -->
+      <td><label for="show_carousel_item_4">Slide #5</label></td>    
+      <td><input type="checkbox" id="show_carousel_item_5" name="show_carousel_item_5" value="0" /></td>
+      <td><input type="file" id="carousel_item_5_image" name="carousel-item-5.jpg" data-max-width="740" /></td>
+      <td><input type="text" id="carousel_item_5_link" name="carousel_item_5_link" /></td>
+    </tr>   
+        
+    <tr class="even"><!-- CAROUSEL ITEM 6 -->
+      <td><label for="show_carousel_item_4">Slide #6</label></td>    
+      <td><input type="checkbox" id="show_carousel_item_6" name="show_carousel_item_6" value="0" /></td>
+      <td><input type="file" id="carousel_item_6_image" name="carousel-item-6.jpg" data-max-width="740" /></td>
+      <td><input type="text" id="carousel_item_6_link" name="carousel_item_6_link" /></td>
+    </tr>
+  </table>
+</fieldset>
+
 
 
 

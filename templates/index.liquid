@@ -1,9 +1,21 @@
 <div id="col-left">
 
+  {% include 'carousel' %}
 
   {% if settings.home_featured_collection != "" and collections[settings.home_featured_collection].products.size > 0 %}
     <!-- Three featured products -->
     <section class="products-prominent diagonal-divider">
+
+      {% if settings.home_featured_header_show %}
+      <div class="section-details">
+        <h2>{{collections[settings.home_featured_collection].title | link_to: collections[settings.home_featured_collection].url }}</h2>
+
+        {% if (collections[settings.home_featured_collection].products.size + 0) > 3 %}
+          <div class="view-more">{{ 'View More &raquo;' | link_to: collections[settings.home_featured_collection].url }}</div>
+        {% endif %}
+      </div>    
+      {% endif %}
+
       <ul class="product-grid wide" id="featured-grid">
 
         {% for product in collections[settings.home_featured_collection].products offset: 0 limit: 3 %}

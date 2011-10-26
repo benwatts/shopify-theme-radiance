@@ -3,7 +3,7 @@
   <section class="diagonal-divider {{ collection.handle }}">
     <div class="section-details">
       <h2 class="title">{{ collection.title }}</h2>
-      {% if collection.description != '' %}
+      {% if collection.description.size > 0 %}
       <div class="description content">{{ collection.description }}</div>
       {% endif %}
     </div>

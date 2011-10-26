@@ -71,6 +71,31 @@ var RADIANCE = {
   templateIndex : {
     init: function(){
       console.info(' > Index Template');
+      if( $("#carousel").length > 0 ){  
+        $("#carousel").scrollable({
+          circular: true
+        });
+
+        if ( $("#carousel").find('.items li[class!=cloned]').length > 1 ) {
+          window.api = $("#carousel").autoscroll({
+            autoplay: true,
+            api: true,
+            interval: 7500
+          })
+          $("#carousel").hover(
+              function() { 
+                api.pause(); 
+                $(this).find('.browse').fadeIn('fast');
+              },
+              function() { 
+                api.play(); 
+                $(this).find('.browse').fadeOut('fast');
+              }
+          );
+        }
+
+        $('#carousel-thumbs li:first a').addClass('active');
+      }      
     }
   },
   
@@ -163,22 +188,23 @@ function setupDropdownMenus(){
  */
 function addToCart(e){
 
-  console.info( $(this).parent('form') );
-
   $.ajax({ 
     type: 'POST',
     url: '/cart/add.js',
     async: false, 
     cache: false, 
-    data: $(this).parents('form').serialize(),
+    data: 'quantity=1&' + $(this).parents('form').serialize(),
     dataType: 'json',
     error: addToCartFail,
-    success: addToCartSuccess  
+    success: addToCartSuccess,
+    cache: false 
   });
+
   e.preventDefault();
 }
   
 function addToCartSuccess (jqXHR, textStatus, errorThrown){
+
   $.ajax({ 
     type: 'GET',
     url: '/cart.js',
@@ -201,7 +227,7 @@ function updateCartDesc(data){
   
   switch(data.item_count){
     case 0: 
-      $cartLinkText.text('Your cart is empty');
+      $cartLinkText.text('0 items');
       break;
     case 1:
       $cartLinkText.text('1 item');
@@ -245,7 +271,6 @@ function searchPlaceholder(){
   }
 
 }
-
 
 
 /** 

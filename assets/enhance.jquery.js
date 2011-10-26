@@ -41,6 +41,8 @@
         wrapperWidth  = $activeWrapper.width(),
         wrapperHeight = (image.originalWidth < wrapperWidth) ? image.originalHeight : ~~(image.originalHeight * scale);
 
+    hideSpinner();
+
     // empty container, change container's width, append the <img>
     $activeWrapper.empty().height(wrapperHeight).append(image.tag);
 
@@ -71,8 +73,8 @@
 
 
   function preloadImage(url){
-    var image = getCachedImage();
-    if( !image ){
+    var image = getCachedImage(url);
+    if( image === false ){
       var cacheImage = document.createElement('img');
       cacheImage.id = 'active-image';
       cacheImage.onload = function(){
@@ -87,7 +89,6 @@
 
 
   function imageLoaded(img, url){
-    hideSpinner();
     var image = { 
       tag: img, 
       url: url, 
@@ -114,6 +115,7 @@
   function getCachedImage(url){
     for(var i=0; i < cache.length; i++ ){
       if( cache[i].url === url ){
+        console.log('FOUND THE CACHED IMAGE')
         return cache[i];
       }
     }

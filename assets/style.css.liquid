@@ -286,15 +286,10 @@ body { text-align: center; }
   position: relative;
   }
 
-#top-menu .nav-label{
-  float: left;
-  }
-
 #top-menu .nav-arrow{
   font-size: 12px;
-  display: block; 
-  float: right;
-  margin: 5px 0 0 5px;
+  vertical-align: middle; 
+  margin: 5px 0 0 3px;
   }
 
 #top-menu ul ul{
@@ -340,6 +335,7 @@ body { text-align: center; }
 /** 
  * Header Search 
  */
+
 #header-search{ 
   float: right;
   } 
@@ -363,7 +359,9 @@ body { text-align: center; }
   background: url({{'icon-search.png' | asset_url }}) 0 -50px no-repeat;
   {% endif %}
   float: right;
-  margin: 0 0 0 10px;
+  margin: 0 0 0 8px;
+  font-size: 0; /* ie7 */
+  line-height: 50px; /* ie7 */ 
   }
 #header-search #top-search-submit:hover{
   {% if settings.search_icon_colour == "black" %}
@@ -373,18 +371,8 @@ body { text-align: center; }
   {% endif %}
   }
 
-
-  
-  
-/** 
- * Breadcrumbs 
- */ 
-#breadcrumb{
-  margin: 0;
-  padding: 0;
-  }
-#breadcrumb li{
-  display: inline;
+#header-search{
+  width: 215px;
   } 
 
 
@@ -466,12 +454,16 @@ section,
   overflow: hidden;
   height: 1%;
   }
+
+.section-details{
+  margin: 0 0 10px 0;  
+  }
   
 .section-details h2{
   font: 26px/1 {{settings.header_font}};
   color: {{ settings.grid_header_colour}};
-  margin: 0 0 10px 0;
   float: left;
+  margin: 0;
   }
 .section-details a{
   text-decoration: none;
@@ -509,10 +501,6 @@ section,
   }
 .product-grid.wide li{ width: 240px; } 
 .product-grid .last-in-row{ margin-right: 0; } 
-
-.product-grid-item{
-  
-  }
 
 .product-grid img{ 
   display: block; 
@@ -1053,17 +1041,23 @@ input.cancel{
   color: {{ settings.comment_text_colour }}
   }
 .comment-arrow{
-  color: {{ settings.comment_bg }};
-  font: 18px/1 'arial unicode', arial, sans-serif ;
+  width:0px; 
+  height:0px; 
+  border-bottom:8px solid transparent;
+  border-top:8px solid transparent; 
+  border-right:8px solid {{ settings.comment_bg }}; /* arrow colour */
+  font-size:0px;
+  line-height:0px;
   position: absolute;
-  top: 16px;
-  left: -14px;
+  top: 14px;
+  left: -8px;
   }
 
 .comment-posted{
   font-style: italic;
   margin: 0;
   font-size: 11px;
+  line-height: 1;
   color: {{ settings.comment_date_colour }};
   }
 
@@ -1128,16 +1122,23 @@ input.cancel{
 
 #search-form{
   padding: 0 0 20px 0;
+  overflow: hidden; height: 1%;
   }
 #search-form #q{
   font-size: 16px;
   padding: 6px;
-  width: 600px;
-  border: solid 1px {{ settings.content_secondary_colour }}
+  width: 575px;
+  border: solid 1px {{ settings.content_secondary_colour }};
+  float: left;
   }
 #search-form #search-submit{ /* overriding some of .btn's styles */
-  padding-top: 8px;
-  padding-bottom: 8px; 
+  padding-top: 7px;
+  padding-bottom: 6px; 
+  float: right;
+  width: 100px;
+  }
+.ie7 #search-form #search-submit{
+  border: none;
   }
 
 .results .item{
@@ -1245,8 +1246,6 @@ col.checkout-delete{ width: 80px; }
   background: {{ settings.footer_bg_colour }};
   color: {{ settings.footer_txt_colour }};
   }
-/*#bottom a{ color: {{settings.footer_link_colour}} }
-#bottom a:hover{ color: {{settings.footer_hover_colour}} }*/
 
 #footer-left{ 
   width: 500px;
@@ -1259,7 +1258,6 @@ col.checkout-delete{ width: 80px; }
 
 #bottom ul{
   float: left;
-  margin: 0;
   list-style: none;
   } 
 #bottom li{
@@ -1278,16 +1276,19 @@ col.checkout-delete{ width: 80px; }
   margin: 0 0 -2px 0;
   }
 
+#footer-nav{
+  margin: 0 0 8px 0; 
+  }
 #footer-nav li{
   border-right: solid 1px {{ settings.footer_txt_colour }};
-  margin-bottom: 8px; 
   }
-#footer-nav li:last-child{
+#footer-nav li.last{
   border: none;
   } 
 
 #bottom #sm-icons{
   float: right;
+  margin: 0;
   }
 #sm-icons li{ 
   margin: 0 0 0 10px; 
@@ -1320,6 +1321,93 @@ col.checkout-delete{ width: 80px; }
 #sm-facebook a:hover{ background-position: -108px -117px; }
 {% endif %}
 
+
+
+/**
+ * Homepage Carousel
+ */ 
+
+/* Adjust this to alter the width and height of the carousel. */
+#carousel, 
+#carousel .items > li{
+  width: 740px;
+  height: {{ settings.carousel_height }}px;
+  }
+
+#carousel-wrapper{ margin: 0 0 15px 0; }
+
+#carousel{
+  position: relative;
+  z-index: 50;
+  overflow: hidden;
+  background: #F4F4F4;
+  }
+#carousel p, 
+#carousel li{
+  margin: 0;
+  }
+  
+#carousel .items{
+  margin: 0;
+  padding: 0;
+  width: 20000em;
+  position: absolute;
+  z-index: 1;
+  }
+#carousel .items > li{
+  float: left;
+  list-style: none;
+  }
+
+#carousel .items img{ max-width: 100%; } /* I was on the fence about adding this line in, but hope it will do some good */
+
+#carousel-controls{ margin-top: 10px; }
+
+
+#carousel .browse{
+  width: 20px;
+  height: 100%;
+  background: {{ settings.carousel_button_colour }};
+  position: absolute;
+  z-index: 100;
+  cursor: pointer;
+  opacity: .9;
+  display: none; /* hide by default */
+  }
+#carousel-next{
+  top: 0;
+  right: 0; 
+  }
+#carousel-prev{
+  top: 0;
+  left: 0;
+  }
+
+#carousel .arrow{
+  display: block;
+  position: absolute;  
+  top: 46%;
+  }
+#carousel-next .arrow{
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid {{ settings.carousel_arrow_colour }};  
+  left: 5px;
+  }    
+#carousel-prev .arrow{
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent; 
+  border-right:10px solid {{ settings.carousel_arrow_colour }};  
+  right: 5px;
+  }
+
+#carousel .browse:hover{ background: {{ settings.carousel_button_hover_colour }}; }
+#carousel-next:hover .arrow{ border-left-color: {{ settings.carousel_arrow_hover_colour }}; }
+#carousel-prev:hover .arrow{ border-right-color: {{ settings.carousel_arrow_hover_colour }}; }
 
 
 
@@ -1375,6 +1463,7 @@ a.btn:hover{
   } 
 
 
+
 /**
  * Contact/Newsletter Forms 
  */
@@ -1401,11 +1490,11 @@ a.btn:hover{
   }
 
 .contact-form .error-msg{
-  color: #ef3a22;
   float: none;
   display: inline;
   margin: 0 0 0 10px;
   font-size: 11px;
+  padding: 6px;
   }
 .contact-form .has-error input{
   border: solid 1px #ef3a22;
