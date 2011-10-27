@@ -1,6 +1,9 @@
 {% if settings.show_carousel %}
   <div id="carousel-wrapper">
     <div id="carousel"> 
+      <a id="carousel-prev" class="prev browse left" title="Previous slide"><span class="arrow ir">Next</span></a>
+      <a id="carousel-next" class="next browse right" title="Next slide"><span class="arrow ir">Previous</span></a>              
+          
       <ol class="items">
         
         {% if settings.show_carousel_item_1 == true %}
@@ -64,8 +67,6 @@
         {% endif %}                                 
 
       </ol>  
-      <a id="carousel-prev" class="prev browse left" title="Previous slide"><span class="arrow ir">Next</span></a>
-      <a id="carousel-next" class="next browse right" title="Next slide"><span class="arrow ir">Previous</span></a>              
     </div>
         
   </div>
