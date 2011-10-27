@@ -266,7 +266,9 @@
   <h3>3 Featured Products</h3>
 	<p>
     <label for="home_featured_collection">Collection to use for featured products: </label>
-		<select class="collection" name="home_featured_collection" />
+		<select class="collection" name="home_featured_collection">
+      <option selected="selected" value="frontpage">Frontpage</option>
+    </select>
 	</p>
   <p>
     <label for="home_featured_header_show">Show name of collection?</label>
@@ -279,13 +281,15 @@
   <h3>Product Grid Below Featured Products</h3>
 		<p>
       <label for="home_products_collection">Collection to use: </label>
-		  <select class="collection" name="home_products_collection" />
+      <select class="collection" name="home_featured_collection">
+        <option selected="selected" value="frontpage">Frontpage</option>
+      </select>
     </p>
     <p>
       <label for="home_products_limit">Maximum number of items to show: </label>
       <select name="home_products_limit">
-        <option value="4">4</option>
-        <option value="8" selected="selected">8</option>
+        <option value="4" selected="selected">4</option>
+        <option value="8">8</option>
         <option value="12">12</option>
         <option value="16">16</option>
         <option value="20">20</option>
