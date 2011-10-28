@@ -67,7 +67,7 @@
 
       <h1 id="site-title">
         <a href="/" title="Home">
-          {% if settings.use_logo_image %} 
+          {% if settings.logo_image == "logo.png" %} 
             <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" /> 
           {% else %} 
             {{ shop.name }} 
