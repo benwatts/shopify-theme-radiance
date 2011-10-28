@@ -67,10 +67,12 @@
 					</tfoot>
 		    </table>
 
+		    {% if settings.allow_note %}
 	      <div id="checkout-addnote">
 	        <label for="note"><a href="#" id="toggle-note">Add a note to your order&hellip;</a></label>
 	        <textarea id="note" name="note" class="hide">{{ cart.note }}</textarea>
 	      </div>
+	      {% endif %}
 		
 				<div id="checkout-proceed">
 					<input class="btn-reversed btn" type="submit" id="update-cart" class="checkout-button" name="checkout" value="Proceed to Checkout &rarr;" />

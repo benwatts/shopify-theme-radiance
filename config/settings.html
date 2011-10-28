@@ -157,21 +157,18 @@
   <h3>Site Title/Logo</h3>
   <table>
     <tr>
-      <td><label for="use_logo_image">Use an image logo?</label></td>
-      <td><input type="checkbox" id="use_logo_image" name="use_logo_image" data-max-height="100" data-max-width="400"/></td>
-    </tr>
-    <tr>
       <td><label for="logo_image">Site logo</label></td>
       <td>
         <select name="logo_image" id="logo_image">
-          <option value="logo.png" selected='selected'>logo.png</option>
+          <option value="nologo.png" selected="selected">Use Text</option> 
+          <option value="logo.png">Custom Uploaded Image</option>
         </select>
       </td>
     </tr>
     <tr>
       <td><label for="logo_image_upload">Custom logo</label></td>
       <td>
-        <input type="file" id="logo_image_upload" name="logo.png" data-max-width="450" data-max-height="100" />
+        <input type="file" id="logo_image_upload" name="logo.png" data-max-width="450" data-max-height="100" /> <br />
         <small>(Recommended dimensions: 215px x 75px)</small>
         <br />        
       </td>      
@@ -629,7 +626,9 @@
   <p>You may need to <a href="/admin/custom_collections">create some collections</a> before modifying these settings.</p>
   <p>
     <label for="productspg_featured_collection">Collection to show beneath the product information: </label>
-    <select class="collection" name="productspg_featured_collection" />
+    <select class="collection" name="productspg_featured_collection">
+      <option selected="selected" value="frontpage">Frontpage</option>
+    </select>
   </p>
   <p>
     <label for="productspg_featured_limit">Maximum number of items to show: </label>
@@ -644,6 +643,25 @@
   </p>
 
 </fieldset>
+
+
+<fieldset>
+  <legend>Cart Page </legend>
+
+  <p>
+    <label for="allow_note">Allow customers to add a note to their order? </label>
+    <input type="checkbox" id="allow_note" name="allow_note" />
+  </p>  
+
+  <table>
+    <tr>
+      <td><label for="cart_header_colour">Table Header Colour</label></td>
+      <td><input id="cart_header_colour" name="cart_header_colour" class="color" value="#1D1F20" /></td>
+    </tr>     
+  </table>
+
+</fieldset>
+
 
 
 

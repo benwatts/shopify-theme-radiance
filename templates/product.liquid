@@ -77,7 +77,8 @@
       <div class="section-details">
         <h2>{{collections[settings.productspg_featured_collection].title | link_to: collections[settings.productspg_featured_collection].url }}</h2>
 
-        {% if (collections[settings.productspg_featured_collection].products.size + 0) > (settings.productspg_featured_limit + 0) %}
+        {% capture featured_products_size %}{{ collections[settings.productspg_featured_collection].products.size }}{% endcapture %}
+        {% if featured_products_size > settings.productspg_featured_limit %}
           <div class="view-more">{{ 'View More &raquo;' | link_to: collections[settings.productspg_featured_collection].url }}</div>
         {% endif %}
       </div>    
