@@ -37,7 +37,19 @@
 
   {{ content_for_header }}
   
-  {% if settings.header_font == "Chewy, arial, sans-serif" %}
+  {% case settings.header_font %}
+  {% when "Rancho, cursive" %}
+      <link href='http://fonts.googleapis.com/css?family=Rancho' rel='stylesheet' type='text/css'>
+  {% when "'Amatic SC', cursive" %}
+      <link href='http://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
+  {% when "'Sancreek', cursive" %}
+      <link href='http://fonts.googleapis.com/css?family=Sancreek' rel='stylesheet' type='text/css'>
+  {% when "'Ubuntu Condensed', sans-serif" %}
+      <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+  {% endcase %}
+
+
+  {% if  == "Chewy, arial, sans-serif" %}
     <link href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
   {% elsif settings.header_font == "Copse, arial, sans-serif" %}
     <link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
