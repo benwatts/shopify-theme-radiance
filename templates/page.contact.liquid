@@ -1,7 +1,12 @@
 <div id="page" class="{{ page.handle }}">
 
   <div id="col-left" class="content">
-	  <h1 class="title">{{ page.title }}</h1>	
+
+    <div id="page-header">
+      {% include 'breadcrumb' %}          
+      <h1 id="page-title">{{ page.title }}</h1> 
+    </div>
+
     {{ page.content }}
 
     {% form 'contact' %}

@@ -2,7 +2,7 @@
  * Radiance
  * A Shopify theme. 
  *
- * Last update: October 24, 2011
+ * Last update: October 31, 2011
  * 
  * @version     2.0.0
  * @author      Ben Watts @ Shopify
@@ -140,6 +140,9 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold; 
   margin: 0 0 .5em 0;
   }
+h1{
+  font-size: 22px;
+  }
 
 a { color: {{ settings.content_link_colour }}; }
 a:hover { color: {{ settings.content_link_hover_colour}} }
@@ -151,6 +154,7 @@ input, textarea{
   border: solid 1px {{ settings.content_secondary_colour }}; 
   padding: 4px;
   }
+input[type="image"]{ border: none; }
 
 button {  width: auto; overflow: visible; }
 .ie7 img { -ms-interpolation-mode: bicubic; }
@@ -164,14 +168,14 @@ table th{
   padding: 4px 8px;
   font-weight: bold;
   border: solid 1px {{ settings.content_secondary_colour }};
-  color: {{ settings.content_header_colour }}
+  color: {{ settings.content_header_colour }};
+  background: {{ settings.cart_header_colour }} url({{ 'table-header-depth.png' | asset_url }}) 0 100% repeat-x; 
   }
 table td{ 
   padding: 4px 8px;
   border: solid 1px {{ settings.content_secondary_colour }};
   }
 tfoot th{ background: transparent; }
-
 
 
 /** 
@@ -394,6 +398,7 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
   -webkit-border-radius: 0 0 6px 6px;
   -moz-border-radius: 0 0 6px 6px;
   border-radius: 0 0 6px 6px; 
+  color: {{ settings.cart_link_colour }};
   }
 
 #umbrella ul{
@@ -404,7 +409,7 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
   }
 #umbrella li{
   float: left;
-  padding: 10px 12px 12px 0;
+  padding: 8px 12px 12px 0;
   margin: 0 12px 0 0;
   border-right: solid 1px {{ settings.cart_divider_colour }};
   font-weight: normal;
@@ -436,7 +441,7 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
   }
 
 #umbrella .checkout-link{
-  padding: 4px 0 0 0; 
+  padding: 2px 0 0 0; 
   margin-right: 0;
   border: none;
   }
@@ -474,11 +479,32 @@ section,
   }
 
 .diagonal-divider{
+  {% if settings.use_diagonal %}
   background: url({{ settings.diagonal_colour | asset_url }}) 0 0 repeat-x;
   padding: 16px 0 0 0;
+  {% endif %}
   margin: 0 0 20px 0;
   }
 
+#breadcrumb{
+  {% if settings.use_diagonal %}
+  background: url({{ settings.diagonal_colour | asset_url }}) 0 100% repeat-x;
+  {% else %}
+  border-bottom: dotted 1px {{ settings.content_secondary_colour }};
+  {% endif %}
+  padding: 0 0 5px 0;
+  margin: 0 0 20px 0;
+  font-size: 11px;
+  }
+#breadcrumb .separator{
+  color: {{ settings.content_secondary_colour }};
+  }
+
+#page-title{
+  border-bottom: dotted 1px {{ settings.content_secondary_colour }};
+  padding: 0 0 15px 0;
+  margin: 0 0 20px 0;
+  }
 
 
 /** 
@@ -847,15 +873,21 @@ section,
   }
 
 .content blockquote{
-  font-style: italic;
-  margin: 0 25px;
+  font: italic 13px/1.5 georgia, sans-serif;
+  margin: 0 0 1.5em 1.25em;
   } 
   
 .article{
   margin: 20px 0 45px 0;
+  {% if settings.use_diagonal %}
   background: url({{ settings.diagonal_colour | asset_url }}) 0 100% repeat-x;
+  {% else %}
+  border-bottom: solid 1px {{ settings.content_secondary_colour }};
+  {% endif %}
   padding: 0 0 10px 0;
   } 
+.templateArticle .article{ margin-top: 0; }
+
 .article .author{
   color: #999;
   font-style: italic;
@@ -873,69 +905,57 @@ section,
 
 
 /** 
- * Customers 
- */
+ * Customer Accounts
+ */ 
 
-.customer-accounts-section{ width: auto; margin: 0 0 20px 0; }  
-.template_header h2{ font-weight: normal; }
+.page-header #page-title{ float: left; }
+.page-header #page-actions{ float: right; } 
 
-.customer-accounts-section a{ color: {{settings.leftcol_link_colour}} }
-.customer-accounts-section a:hover{ color: {{settings.leftcol_link_hover_colour}} }
-
-.customer-accounts-section label{ 
-  min-width: 135px;
-  margin: 0 10px 0 0;
-  float: left;
-  padding: 3px 0 0 0;
+.templateCustomersLogin form input{ 
+  float: left; 
   }
-.customer-accounts-section .large_form{
-  margin: 0 0 10px 0;
-  } 
-.customer-accounts-section .large_form input,
-.customer-accounts-section .address_form{
+.templateCustomersLogin form label{
   float: left;
-  margin: 0 10px 0 0;
+  min-width: 120px;
+  line-height: 22px;
   }
-.customer-accounts-section select{
-  color: {{settings.primary_colour}}; 
-  border: solid 1px {{settings.primary_colour}}; 
-  padding: 4px; 
-  } 
-  
-.customer-accounts-section #forgot_password{ 
+.templateCustomersLogin .form-row{
+  margin: 0 0 8px 0;
+  }
+.templateCustomersLogin .action-bottom{
+  margin: 20px 0 0 0;
+  }
+.templateCustomersLogin .action-bottom .note{
   font-size: 11px;
-  padding: 4px 0 0 0;
+  padding: 0 0 0 5px;
+  line-height: 27px;
   }
-.customer-accounts-section form .note{ font-size: 11px; }
 
-input.cancel{ 
-  background: {{settings.leftcol_colour}};
-  border: none;
-  padding: 0;
-  margin: 0;
-  }
-  
-/** >> header in customer admin */
-#admin_header .action_return{
-  font-size: 11px;
-  margin: 0 0 10px 0;
-  padding: 0 0 5px 0;
-  border-bottom: solid 1px {{settings.leftcol_accent_colour}};
-  }
-  
-  
-/* >> existing user login, or continue as guest */
-#template #customer{ 
+
+/* >> login Form */
+#customer-login,
+#recover-password{
   float: left;
-  width: 66%;
-  border-right: solid 1px {{settings.leftcol_accent_colour}};
+  width: 58%;
+  border-right: solid 1px {{ settings.content_secondary_colour }};
   }
-#template #guest{
+#recover-password{ 
+  display: none;
+  }
+#recover_email label{
+  min-width: 75px;
+  }
+#forgot_password{
+  margin: 2px 0 0 5px;
+  font-size: 11px;
+  float: left;
+  }  
+
+#guest{
   float: right;
-  width: 29%;
+  width: 38%
   }
-#template #guest .title{ margin: 0 0 .25em 0; } 
-  
+   
   
 /* >> manage orders and addresses */
 #customer_orders{
@@ -950,7 +970,7 @@ input.cancel{
 .view_address p{ margin: 0; }
 
 #view_address{ 
-  border-top: solid 1px {{settings.leftcol_accent_colour}};
+  border-top: solid 1px {{settings.content_secondary_colour}};
   padding: 10px 0 0 0;  
   margin-top: 10px;
   display: block;
@@ -958,7 +978,7 @@ input.cancel{
 
 .address_actions{ float: right; }
 .address_actions .action_edit{
-  border-right: solid 1px {{settings.leftcol_accent_colour}};
+  border-right: solid 1px {{settings.content_secondary_colour}};
   padding-right: 10px;
   }
 .address_actions .action_delete{ padding-left: 16px; }  
@@ -972,25 +992,36 @@ input.cancel{
   padding-left: 16px;
   }
 .action_edit{ background: url({{ 'edit-sml.png' | asset_url }}) 0 0 no-repeat; }
-.action_delete{ background: url({{ 'delete-sml.png' | asset_url }}) 0 0 no-repeat; }
+.action_delete{ background: url({{ 'delete-sml.png' | asset_url }}) 0 1px no-repeat; }
 .action_add{ background: url({{ 'add-sml.png' | asset_url }}) 0 0 no-repeat; }
 
+.default_address{
+  color: {{ settings.content_link_hover_colour }};
+  }
 .address_table,
 #add_address{
-  border: solid 1px {{settings.leftcol_accent_colour}};
+  border: dotted 1px {{settings.content_secondary_colour}};
   padding: 10px;
   margin: 0 0 20px 0;
   }
+.address_table .label,
+#add_address .label{
+  width: 125px;
+  padding-left: 0;
+  }
 .address_table h4{
-  border-bottom: solid 1px {{settings.leftcol_accent_colour}};
   padding: 0 0 5px 0;
   margin: 0 0 10px 0;
   }
+.customer_address_table{ margin: 0; }
+.customer_address_table td{ border: none; }
+.customer_address_table input{ margin: 0 5px 0 0; }
+.customer_address .action-bottom{ margin-left: 141px; }
 
 
 /** >> view individual orders */ 
 .order_date{ 
-  border-bottom: solid 1px {{settings.leftcol_accent_colour}};
+  border-bottom: solid 1px {{settings.content_secondary_colour}};
   padding: 0 0 5px 0;
   margin: 0 0 20px 0;
   }
@@ -1095,7 +1126,8 @@ input.cancel{
   }
 
 .error-msg,
-.success-msg{
+.success-msg,
+.errors{
   padding: 10px;
   color: #fff;
   text-align: left;
@@ -1104,12 +1136,17 @@ input.cancel{
   -webkit-border-radius: 4px;
   border-radius: 4px;
   }
-.error-msg{
+.error-msg,
+.errors{
   background-color: #770e00;
   }
 .success-msg{
   background-color: #387700;
   }
+
+.errors{ margin: 0 1em 1.5em 0; }
+.errors ul,
+.errors li{ margin: 0; list-style: none; }
   
   
   
@@ -1175,17 +1212,13 @@ col.checkout-delete{ width: 80px; }
 #cartform td img{ display: block; }
 #cartform input.text { border: solid 1px {{settings.primary_colour}}; padding: 4px; color: {{settings.primary_colour}}; text-align: center; }
 
-#cartform .top-labels th{
-  background: {{settings.primary_colour}} url({{ 'btn-small-depth.png' | asset_url }}) 0 100% repeat-x;
-  padding: 5px;
-  }
-
 #cartform .subtotal{
   text-align: center;
   }
 #cartform .update-quantities{
-  text-align: right;
+  text-align: center;
   padding: 5px;
+  width: 170px;
   } 
 
 #checkout-proceed{ 
@@ -1220,7 +1253,7 @@ col.checkout-delete{ width: 80px; }
   margin: 5px 0 0 0;
   } 
 #additional-checkout-buttons-label{
-  border-bottom: solid 1px {{settings.leftcol_accent_colour}};
+  border-bottom: solid 1px {{settings.content_secondary_colour}};
   display: block;
   margin: 0 0 8px 0;
   font-size: 11px;

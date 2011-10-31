@@ -3,7 +3,12 @@
 	<div id="col-left" class="content">
 	
 	  <div class="article clearfix">
-      <h1 class="title">{{ article.title }}</h1>
+
+      <div id="page-header">
+        {% include 'breadcrumb' %}          
+        <h1 id="page-title">{{ article.title }}</h1> 
+      </div>
+
      	{{ article.content }}
      	<div class="article-extras">
 				<p class="author">Written by {{ article.author }} &mdash; {{ article.created_at | date: "%B %d, %Y" }}</p>
@@ -80,10 +85,6 @@
 
 </div> <!-- end #article -->
 
-
-<div id="col-right">
-	{% include 'widget-text' %}
-	{% include 'widget-twitter' %}
-</div>
+{% include 'right-column' %}
 
 </div><!--  /#page.blog -->

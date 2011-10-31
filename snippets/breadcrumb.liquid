@@ -1,0 +1,44 @@
+{% comment %}
+  From: 
+  http://wiki.shopify.com/Creating_a_Breadcrumb_Navigation
+{% endcomment %}
+
+<div id="breadcrumb">
+  <a href="/" class="homepage-link" title="Back to the frontpage">Home</a>
+  {% if template contains "product" %}
+    {% if collection %}            
+      <span class="separator">&raquo;</span> 
+      {% if collection.handle %}
+         {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+         {{ collection.title | link_to: url }}
+      {% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}
+         {{ collection.title | link_to_type }}
+      {% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}
+         {{ collection.title | link_to_vendor }}
+      {% endif %}
+    {% else %}
+      <span class="separator">&raquo;</span> 
+      {{ product.type | link_to_type }}
+    {% endif %}
+     <span class="separator">&raquo;</span>
+     <span class="page-title">{{ page_title }}</span>
+  {% elsif template == "article" %}
+      <span class="separator">&raquo;</span> 
+      {{ blog.title | link_to: blog.url }}
+      <span class="separator">&raquo;</span>
+      <span class="page-title">{{ page_title }}</span>
+  {% elsif template contains "collection" %}
+      {% if current_tags.size > 0 %}
+      <span class="separator">&raquo;</span>
+      {{ collection.title | link_to: collection.url }}
+      <span class="separator">&raquo;</span>
+      <span class="page-title">{{ current_tags.first }}</span>
+      {% else %}
+      <span class="separator">&raquo;</span>
+      <span class="page-title">{{ page_title }}</span>
+      {% endif %}
+  {% else %}
+      <span class="separator">&raquo;</span>
+      <span class="page-title">{{ page_title }}</span>
+  {% endif %}
+</div>

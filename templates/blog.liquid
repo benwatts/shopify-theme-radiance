@@ -1,7 +1,12 @@
 <div id="page" class="blog">
 	
 	<div id="col-left" class="content">
-	  <h1 class="title">{{ blog.title }}</h1>
+
+    <div id="page-header">
+      {% include 'breadcrumb' %}          
+		  <h1 id="page-title">{{ blog.title }}</h1>
+		</div>
+
 
 	  {% paginate blog.articles by 100 %}
 	  <div class="articles">
@@ -37,9 +42,6 @@
 	  {% endpaginate %}
 	</div> <!-- end #col-left -->
 
-	<div id="col-right">
-		{% include 'widget-text' %}
-		{% include 'widget-twitter' %}
-	</div>
+  {% include 'right-column' %}
 
 </div><!--  /#page.blog -->
