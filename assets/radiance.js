@@ -138,12 +138,16 @@ $.fn.balanceRowHeight = function(numPerRow) {
     var min = row * nPerRow - nPerRow;
     var max = row * nPerRow;
     var tallestInRow = 0;
+    var tallestTitleInRow = 0;
 
     $(this).find('li').slice(min, max).each(function(){
       if( $(this).height() > tallestInRow ){
         tallestInRow = $(this).height();     
       }
-    }).height(tallestInRow).addClass('generated-height');
+      if( $(this).find('.product-information:first').height() > tallestTitleInRow ){
+        tallestTitleInRow = $(this).find('.product-information').height();
+      }
+    }).height(tallestInRow).addClass('generated-height').find('.product-information').height(tallestTitleInRow);
 
     //console.log('Row #', row,  ' >> slice from ', min, ' to ', max);
   }

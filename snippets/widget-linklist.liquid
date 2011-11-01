@@ -6,6 +6,7 @@
     <ul>
     {% for link in linklists.[widget-linklist].links %}
       <li class="{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
+        <span class="arrow"></span>
         <a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
       </li>
     {% endfor %}

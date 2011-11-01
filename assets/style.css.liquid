@@ -2,7 +2,7 @@
  * Radiance
  * A Shopify theme. 
  *
- * Last update: October 31, 2011
+ * Last update: November 1, 2011
  * 
  * @version     2.0.0
  * @author      Ben Watts @ Shopify
@@ -140,14 +140,12 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold; 
   margin: 0 0 .5em 0;
   }
-h1{
-  font-size: 22px;
-  }
+h1{ font-size: 22px; }
 
 a { color: {{ settings.content_link_colour }}; }
 a:hover { color: {{ settings.content_link_hover_colour}} }
 
-ul, ol{ margin: 0 0 1.5em 1.25em; }
+ul, ol{ margin: 0 0 1.5em 1.3em; }
 li{ margin: 0 0 0.25em 0; }  
 
 input, textarea{
@@ -341,6 +339,7 @@ body { text-align: center; }
  */
 
 #header-search{ 
+  padding: 4px 0 0 0;
   float: right;
   } 
 #header-search #top-search-input{ 
@@ -520,13 +519,18 @@ section,
   width: 177px;
   float: left;
   margin: 0 10px 10px 0;
-  background: {{ settings.grid_bg_colour }};  
   -webkit-border-radius: 0 0 4px 4px;
   -moz-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
+  position: relative;
   }
-.product-grid.wide li{ width: 240px; } 
 .product-grid .last-in-row{ margin-right: 0; } 
+
+.generated-height .product-grid-item{
+  width: 177px; 
+  position: absolute;
+  bottom: 0;
+  }
 
 .product-grid img{ 
   display: block; 
@@ -548,17 +552,20 @@ section,
   z-index: 1;
   text-decoration: none;
   margin: 0;
+  min-height: 50px;
   /* for ie6: */
   width: 100%;
   }  
 
-.product-grid img{ max-width: 177px; }
-.product-grid.wide img{ max-width: 240px; }
+.product-photo{
+  max-width: 177px; 
+  }
 .ie6 .product-grid{ overflow: hidden; }
 
 .product-information{
   padding: 10px;
   position: relative;
+  background: {{ settings.grid_bg_colour }};   
   }
 .product-information h3{
   font: 24px/1 {{settings.header_font}};
@@ -567,16 +574,6 @@ section,
 .product-information p{
   line-height: 1.4em;
   margin: 0 0 .75em 0;
-  }
-
-#add-to-cart-msg{
-  background: {{ settings.added_to_cart_bg }};
-  padding: 10px;
-  display: none;
-  }
-
-.product-photo{
-  min-height: 30px;
   }
 
 .product-price{
@@ -596,6 +593,13 @@ section,
   border-radius: 4px 0 0 0; 
   }
 
+#featured-grid li{
+  width: 240px;  
+  background: {{ settings.grid_bg_colour }};   
+  }
+#featured-grid .product-photo{ 
+  max-width: 240px; 
+  }
 #featured-grid .product-price{
   top: -30px;
   right: 0;
@@ -606,106 +610,6 @@ section,
   color: {{ settings.grid_price_colour }};
   }
 
-
-
-/** 
- * Pagination 
- */
-
-#pagination{
-  margin: 10px 0 0 0;
-  padding: 15px 0;
-  text-align: center;
-  background: {{ settings.bg_colour }};
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radus: 4px;
-  border-top: solid 1px {{ settings.content_secondary_colour }}
-  }
-#pagination .page{ padding: 0 3px; }
-#pagination .next{ padding-left: 10px; }
-#pagination .prev{ padding-right: 10px; }
-
-#page #pagination{ border-top: none; }    
-
-.comments #pagination{ margin: 0 0 20px 0; }
-    
-
-    
-/** 
- * Widgets in the Right Column 
- */ 
-
-.widget{
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  margin: 0 0 20px 0;
-  padding: 10px;
-  background: {{settings.widget_bg_colour}}
-  }
-
-.widget h3{
-  font: 24px {{settings.header_font}}serif;
-  color: {{settings.widget_title_colour}};
-  margin: 0 0 10px 0;
-  }
-#col-right .widget h3 a{
-  color: {{settings.widget_title_colour}};
-  text-decoration: none;
-  }
-  
-.widget ul{ margin: 0; }  
-.widget li{
-  padding: 0 0 5px 12px;
-  list-style: none;
-  }
-.widget li.last{
-  margin: 0;
-  }
-
-.widget-btns a{
-  background: {{settings.widget_bg_colour}};
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  border-radius: 12px;
-  display: block;
-  padding: 6px 12px;
-  margin: 0 0 6px 0;
-  text-decoration: none;
-  overflow: hidden; height: 1%;
-  } 
-.widget-btns img{
-  display: block;
-  float: left;
-  margin: 0 6px 0 0;
-  }
-.widget-btns .btn-text{
-  display:block;
-  width: 165px;
-  float: right;
-  } 
-
-/** twitter widget */
-.no-js #widget-twitter{ display: none; }
-.widget .tweet_list{
-  margin: 0;
-  list-style: none;
-  } 
-.widget .tweet_list li{
-  margin: 0 0 10px 0;
-  padding: 0 0 10px 0;
-  border-bottom: dotted 1px {{settings.widget_divider_colour}};
-  background: none;
-  word-wrap: break-word;
-  } 
-    
-/** linklist widget */
-.widget-linklist li{ 
-  border-bottom: dotted 1px {{settings.widget_divider_colour}};  
-  padding: 0 0 8px 0;
-  margin: 0 0 8px 0;
-  }  
 
   
 /** 
@@ -733,6 +637,81 @@ section,
 #add-to-cart{
   margin: 8px 0 0 0;
   }
+
+#product-header{
+  margin: 0 0 20px 0;
+  border-bottom: 1px solid {{ settings.content_secondary_colour }};
+  }
+#product-header hgroup{ 
+  float: left;
+  width: 60%;
+  margin: 5px 0 16px 0;
+  }
+#product-title{
+  margin: 0 0 5px 0;
+  }
+#product-vendor{
+  font-size: 12px;
+  font-weight: normal;
+  margin: 0;
+  }
+#product-vendor a{
+  text-decoration: none;
+  }
+
+#product-actions select{
+  padding: 3px;
+  }
+#product-actions .price{
+  font-size: 18px;
+  margin: 0;
+  font-weight: bold;
+  text-align: right;
+  }
+#product-actions .price strong{ 
+  color: {{ settings.product_price_colour }};
+  display: block;
+  }
+#product-actions .compare_at_price{
+  font-size: 12px;
+  display: block;
+  }
+
+.variants-wrapper{
+  text-align: right;
+  margin: 0 0 8px 0;
+  }
+.selector-wrapper{
+  margin: 0 0 4px 0;  
+  }
+.selector-wrapper label{
+  margin: 0 5px 0 0;
+  text-align: right;
+  }
+
+#add-to-cart-msg{
+  background: {{ settings.added_to_cart_bg }};
+  padding: 10px;
+  display: none;
+  }    
+
+#product-information #sharing{
+  margin: 16px 0 0 0;
+  padding: 16px 0 0 0;
+  list-style: none;
+  border-top: 1px solid {{ settings.content_secondary_colour }};
+  }
+#product-information #sharing li{
+  margin: 0;
+  float: left;
+  }  
+
+
+
+/** 
+ * Zoomy product gallery, with thumbs
+ * @see https://github.com/benwatts/enhance-gallery
+ */
 
 #product-gallery,
 #active-wrapper{
@@ -767,17 +746,6 @@ section,
   text-indent: -900em; overflow: hidden;  
   }
 
-#product-header{
-  margin: 0 0 20px 0;
-  border-bottom: 1px solid {{ settings.content_secondary_colour }};  
-  }
-#product-header h1{ 
-  float: left;
-  width: 60%;
-  margin: 5px 0 15px 0;
-  font-size: 24px;
-  }
-
 #thumbs{
   margin: 13px 0 0 0;
   list-style: none;
@@ -804,51 +772,8 @@ section,
 #thumbs img{
   margin: 0 auto;
   display: block;
-  } 
+  }   
 
-
-.options select{
-  padding: 3px;
-  }
-#product-actions .price{
-  font-size: 18px;
-  margin: 0;
-  font-weight: bold;
-  text-align: right;
-  }
-#product-actions .price strong{ 
-  color: {{ settings.product_price_colour }};
-  display: block;
-  }
-.options .compare_at_price{
-  font-size: 12px;
-  display: block;
-  }
-
-.variants-wrapper{
-  text-align: right;
-  overflow: hidden;
-  height: 1%;
-  margin: 0 0 8px 0;
-  }
-.selector-wrapper{
-  margin: 0 0 4px 0;  
-  }
-.selector-wrapper label{
-  margin: 0 5px 0 0;
-  text-align: right;
-  }
-
-#product-information #sharing{
-  margin: 20px 0 0 0;
-  padding: 20px 0 0 0;
-  list-style: none;
-  border-top: 1px solid {{ settings.content_secondary_colour }};
-  }
-#product-information #sharing li{
-  margin: 0;
-  float: left;
-  }  
   
   
 /** 
@@ -901,6 +826,154 @@ section,
 .article-extras .author{ float: left; }
 .article-extras .comments-link{ float: right; }
 .article-extras .btn { padding: 2px 10px; }
+
+
+
+/** 
+ * Pagination 
+ * Modified from http://twitter.github.com/bootstrap/
+ */
+
+.pagination {
+  height: 30px;
+  margin: 18px 0;
+  }
+.pagination ul {
+  float: left;
+  margin: 0;
+  border: 1px solid {{ settings.content_secondary_colour }};
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  background: {{ settings.content_bg_colour }};
+  }
+.pagination li {
+  display: inline;
+  }
+.pagination a {
+  float: left;
+  padding: 0 14px;
+  line-height: 28px;
+  border-right: 1px solid {{ settings.content_secondary_colour }};
+  text-decoration: none;
+  }
+.pagination a:hover, .pagination .active a {
+  color: {{ settings.btn_text_colour }};
+  background-color: {{ settings.btn_hover_colour }};
+  background: {{settings.btn_colour}} url({{ 'btn-small-depth.png' | asset_url }}) 0 100% repeat-x;  
+  }
+.pagination .active a{
+  border-right-color: {{ settings.content_bg_colour }}; 
+  } 
+.pagination .disabled a, .pagination .disabled a:hover {
+  background: transparent;
+  color:  {{ settings.content_secondary_colour }};
+  cursor: default;
+  }
+.pagination .next a {
+  border: 0;
+  }  
+
+.pagination-num-showing{
+  float: right;
+  line-height: 28px;
+  font-size: 11px;
+  }
+
+    
+/** 
+ * Widgets in the Right Column 
+ */ 
+
+.widget{
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  margin: 0 0 20px 0;
+  padding: 10px;
+  background: {{settings.widget_bg_colour}}
+  }
+
+.widget h3{
+  font: 24px {{settings.header_font}}serif;
+  color: {{settings.widget_title_colour}};
+  margin: 0 0 8px 0;
+  }
+#col-right .widget h3 a{
+  color: {{settings.widget_title_colour}};
+  text-decoration: none;
+  }
+  
+.widget ul{ margin: 0; }  
+.widget li{
+  padding: 0 0 5px 12px;
+  list-style: none;
+  }
+.widget li.last{
+  margin: 0;
+  padding: 0;
+  border: none;
+  }
+
+.widget-btns a{
+  background: {{settings.widget_bg_colour}};
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  display: block;
+  padding: 6px 12px;
+  margin: 0 0 6px 0;
+  text-decoration: none;
+  overflow: hidden; height: 1%;
+  } 
+.widget-btns img{
+  display: block;
+  float: left;
+  margin: 0 6px 0 0;
+  }
+.widget-btns .btn-text{
+  display:block;
+  width: 165px;
+  float: right;
+  } 
+
+/** twitter widget */
+.no-js #widget-twitter{ display: none; }
+.widget .tweet_list{
+  margin: 0;
+  list-style: none;
+  } 
+.widget .tweet_list li{
+  margin: 0 0 10px 0;
+  padding: 0 0 10px 0;
+  border-bottom: dotted 1px {{settings.widget_divider_colour}};
+  background: none;
+  word-wrap: break-word;
+  } 
+    
+/** linklist widget */
+.widget-linklist li{ 
+  border-bottom: dotted 1px {{settings.widget_divider_colour}};  
+  padding: 0 0 8px 0;
+  margin: 0 0 8px 0;
+  }  
+.widget-linklist li a{
+  display: block;
+  margin: 0 0 0 12px;
+  }
+.widget-linklist .arrow{
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid {{settings.widget_divider_colour}};
+  display: block;
+  float: left;
+  margin: 4px 0 0 0;
+  }
 
 
 

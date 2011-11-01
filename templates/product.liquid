@@ -9,13 +9,16 @@
 
       <div id="product-header" class="diagonal-divider clearfix">
 
-        <h1>{{ product.title }}</h1>
+        <hgroup>
+          <h1 id="product-title">{{ product.title }}</h1>
+          {%if settings.show_vendor %}<h2 id="product-vendor">{{ product.vendor | link_to_vendor }}</h2>{% endif %}
+        </hgroup>
 
         {% if product.available %}
           <form action="/cart/add" method="post" class="variants" id="product-actions">
             <div class="options clearfix">  
 
-              <div class="variants-wrapper
+              <div class="variants-wrapper clearfix 
                   {%if product.variants.size == 1 and product.options.size == 1 %} visuallyhidden{% endif %}
                   {%if product.variants.size > 1 and product.options.size == 1 %} one-variant{% endif %}
               "> {% comment %} Hide the dropdown if we've only got one variant and one option to show. {% endcomment %}

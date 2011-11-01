@@ -4,7 +4,7 @@
   {% include 'widget-text' %}
 
 
-  {% if settings.show_leftnav_allcollections %}
+  {% if settings.show_allcollections_widget %}
   <!-- Widget: list all collections -->
   <div class="widget widget-linklist" id="widget-allcollections">
     <div class="widget-header">
@@ -14,6 +14,7 @@
       <ul>
       {% for c in collections %}
         <li class="{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
+          <span class="arrow"></span>
           <a href="{{ c.url }}" title="{{ c.title }}">{{ c.title }}</a>
         </li>
       {% endfor %}
@@ -23,19 +24,40 @@
   {% endif %}
 
 
-  {% if settings.show_leftnav_linklist1 %}
+  {% if settings.show_vendors_widget %}
+  <!-- Widget: list all vendors -->
+  <div class="widget widget-linklist" id="widget-allvendors">
+    <div class="widget-header">
+      <h3>{{settings.vendors_widget_title}}</h3>
+    </div>
+    <div class="widget-content">
+      <ul>
+      {% for v in shop.vendors %}
+        <li class="{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
+          <span class="arrow"></span>
+          {{ v | link_to_vendor }}
+        </li>
+      {% endfor %}
+      </ul>
+    </div>    
+  </div><!-- /.widget -->
+  {% endif %}
+
+
+
+  {% if settings.show_widget_linklist1 %}
     <!-- Link List Widget #1 -->
-    {% include 'widget-linklist' with settings.leftnav_linklist1 %}
+    {% include 'widget-linklist' with settings.widget_linklist1 %}
   {% endif %}
 
-  {% if settings.show_leftnav_linklist2 %}
+  {% if settings.show_widget_linklist2 %}
     <!-- Link List Widget #2 -->
-    {% include 'widget-linklist' with settings.leftnav_linklist2 %}
+    {% include 'widget-linklist' with settings.widget_linklist2 %}
   {% endif %}
 
-  {% if settings.show_leftnav_linklist3 %}
+  {% if settings.show_widget_linklist3 %}
     <!-- Link List Widget #3 -->
-    {% include 'widget-linklist' with settings.leftnav_linklist3 %}
+    {% include 'widget-linklist' with settings.widget_linklist3 %}
   {% endif %}
 
 
