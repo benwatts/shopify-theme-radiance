@@ -13,7 +13,7 @@
         <div class="product-grid-item">
           <div class="collection-image">
             <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
-              {{ collection.products.first.featured_image | product_img_url: 'medium' | img_tag: collection_title }}
+              <img src="{{ collection.products.first.featured_image | product_img_url: 'medium' }}" class="product-photo" alt="{{ product.title | escape }}" />
             </a>
           </div>
           <div class="product-information">
