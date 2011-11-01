@@ -117,10 +117,18 @@
       <td>
         <select name="body_bg_img" id="body_bg_img">
           <option value="background-user-uploaded.jpg">Custom</option>
-          <option value="variant-slate-bg.jpg" selected="selected">Slate</option>
-          <option value="variant-celeste-bg.jpg">Celeste</option>          
+          <option value="none">No background image (solid colour)</option>          
+          <optgroup label="Slate">
+            <option value="variant-slate-bg-warm.jpg" selected="selected">Default (warm)</option>
+            <option value="variant-slate-bg-cool.jpg">Cool</option>  
+            <option value="variant-slate-bg-silver.jpg">Silver</option>                              
+          </optgroup>
+          <optgroup label="Celeste">
+            <option value="variant-celeste-bg.jpg">Default (blue)</option>
+            <option value="variant-celeste-bg-magenta.jpg">Magenta</option>          
+            <option value="variant-celeste-bg-grey.jpg">Grey</option>      
+          </optgroup>    
           <option value="variant-wood-bg.jpg">Wood Tile</option>
-          <option value="none">No background image (solid colour)</option>
         </select>
       </td>
     </tr>
