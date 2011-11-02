@@ -1,5 +1,5 @@
 {"presets":
-  {"Default (Celeste)":
+  {"Default (Sky)":
     {"btn_hover_colour": "#439eab",
      "footer_linklist": "footer",
      "show_leftnav_allcollections": true,
@@ -77,7 +77,7 @@
      "widget_link_colour": "#999999",
      "show_header_search": true,
      "dropdown_brd_colour": "#cccccc",
-     "body_bg_img": "variant-celeste-bg.jpg",
+     "body_bg_img": "variant-sky-bg.jpg",
      "btn_colour": "#cccccc",
      "cart_icon_colour": "white",
      "share_prod_on_twitter": true,
