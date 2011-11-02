@@ -1,23 +1,22 @@
-<div id="col-left" class="all-collections">
+<div id="col-main" class="all-collections">
 
-  <section class="diagonal-divider {{ collection.handle }}">
-    <div class="section-details">
-      <h2 class="title">Product Collections</h2>
-    </div>
+  <section class="diagonal-divider {{ collection.handle }} clearfix">
+    <header class="section-details clearfix">
+      <h1 class="section-title">Product Collections</h1>
+    </header>
 
     <ul id="collection-grid" class="product-grid">
     {% for collection in collections %}
     {% unless collection.handle == 'frontpage' %}
       <li class="{{ collection.handle }}-collection {% cycle '', '', '', ' last-in-row' %}">
-      {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
         <div class="product-grid-item">
           <div class="collection-image">
-            <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
+            <a href="{{ collection.url }}" title="Browse our {{ collection.title | escape }} collection">
               <img src="{{ collection.products.first.featured_image | product_img_url: 'medium' }}" class="product-photo" alt="{{ product.title | escape }}" />
             </a>
           </div>
           <div class="product-information">
-            <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
+            <a href="{{ collection.url }}" title="Browse our {{ collection.title | escape }} collection">
               {{ collection.title }}
             </a>
             <small class="num-in-collection">
@@ -32,7 +31,7 @@
 
   </section>
  
-</div><!-- #col-left -->
+</div><!-- #col-main -->
 
 
-{% include 'right-column' %}
+{% include 'col-widgets' %}

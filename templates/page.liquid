@@ -1,16 +1,12 @@
-<div id="page" class="{{ page.handle }}">
+<div id="col-main" class="content">
 
-  <div id="col-left" class="content">
+  <div id="page-header">
+    {% include 'breadcrumb' %}          
+    <h1 id="page-title">{{ page.title }}</h1>	
+  </div>
 
-    <div id="page-header">
-      {% include 'breadcrumb' %}          
-      <h1 id="page-title">{{ page.title }}</h1>	
-    </div>
+  {{ page.content }}
+  
+</div><!-- /#col-left -->
 
-    {{ page.content }}
-    
-	</div><!-- /#col-left -->
-
-  {% include 'right-column' %}
-
-</div> <!-- end #page -->
+{% include 'col-widgets' %}

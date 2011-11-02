@@ -1,4 +1,4 @@
-<div id="col-left">
+<div id="col-main">
 
 
   <div id="product" class="clearfix content">
@@ -76,16 +76,16 @@
 
   {% if settings.productspg_featured_collection != "" and collections[settings.productspg_featured_collection].products.size > 0 %}
     <!-- A collection of products -->
-    <section class="diagonal-divider">
+    <section class="diagonal-divider clearfix">
 
-      <div class="section-details">
-        <h2>{{collections[settings.productspg_featured_collection].title | link_to: collections[settings.productspg_featured_collection].url }}</h2>
+      <header class="section-details clearfix">
+        <h1 class="section-title">{{collections[settings.productspg_featured_collection].title | link_to: collections[settings.productspg_featured_collection].url }}</h1>
 
         {% capture featured_products_size %}{{ collections[settings.productspg_featured_collection].products.size }}{% endcapture %}
         {% if featured_products_size > settings.productspg_featured_limit %}
           <div class="view-more">{{ 'View More &raquo;' | link_to: collections[settings.productspg_featured_collection].url }}</div>
         {% endif %}
-      </div>    
+      </header>    
 
       <ul class="product-grid" id="secondary-grid">
         {% for product in collections[settings.productspg_featured_collection].products limit: settings.productspg_featured_limit %}
@@ -99,7 +99,7 @@
   {% endif %}
 
 
-</div><!-- /#col-left -->
+</div><!-- /#col-main -->
 
 
-{% include 'right-column' %}
+{% include 'col-widgets' %}

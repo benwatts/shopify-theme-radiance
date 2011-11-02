@@ -1,21 +1,21 @@
-<div id="col-left">
+<div id="col-main">
 
   {% include 'carousel' %}
 
   {% if settings.home_featured_collection != "" and collections[settings.home_featured_collection].products.size > 0 %}
     <!-- Three featured products -->
-    <section class="products-prominent diagonal-divider">
+    <section class="products-prominent clearfix diagonal-divider">
 
       {% if settings.home_featured_header_show %}
-      <div class="section-details">
+      <header class="section-details clearfix">
         
-        <h2>{{collections[settings.home_featured_collection].title | link_to: collections[settings.home_featured_collection].url }}</h2>
+        <h1 class="section-title">{{collections[settings.home_featured_collection].title | link_to: collections[settings.home_featured_collection].url }}</h1>
 
         {% if collections[settings.home_featured_collection].products.size > 3 %}
           <div class="view-more">{{ 'View More &raquo;' | link_to: collections[settings.home_featured_collection].url }}</div>
         {% endif %}
 
-      </div>    
+      </header>    
       {% endif %}
 
       <ul class="product-grid wide" id="featured-grid">
@@ -40,16 +40,16 @@
 
   {% if settings.home_products_collection != "" and collections[settings.home_products_collection].products.size > 0 %}
     <!-- A collection of products -->
-    <section class="diagonal-divider">
+    <section class="diagonal-divider clearfix">
 
-      <div class="section-details">
-        <h2>{{collections[settings.home_products_collection].title | link_to: collections[settings.home_products_collection].url }}</h2>
+      <header class="section-details clearfix">
+        <h1 class="section-title">{{collections[settings.home_products_collection].title | link_to: collections[settings.home_products_collection].url }}</h1>
         
         {% capture home_products_size %}{{ collections[settings.home_products_collection].products.size }}{% endcapture %}
         {% if home_products_size > settings.home_products_limit %}
           <div class="view-more">{{ 'View More &raquo;' | link_to: collections[settings.home_products_collection].url }}</div>
         {% endif %}
-      </div>    
+      </header>    
 
       <ul class="product-grid" id="secondary-grid">
         {% for product in collections[settings.home_products_collection].products limit: settings.home_products_limit %}
@@ -63,6 +63,7 @@
   {% endif %}
 
 
-</div><!-- /#col-left -->
+</div><!-- /#col-main -->
 
-{% include 'right-column' %}
+
+{% include 'col-widgets' %}

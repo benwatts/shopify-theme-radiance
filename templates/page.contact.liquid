@@ -1,52 +1,48 @@
-<div id="page" class="{{ page.handle }}">
+<div id="col-main" class="content">
 
-  <div id="col-left" class="content">
+  <div id="page-header">
+    {% include 'breadcrumb' %}          
+    <h1 id="page-title">{{ page.title }}</h1> 
+  </div>
 
-    <div id="page-header">
-      {% include 'breadcrumb' %}          
-      <h1 id="page-title">{{ page.title }}</h1> 
-    </div>
+  {{ page.content }}
 
-    {{ page.content }}
+  {% form 'contact' %}
+  
+    {% if form.posted_successfully? %}
+      <p class="success-msg">Thanks for contacting us! We'll get back to you as soon as possible.</p>
+    {% endif %}
 
-    {% form 'contact' %}
-    
-      {% if form.posted_successfully? %}
-        <p class="success-msg">Thanks for contacting us! We'll get back to you as soon as possible.</p>
-      {% endif %}
-
-      {% if form.errors %}
-      <p class="error-msg">
-        <ul class="error-list">
-        {% for field in form.errors %}
-          <li>{{ field }} - {{ form.errors.messages[field] }}</li>
-        {% endfor %}
-        </ul>
-      </p>
-      {% endif %} 
-      
-      <ul id="contact-form">
-        <li class="clearfix type-text">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="contact[email]" />
-        </li> 
-        <li class="clearfix type-text">
-          <label for="email">Email</label>
-          <input type="email" id="email" class="email" name="contact[email]" />
-        </li>   
-        <li class="clearfix type-textarea">
-          <label for="message">Message</label>
-          <textarea id="message" name="contact[body]"></textarea>
-        </li>
-        <li class="clearfix type-submit">
-          <input type="submit" class="submit btn" value="Send" />
-        </li>
+    {% if form.errors %}
+    <p class="error-msg">
+      <ul class="error-list">
+      {% for field in form.errors %}
+        <li>{{ field }} - {{ form.errors.messages[field] }}</li>
+      {% endfor %}
       </ul>
-    {% endform %}
-
+    </p>
+    {% endif %} 
     
-	</div><!-- /#col-left -->
+    <ul id="contact-form">
+      <li class="clearfix type-text">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="contact[email]" />
+      </li> 
+      <li class="clearfix type-text">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="email" name="contact[email]" />
+      </li>   
+      <li class="clearfix type-textarea">
+        <label for="message">Message</label>
+        <textarea id="message" name="contact[body]"></textarea>
+      </li>
+      <li class="clearfix type-submit">
+        <input type="submit" class="submit btn" value="Send" />
+      </li>
+    </ul>
+  {% endform %}
 
-  {% include 'right-column' %}
+</div><!-- /#col-main -->
 
-</div> <!-- end #page -->
+
+{% include 'col-widgets' %}

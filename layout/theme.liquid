@@ -55,7 +55,7 @@
  
 </head>
 
-<body class="{% if customer %}customer-logged-in{% endif %} template{{ template | camelize }}" id="{{ page_title | handle }}">
+<body class="{% if customer %}customer-logged-in{% endif %} template{{ template | camelize }}" id="{{ page_title | handle }} {{ page.handle }}">
   
     
   <div class="wrapper">

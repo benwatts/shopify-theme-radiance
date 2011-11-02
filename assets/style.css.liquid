@@ -34,7 +34,6 @@
   font-weight: normal;
   font-style: normal;
   }
-
 {% endif %}
 
 
@@ -145,6 +144,11 @@ h1{ font-size: 22px; }
 a { color: {{ settings.content_link_colour }}; }
 a:hover { color: {{ settings.content_link_hover_colour}} }
 
+blockquote{
+  font: italic 13px/1.5 georgia, sans-serif;
+  margin: 0 0 1.5em 1.25em;
+  }
+
 ul, ol{ margin: 0 0 1.5em 1.3em; }
 li{ margin: 0 0 0.25em 0; }  
 
@@ -191,36 +195,31 @@ body { text-align: center; }
   }
 .ie6 .wrapper{ height: 100%; }  
   
-#col-left{
+#col-main{
   float: left;
   width: 740px;
   position: relative; z-index: 1;
   } 
-#page #col-left{ /* @NOTE: might break mini-width */
+#col-main.content{
   width: 700px;
   }
-#page #col-left.full{
+#col-main.full{
   width: auto;
   float: none;
-  }
+  }  
 
-#col-right{
+#col-widgets{
   float: right;
   width: 215px;
   margin: 0 0 20px 0;
-  color: {{ settings.widget_text_colour }} ;
-  } 
-
-#col-right a{ color: {{settings.widget_link_colour}} }
-#col-right a:hover{ color: {{settings.widget_link_hover_colour}} }
-
+  }  
 {%if settings.show_right_column == false %}
   .wrapper{ width: 740px; }
-  #col-right { display: none; }
-{% endif %}
+  #col-widgets { display: none; }
+{% endif %}  
   
   
-  
+
 /** 
  * Header 
  */ 
@@ -453,21 +452,8 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
  * Sections 
  */ 
 
-section,
-.section-details{
-  overflow: hidden;
-  height: 1%;
-  }
-
 .section-details{
   margin: 0 0 10px 0;  
-  }
-  
-.section-details h2{
-  font: 26px/1 {{settings.header_font}};
-  color: {{ settings.grid_header_colour}};
-  float: left;
-  margin: 0;
   }
 .section-details a{
   color: {{ settings.grid_header_colour}};  
@@ -478,11 +464,24 @@ section,
   line-height: 32px;
   }
 
+ .section-title{
+  font: 26px/1 {{settings.header_font}};
+  color: {{ settings.grid_header_colour}};
+  float: left;
+  margin: 0;
+  } 
+
 .diagonal-divider{
   {% if settings.use_diagonal %}
   background: url({{ settings.diagonal_colour | asset_url }}) 0 0 repeat-x;
   padding: 16px 0 0 0;
   {% endif %}
+  margin: 0 0 20px 0;
+  }
+
+#page-title{
+  border-bottom: dotted 1px {{ settings.content_secondary_colour }};
+  padding: 0 0 15px 0;
   margin: 0 0 20px 0;
   }
 
@@ -500,11 +499,6 @@ section,
   color: {{ settings.content_secondary_colour }};
   }
 
-#page-title{
-  border-bottom: dotted 1px {{ settings.content_secondary_colour }};
-  padding: 0 0 15px 0;
-  margin: 0 0 20px 0;
-  }
 
 
 /** 
@@ -792,7 +786,7 @@ section,
   -webkit-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0;
   }
-.content.description{ /* collection description */
+.content.description{ /* collection descriptions */
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -801,13 +795,8 @@ section,
   float: left;
   width: 700px;
   }
-
-.content blockquote{
-  font: italic 13px/1.5 georgia, sans-serif;
-  margin: 0 0 1.5em 1.25em;
-  } 
   
-.article{
+article{
   margin: 20px 0 45px 0;
   {% if settings.use_diagonal %}
   background: url({{ settings.diagonal_colour | asset_url }}) 0 100% repeat-x;
@@ -816,21 +805,21 @@ section,
   {% endif %}
   padding: 0 0 10px 0;
   } 
-.templateArticle .article{ margin-top: 0; }
+.templateArticle article{ margin-top: 0; }
 
-.article .author{
+article .author{
   color: #999;
   font-style: italic;
   line-height: 20px;
   }
-.article-extras{ 
+article footer{ 
   font-size: 11px;
   padding-top: 20px;
   }
-.article-extras p{ margin: 0; }
-.article-extras .author{ float: left; }
-.article-extras .comments-link{ float: right; }
-.article-extras .btn { padding: 2px 10px; }
+article footer p{ margin: 0; }
+article footer .author{ float: left; }
+article footer .comments-link{ float: right; }
+article footer .btn { padding: 2px 10px; }
 
 
 
@@ -895,6 +884,13 @@ section,
  * Widgets in the Right Column 
  */ 
 
+#col-widgets{
+  color: {{ settings.widget_text_colour }} ;
+  } 
+
+#col-widgets a{ color: {{settings.widget_link_colour}} }
+#col-widgets a:hover{ color: {{settings.widget_link_hover_colour}} }
+
 .widget{
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -909,7 +905,7 @@ section,
   color: {{settings.widget_title_colour}};
   margin: 0 0 8px 0;
   }
-#col-right .widget h3 a{
+#col-widgets .widget h3 a{
   color: {{settings.widget_title_colour}};
   text-decoration: none;
   }

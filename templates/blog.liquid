@@ -1,47 +1,41 @@
-<div id="page" class="blog">
-	
-	<div id="col-left" class="content">
+<div id="col-main" class="content">
 
-    <div id="page-header">
-      {% include 'breadcrumb' %}          
-		  <h1 id="page-title">{{ blog.title }}</h1>
-		</div>
+  <div id="page-header">
+    {% include 'breadcrumb' %}          
+    <h1 id="page-title">{{ blog.title }}</h1>
+  </div>
+
+  {% paginate blog.articles by 10 %}
+  {% for article in blog.articles %}
+
+  <article class="post clearfix">
+    <h2 class="title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+
+    {{ article.excerpt_or_content }}
+
+    <footer class="article-extras clearfix">
+      <p class="author">Written by {{ article.author }} &mdash; {{ article.created_at | date: "%B %d, %Y" }}</p>
+      <p class="comments-link">
+        {% if article.comments_enabled? %}
+          {% if article.comments_count > 0 %}
+            <a class="btn" href="{{article.url}}#comments" title="Add your thoughts"><span class="count">{{ article.comments_count }}</span> comments</a>
+          {% elsif article.comments_count == 1 %}
+            <a class="btn" href="{{article.url}}#comments" title="Add your thoughts"><span class="count">{{ article.comments_count }}</span> comment</a>
+          {% else %}
+            <a class="btn" href="{{article.url}}#comments" title="Add your thoughts">Add a comment</a>
+          {% endif %}
+        {% else %}
+          <span class="disabled">Comments disabled</span>
+        {% endif %}
+      </p>
+    </footer><!-- /.article-extras -->
+  </article>
+
+  {% endfor %}
+  {% include 'pagination' %}
+  {% endpaginate %}
+
+</div> <!-- end #col-main -->
 
 
-	  {% paginate blog.articles by 100 %}
-	  <div class="articles">
-		
-	    {% for article in blog.articles %}
-	    <div class="article clearfix">
-
-        <h2 class="title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
-        {{ article.excerpt_or_content }}
-
-				<div class="article-extras clearfix">
-					<p class="author">Written by {{ article.author }} &mdash; {{ article.created_at | date: "%B %d, %Y" }}</p>
-					<p class="comments-link">
-						{% if article.comments_enabled? %}
-					
-							{% if article.comments_count > 0 %}
-								<a class="btn" href="{{article.url}}#comments" title="Add your thoughts"><span class="count">{{ article.comments_count }}</span> comments</a>
-							{% elsif article.comments_count == 1 %}
-								<a class="btn" href="{{article.url}}#comments" title="Add your thoughts"><span class="count">{{ article.comments_count }}</span> comment</a>
-							{% else %}
-								<a class="btn" href="{{article.url}}#comments" title="Add your thoughts">Add a comment</a>
-							{% endif %}
-						
-						{% else %}
-							<span class="disabled">Comments disabled</span>
-						{% endif %}
-					</div>
-	    </div> <!-- end .article -->
-	    {% endfor %}
-
-	  </div> <!-- end .articles -->
-	  {% include 'pagination' %}
-	  {% endpaginate %}
-	</div> <!-- end #col-left -->
-
-  {% include 'right-column' %}
-
-</div><!--  /#page.blog -->
+{% include 'col-widgets' %}
