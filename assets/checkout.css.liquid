@@ -127,6 +127,7 @@ a:hover { color: {{ settings.content_link_hover_colour}} }
 .group h3,
 .pgroup h3,
 #email label{
+  font-weight: bold !important;
   color: {{ settings.content_header_colour }};
   margin: 0 0 12px 0;
   padding: 0 0 8px 0;
@@ -226,16 +227,29 @@ a:hover { color: {{ settings.content_link_hover_colour}} }
 
 #overview #thumbs{
   margin: 0;
+  border-collapse: collapse;
   }
 #overview #thumbs td{
-  width: 100%;
-  display: block;
   overflow: hidden; height: 1%;
   font-size: 100%;
+  text-align: center;
+  vertical-align: top;
+  padding: 4px;
+  border: dotted 1px {{settings.widget_divider_colour}}
   }
 #overview #thumbs div{
-  border: solid 1px {{ settings.content_secondary_colour }};
+  float: none;
+  width: 100%; height: auto;
+  border: none;
+  margin: 0 0 10px 0; padding: 0;
   }
+#overview #thumbs img{ 
+  display: block; 
+  margin: 0 auto;
+  padding: 1px;
+  border: solid 1px {{ settings.content_secondary_colour }};  
+  }
+
 #overview #thumbs h3{ color: {{settings.widget_title_colour}}; }
 #overview #thumbs span{ color: {{ settings.widget_text_colour }}; }
 
@@ -382,3 +396,12 @@ a:hover { color: {{ settings.content_link_hover_colour}} }
   }
 #footer a{ color: {{ settings.footer_link_colour }};}
 #footer a:hover{ color: {{ settings.footer_link_hover_colour }};}
+
+
+/** 
+ * General Weirdness 
+ */
+#gateway-logos{ 
+  /* this ONLY ever showed up in IE8 during my testing. VERY weird. */
+  display: none;
+  }
