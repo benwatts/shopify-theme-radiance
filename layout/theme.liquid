@@ -24,7 +24,9 @@
   {% if template contains 'product' %}
     <meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}" />
   {% else %}
-    <meta property="og:image" content="{{ 'logo.png' | asset_url }}" />
+    {% if settings.logo_image == "logo.png" %}
+      <meta property="og:image" content="{{ 'logo.png' | asset_url }}" />
+    {% endif %}
   {% endif %}  
 
   <title>
