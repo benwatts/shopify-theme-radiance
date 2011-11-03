@@ -1,5 +1,5 @@
 {"presets":
-  {"Default (Sky)":
+  {"Sky":
     {"btn_hover_colour": "#439eab",
      "footer_linklist": "footer",
      "show_leftnav_allcollections": true,
@@ -113,7 +113,7 @@
      "footer_link_colour": "#aaaaaa",
      "bg_colour": "#ffffff",
      "sm_flickr": true},
-   "Default (Wood)":
+   "Wood":
     {"header_font": "BebasNeueRegular, arial, sans-serif",
      "sm_twitter": true,
      "show_widget_linklist3": false,
@@ -230,7 +230,7 @@
      "comment_date_colour": "#9a8361",
      "carousel_height": "300",
      "show_widget_linklist2": false},
-   "Default (Slate)":
+   "Slate":
     {"header_font": "BebasNeueRegular, arial, sans-serif",
      "sm_twitter": true,
      "show_widget_linklist3": false,
@@ -347,4 +347,4 @@
      "comment_date_colour": "#3A3D3F",
      "carousel_height": "300",
      "show_widget_linklist2": false}},
- "current": "Default (Slate)"}
+ "current": "Slate"}
