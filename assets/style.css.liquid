@@ -42,8 +42,8 @@
  * Reset 
  */
 html, body, div, span, object, iframe, p, blockquote, pre,
-abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp,
+small, sub, sup, var, dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, figcaption, figure,
@@ -129,7 +129,7 @@ html{ background-color: {{ settings.bg_colour }} }
 /** 
  * Base Content Styles 
  */ 
-body, input, textarea { 
+body { 
   color: {{ settings.content_text_colour }};
   }
 
@@ -155,6 +155,7 @@ li{ margin: 0 0 0.25em 0; }
 input, textarea{
   border: solid 1px {{ settings.content_secondary_colour }}; 
   padding: 4px;
+  color: #333;  
   }
 input[type="image"]{ border: none; }
 
