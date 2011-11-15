@@ -14,7 +14,7 @@
   {% if template contains "product" %}
     <meta name="description" content="{{ product.description | strip_html | truncate: 50  }}, Price: {% if product.price_varies %} starting at {{ product.price_min | money }} {% else %} {{ product.price_min | money }} {% endif %}">
   {% elsif template == "index" %}
-    <meta name="description" content="{{ settings.site_description }}">
+    <meta name="description" content="{{ shop.description }}">
   {% endif %}
 
   {% comment %} 
