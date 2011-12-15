@@ -50,7 +50,7 @@
             <td>{{ item.price | money }}</td>
             <td> <input class="text" type="text" size="4" name="updates[{{item.variant.id}}]" id="updates_{{item.variant.id}}" value="{{ item.quantity }}" onfocus="this.select();" class="replace" /> </td>
             <td>{{ item.line_price | money }}</td>
-            <td><input class="btn" type="submit" onClick="remove_item({{item.variant.id}}); return false;" value="Remove" /> </td>
+            <td><a class="btn" onClick="remove_item({{item.variant.id}}); return false;">Remove</a></td>
           </tr>
           {% endfor %}
         </tbody>
