@@ -58,6 +58,22 @@
         <select class="font" name="general_font" id="general_font">
           <option value="Helvetica, Arial, sans-serif" selected="selected">Helvetica/Arial</option>
         </select>
+        <select id="general_font_size" name="general_font_size">
+          <optgroup label="Font Size">
+            <option value="10px">10px</option>
+            <option value="11px">11px</option>
+            <option value="12px">12px</option>
+            <option value="13px" selected="selected">13px</option>
+            <option value="14px">14px</option>
+            <option value="18px">18px</option>
+            <option value="24px">24px</option>
+            <option value="30px">30px</option>
+            <option value="36px">36px</option>
+            <option value="48px">48px</option>
+            <option value="60px">60px</option>
+            <option value="72px">72px</option>
+          </optgroup>
+        </select>        
       </td>
     </tr>  
   </table>
@@ -193,6 +209,35 @@
       <td><label for="logo_hover_colour">Logo link hover colour</label></td>
       <td><input id="logo_hover_colour" name="logo_hover_colour" class="color" value="#554B60" /></td>
     </tr>
+    <tr>
+      <td><label for="logo_hover_colour">Logo font size and style</label></td>    
+      <td>
+        <select id="header_font_size" name="header_font_size">
+          <optgroup label="Font Size">
+            <option value="10px">10px</option>
+            <option value="11px">11px</option>
+            <option value="12px">12px</option>
+            <option value="13px">13px</option>
+            <option value="14px">14px</option>
+            <option value="18px">18px</option>
+            <option value="24px">24px</option>
+            <option value="30px">30px</option>
+            <option value="36px">36px</option>
+            <option value="48px" selected="selected">48px</option>
+            <option value="60px">60px</option>
+            <option value="72px">72px</option>
+          </optgroup>
+        </select>   
+        <select id="header_font_style" name="header_font_style">
+          <optgroup label="Font Style">
+            <option value="normal" selected="selected">normal</option>
+            <option value="bold">bold</option>
+            <option value="italic">italic</option>
+            <option value="bold italic">bold italic</option>
+          </optgroup>
+        </select>     
+      </td>
+    </tr>
   </table>
 
   <br />
@@ -235,6 +280,35 @@
 
   <h3>Navigation</h3>
   <table>
+    <tr>
+      <td><label for="nav_font_size">Font size and style</label></td>
+      <td>
+        <select id="nav_font_size" name="nav_font_size">
+          <optgroup label="Font Size">        
+            <option value="10px">10px</option>
+            <option value="11px">11px</option>
+            <option value="12px">12px</option>
+            <option value="13px">13px</option>
+            <option value="14px">14px</option>
+            <option value="18px">18px</option>
+            <option value="24px" selected="selected">24px</option>
+            <option value="30px">30px</option>
+            <option value="36px">36px</option>
+            <option value="48px">48px</option>
+            <option value="60px">60px</option>
+            <option value="72px">72px</option>
+          </optgroup>
+        </select>        
+        <select id="nav_font_style" name="nav_font_style">
+          <optgroup label="Font Style">
+            <option value="normal" selected="selected">normal</option>
+            <option value="bold">bold</option>
+            <option value="italic">italic</option>
+            <option value="bold italic">bold italic</option>
+          </optgroup>
+        </select>             
+      </td>
+    </tr>
     <tr>
       <td><label for="nav_link_colour">Link colour</label></td>
       <td><input id="nav_link_colour" name="nav_link_colour" class="color" value="#554b60" /></td>
@@ -290,6 +364,35 @@
 	<p>You may need to <a href="/admin/custom_collections">create some collections</a> before modifying these settings.</p>
 
   <h3>3 Featured Products</h3>
+
+  <p>
+    <label for="home_featured_product_font_size">Product Name Font Size: </label>
+    <select id="home_featured_product_font_size" name="home_featured_product_font_size">
+      <optgroup label="Font size">
+        <option value="10px">10px</option>
+        <option value="11px">11px</option>
+        <option value="12px">12px</option>
+        <option value="13px">13px</option>
+        <option value="14px">14px</option>
+        <option value="18px">18px</option>
+        <option value="24px" selected="selected">24px</option>
+        <option value="30px">30px</option>
+        <option value="36px">36px</option>
+        <option value="48px">48px</option>
+        <option value="60px">60px</option>
+        <option value="72px">72px</option>
+      </optgroup>
+    </select>   
+    <select id="home_featured_product_font_style" name="home_featured_product_font_style">
+      <optgroup label="Font style">
+        <option value="normal" selected="selected">normal</option>
+        <option value="bold">bold</option>
+        <option value="italic">italic</option>
+        <option value="bold italic">bold italic</option>
+      </optgroup>
+    </select>     
+  </p>
+
 	<p>
     <label for="home_featured_collection">Collection to use for featured products: </label>
 		<select class="collection" name="home_featured_collection">
@@ -304,7 +407,6 @@
     <input type="checkbox" id="show_featured_desc" name="show_featured_desc" value="1" checked="checked" />
     <label for="show_featured_desc">Show excerpt of description beneath product title?</label>
   </p>
-
 
   <br />
   <hr />  
@@ -435,8 +537,39 @@
   <br />
   <hr />  
 
-  <h3>Colours</h3>
+  <h3>Look and Feel</h3>
   <table>
+    <tr>
+      <td><label for="widget_title_colour">Widget title</label></td>
+      <td>
+        <input id="widget_title_colour" name="widget_title_colour" class="color" value="#ffffff" />
+        <select id="widget_title_font_size" name="widget_title_font_size">
+          <optgroup label="Size">
+            <option value="10px">10px</option>
+            <option value="11px">11px</option>
+            <option value="12px">12px</option>
+            <option value="13px">13px</option>
+            <option value="14px">14px</option>
+            <option value="18px">18px</option>
+            <option value="24px" selected="selected">24px</option>
+            <option value="30px">30px</option>
+            <option value="36px">36px</option>
+            <option value="48px">48px</option>
+            <option value="60px">60px</option>
+            <option value="72px">72px</option>
+          </optgroup>
+        </select>   
+        <select id="widget_title_font_style" name="widget_title_font_style">
+          <optgroup label="Style">
+            <option value="normal" selected="selected">normal</option>
+            <option value="bold">bold</option>
+            <option value="italic">italic</option>
+            <option value="bold italic">bold italic</option>
+          </optgroup>
+        </select>     
+        <br /><br />
+      </td>
+    </tr>     
     <tr>
       <td><label for="widget_text_colour">Text</label></td>
       <td><input id="widget_text_colour" name="widget_text_colour" class="color" value="#AFAFAF" /></td>
@@ -445,10 +578,6 @@
       <td><label for="widget_bg_colour">Widget background</label></td>
       <td><input id="widget_bg_colour" name="widget_bg_colour" class="color" value="#1D1F20" /></td>
     </tr>
-    <tr>
-      <td><label for="widget_title_colour">Widget title</label></td>
-      <td><input id="widget_title_colour" name="widget_title_colour" class="color" value="#ffffff" /></td>
-    </tr>   
     <tr>
       <td><label for="widget_link_colour">Link</label></td>
       <td><input id="widget_link_colour" name="widget_link_colour" class="color" value="#fcf3c1" /></td>
@@ -559,11 +688,38 @@
   <legend>Product Grids</legend>
   <p>Product grids contain the the thumbnail of your product, price, name, and a description (featured items on the homepage).</p>
 
-  <h3>Colours</h3>
   <table>
     <tr>
       <td><label for="grid_header_colour">Header</label></td>
-      <td><input id="grid_header_colour" name="grid_header_colour" class="color" value="#ffffff" /></td>
+      <td>
+        <input id="grid_header_colour" name="grid_header_colour" class="color" value="#ffffff" />
+      </td>
+      <td>
+        <select id="grid_header_font_size" name="grid_header_font_size">
+          <optgroup label="Size">
+            <option value="10px">10px</option>
+            <option value="11px">11px</option>
+            <option value="12px">12px</option>
+            <option value="13px">13px</option>
+            <option value="14px">14px</option>
+            <option value="18px">18px</option>
+            <option value="24px" selected="selected">24px</option>
+            <option value="30px">30px</option>
+            <option value="36px">36px</option>
+            <option value="48px">48px</option>
+            <option value="60px">60px</option>
+            <option value="72px">72px</option>
+          </optgroup>
+        </select>   
+        <select id="grid_header_font_style" name="grid_header_font_style">
+          <optgroup label="Style">
+            <option value="normal" selected="selected">normal</option>
+            <option value="bold">bold</option>
+            <option value="italic">italic</option>
+            <option value="bold italic">bold italic</option>
+          </optgroup>
+        </select>     
+      </td>
     </tr>          
     <tr>
       <td><label for="grid_bg_colour">Background behind product name</label></td>
@@ -603,8 +759,37 @@
   <br />
   <hr />
 
-  <h3>Colours</h3>
+  <h3>Look and Feel</h3>
   <table>
+    <tr>
+      <td><label>Product name size and style</label></td>
+      <td>
+        <select id="product_name_font_size" name="product_name_font_size">
+          <optgroup label="Size">
+            <option value="10px">10px</option>
+            <option value="11px">11px</option>
+            <option value="12px">12px</option>
+            <option value="13px">13px</option>
+            <option value="14px">14px</option>
+            <option value="18px">18px</option>
+            <option value="24px" selected="selected">24px</option>
+            <option value="30px">30px</option>
+            <option value="36px">36px</option>
+            <option value="48px">48px</option>
+            <option value="60px">60px</option>
+            <option value="72px">72px</option>
+          </optgroup>
+        </select>   
+        <select id="product_name_font_style" name="product_name_font_style">
+          <optgroup label="Style">
+            <option value="normal">normal</option>
+            <option value="bold" selected="selected">bold</option>
+            <option value="italic">italic</option>
+            <option value="bold italic">bold italic</option>
+          </optgroup>
+        </select>     
+      </td>
+    </tr>  
     <tr>
       <td><label for="added_to_cart_bg">"Item Added to Cart!" background colour</label></td>
       <td><input id="added_to_cart_bg" name="added_to_cart_bg" class="color" value="#1D1F20" /></td>

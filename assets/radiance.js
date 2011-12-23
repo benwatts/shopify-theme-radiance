@@ -65,6 +65,11 @@ var RADIANCE = {
       $('html').removeClass('no-js').addClass('js');
       setupDropdownMenus(); 
       searchPlaceholder();
+
+      $('.nav-arrow', '#top-menu').each( function(){
+        $(this).css('marginTop', $(this).parent(2).height()/2 - 3 );
+      });
+
     }
   },
 

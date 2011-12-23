@@ -2,9 +2,9 @@
  * Radiance
  * A Shopify theme. 
  *
- * Last update: November 16, 2011
+ * Last update: December 23, 2011
  * 
- * @version     2.0.2
+ * @version     2.1
  * @author      Ben Watts @ Shopify
  * @theme_url   http://radiance-theme.myshopify.com/
  *
@@ -73,7 +73,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
 input, select { vertical-align: middle; }
 
-body { font:13px/1.231 {{settings.general_font}}; *font-size:small; } 
+body { font: {{settings.general_font_size}}/1.231 {{settings.general_font}}; *font-size:small; } 
 select, input, textarea, button { font:99% sans-serif; }
 pre, code, kbd, samp { font-family: monospace, sans-serif; }
 
@@ -227,17 +227,13 @@ body { text-align: center; }
   
 #top{
   padding: 50px 0 0 0;
-  margin: 0 0 15px 0;
+  margin: 0 0 30px 0;
   position: relative;
   z-index: 100;
   }
   
 #site-title{
-  {%if settings.header_font == 'BebasNeueRegular, arial, sans-serif' %}
-    font: 48px/1.0 {{settings.header_font}};
-  {% else %}
-    font: bold 36px/1.0 {{settings.header_font}};
-  {% endif %}
+  font: {{settings.header_font_style}} {{settings.header_font_size}}/1.0 {{settings.header_font}};
   color: {{settings.logo_colour}};
   margin: 0;
   }
@@ -256,7 +252,7 @@ body { text-align: center; }
  */ 
 
 #top-menu{
-  padding: 5px 0 0 0;
+  padding: 8px 0 0 0;
   margin: 0 0 0 -10px;
   }
 #top-menu li{ 
@@ -265,7 +261,7 @@ body { text-align: center; }
 #top-menu a{
   color: {{settings.nav_link_colour}};
   border-right: dotted 1px {{settings.nav_divider_colour}};
-  font: 22px {{settings.header_font}};  
+  font: {{settings.nav_font_style}} {{settings.nav_font_size}} {{settings.header_font}};  
   padding: 4px 10px;
   text-decoration: none;
   display: block;
@@ -289,9 +285,14 @@ body { text-align: center; }
   }
 
 #top-menu .nav-arrow{
-  font-size: 12px;
-  vertical-align: middle; 
-  margin: 5px 0 0 3px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid {{settings.nav_link_colour}};  
+  display: block;
+  margin: 5px 0 0 6px;
+  float: right;
   }
 
 #top-menu ul ul{
@@ -304,9 +305,9 @@ body { text-align: center; }
   padding: 5px 0;
   display: none;
   width: 175px;
-  -moz-box-shadow: 0 0 5px {{settings.dropdown_brd_colour}};
-  -webkit-box-shadow: 0 0 5px {{settings.dropdown_brd_colour}};
-  box-shadow: 0 0 5px {{settings.dropdown_brd_colour}};   
+  -moz-box-shadow: 0 1px 4px {{settings.dropdown_brd_colour}};
+  -webkit-box-shadow: 0 1px 4px {{settings.dropdown_brd_colour}};
+  box-shadow: 0 1px 4px {{settings.dropdown_brd_colour}};   
   }
 .ie6 #top-menu ul ul,
 .ie7 #top-menu ul ul,   
@@ -339,8 +340,8 @@ body { text-align: center; }
  */
 
 #header-search{ 
-  padding: 4px 0 0 0;
   float: right;
+  margin: -6px 0 0 0;
   } 
 #header-search #top-search-input{ 
   width: 175px;
@@ -466,7 +467,7 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
   }
 
  .section-title{
-  font: 26px/1 {{settings.header_font}};
+  font: {{settings.grid_header_font_style}} {{settings.grid_header_font_size}}/1 {{settings.header_font}};
   color: {{ settings.grid_header_colour}};
   float: left;
   margin: 0;
@@ -564,7 +565,7 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
   border-radius: 0 0 4px 4px; 
   }
 .product-information h3{
-  font: 24px/1 {{settings.header_font}};
+  font: {{settings.home_featured_product_font_style}} {{settings.home_featured_product_font_size}}/1 {{settings.header_font}};
   margin: 5px 0 10px 0;
   }
 .product-information p{
@@ -648,6 +649,8 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
   }
 #product-title{
   margin: 0 0 5px 0;
+  font-size: {{ settings.product_name_font_size }};
+  font-style: {{ settings.product_name_font_style }};
   }
 #product-vendor{
   font-size: 12px;
@@ -780,18 +783,25 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
  */ 
 
 .content{
-  background: {{ settings.content_bg_colour }};
+  padding-bottom: 20px;  
+  {% unless ((settings.content_bg_colour == settings.bg_colour) and (settings.body_bg_img == "none")) %}
   padding: 20px;
+  {% endunless %}
+
+  background: {{ settings.content_bg_colour }};
   line-height: 1.5em;
   -moz-border-radius: 4px 4px 0 0;
   -webkit-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0;
   }
 .content.description{ /* collection descriptions */
+  {% unless (settings.content_bg_colour == settings.bg_colour) and (settings.body_bg_img == "none") %}
+  padding: 10px 20px 0 20px;
+  {% endunless %}
+
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  padding: 10px 20px 0 20px;
   margin: 15px 0 15px 0;
   float: left;
   width: 700px;
@@ -840,9 +850,9 @@ article footer .btn { padding: 2px 10px; }
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   background: {{ settings.bg_colour }};
   }
 .pagination li {
@@ -902,7 +912,7 @@ article footer .btn { padding: 2px 10px; }
   }
 
 .widget h3{
-  font: 24px {{settings.header_font}};
+  font: {{settings.widget_title_font_style}} {{settings.widget_title_font_size}} {{settings.header_font}};
   color: {{settings.widget_title_colour}};
   margin: 0 0 8px 0;
   }
@@ -956,6 +966,7 @@ article footer .btn { padding: 2px 10px; }
   border-bottom: dotted 1px {{settings.widget_divider_colour}};
   background: none;
   word-wrap: break-word;
+  line-height: 1.3em;
   } 
     
 /** linklist widget */
@@ -963,7 +974,7 @@ article footer .btn { padding: 2px 10px; }
   border-bottom: dotted 1px {{settings.widget_divider_colour}};  
   padding: 0 0 8px 0;
   margin: 0 0 8px 0;
-  }  
+}  
 .widget-linklist li a{
   display: block;
   margin: 0 0 0 12px;
@@ -1317,8 +1328,8 @@ col.checkout-delete{ width: 80px; }
   float: left;
   }
 #checkout-addnote textarea{
-  border: solid 1px {{settings.primary_colour}};
-  color: {{settings.primary_colour}}; 
+  border: solid 1px {{settings.content_secondary_colour}};
+  color: {{settings.content_text_colour}}; 
   width: 250px;
   height: 60px;
   float: left;
