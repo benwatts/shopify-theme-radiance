@@ -1364,8 +1364,10 @@ col.checkout-delete{ width: 80px; }
  */ 
 
 #bottom{ 
+  padding: 15px 0; 
   {% unless ((settings.footer_bg_colour == settings.bg_colour) and (settings.body_bg_img == "none")) %}
-  padding: 15px 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   {% endunless %}
 
   margin: 25px 0 50px 0;
@@ -1650,3 +1652,26 @@ a.btn:hover{
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3{ page-break-after: avoid; }
 }
+
+/** 
+ * No products 
+ */
+
+.no-products-wrapper{
+  padding: 15px; 
+  background: {{ settings.footer_bg_colour }};
+  color: {{ settings.footer_txt_colour }};
+  }
+
+.no-products-wrapper a{ color: {{ settings.footer_link_colour }};}
+.no-products-wrapper a:hover{ color: {{ settings.footer_link_hover_colour }};}
+
+.no-products-wrapper h2{
+  {% if settings.sm_colour == "black" %}
+   background: url({{ 'add-medium.png' | asset_url }}) 0 5px no-repeat;
+  {% else %}
+   background: url({{ 'add-medium.png' | asset_url }}) 0 -47px no-repeat;
+  {% endif %}
+  padding: 12px 0 12px 45px;
+  margin: 0;  
+  }
