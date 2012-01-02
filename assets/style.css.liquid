@@ -2,7 +2,7 @@
  * Radiance
  * A Shopify theme. 
  *
- * Last update: December 23, 2011
+ * Last update: January 2, 2012
  * 
  * @version     2.1
  * @author      Ben Watts @ Shopify
@@ -23,7 +23,6 @@
  * See: http://www.fontsquirrel.com/fonts/bebas-neue
  * Redistributed in this theme with permission from Dharma Type - March 26, 2011 
  */
-
 @font-face {
   font-family: 'BebasNeueRegular';
   src: url('BebasNeue-webfont.eot');
@@ -102,6 +101,7 @@ button, input, select, textarea { margin: 0; }
 input:valid, textarea:valid   {  }
 input:invalid, textarea:invalid { border-radius: 1px; -moz-box-shadow: 0px 0px 5px red; -webkit-box-shadow: 0px 0px 5px red; box-shadow: 0px 0px 5px red; }
 .no-boxshadow input:invalid, .no-boxshadow textarea:invalid { background-color: #f0dddd; }
+select{ max-width: 99%; /* for ff */ }
 
 {% if settings.body_bg_img != "none" %}
   html{ 
@@ -212,7 +212,6 @@ body { text-align: center; }
 #col-widgets{
   float: right;
   width: 215px;
-  margin: 0 0 20px 0;
   }  
 {%if settings.show_right_column == false %}
   .wrapper{ width: 740px; }
@@ -278,21 +277,28 @@ body { text-align: center; }
   color: {{settings.nav_hover_colour}};
   background: {{ settings.dropdown_bg_colour}};
   } 
+#top-menu a:hover .nav-arrow{
+  border-top-color: {{settings.nav_hover_colour}};
+  }
 
 /* dropdown menus */
 #top-menu .has-dropdown{
   position: relative;
   }
+.js #top-menu .has-dropdown a{
+  padding-right: 24px;
+  }
 
-#top-menu .nav-arrow{
+.js #top-menu .nav-arrow{
+  position: absolute;
+  top: 45%;
+  right: 10px;
   width: 0;
   height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 4px solid {{settings.nav_link_colour}};  
   display: block;
-  margin: 5px 0 0 6px;
-  float: right;
   }
 
 #top-menu ul ul{
@@ -305,9 +311,9 @@ body { text-align: center; }
   padding: 5px 0;
   display: none;
   width: 175px;
-  -moz-box-shadow: 0 1px 4px {{settings.dropdown_brd_colour}};
-  -webkit-box-shadow: 0 1px 4px {{settings.dropdown_brd_colour}};
-  box-shadow: 0 1px 4px {{settings.dropdown_brd_colour}};   
+  -moz-box-shadow: 0 2px 3px {{settings.dropdown_brd_colour}};
+  -webkit-box-shadow: 0 2px 3px {{settings.dropdown_brd_colour}};
+  box-shadow: 0 2px 3px {{settings.dropdown_brd_colour}};   
   }
 .ie6 #top-menu ul ul,
 .ie7 #top-menu ul ul,   
@@ -914,7 +920,7 @@ article footer .btn { padding: 2px 10px; }
 .widget h3{
   font: {{settings.widget_title_font_style}} {{settings.widget_title_font_size}} {{settings.header_font}};
   color: {{settings.widget_title_colour}};
-  margin: 0 0 8px 0;
+  margin: 0 0 10px 0;
   }
 #col-widgets .widget h3 a{
   color: {{settings.widget_title_colour}};
@@ -1358,8 +1364,11 @@ col.checkout-delete{ width: 80px; }
  */ 
 
 #bottom{ 
+  {% unless ((settings.footer_bg_colour == settings.bg_colour) and (settings.body_bg_img == "none")) %}
   padding: 15px 20px;
-  margin: 0 0 50px 0;
+  {% endunless %}
+
+  margin: 25px 0 50px 0;
   font-size: 11px;
   clear: both; 
   overflow: hidden;
@@ -1549,7 +1558,9 @@ col.checkout-delete{ width: 80px; }
 .right{ float: right; }
 
 .btn,
-a.btn{
+a.btn,
+a.btn.disabled,
+a.btn.disabled:hover{
   display: inline-block;
   background: {{settings.btn_colour}} url({{ 'btn-small-depth.png' | asset_url }}) 0 100% repeat-x;
   -webkit-border-radius: 4px;

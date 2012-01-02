@@ -67,7 +67,7 @@ var RADIANCE = {
       searchPlaceholder();
 
       $('.nav-arrow', '#top-menu').each( function(){
-        $(this).css('marginTop', $(this).parent(2).height()/2 - 3 );
+        $(this).css('top', Math.ceil($(this).parent(2).height()/2) + 1);
       });
 
     }
