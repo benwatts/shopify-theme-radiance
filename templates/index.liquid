@@ -2,99 +2,112 @@
 
   {% include 'carousel' %}
 
-  <section class="products-prominent clearfix diagonal-divider">
-    <ul class="product-grid wide" id="featured-grid">
-      <li>
-        <a class="product-photo placeholder" href="/admin/products/new"></a>
-        <div class="product-information">
-          <span class="product-price">0.00</span>
-          <h3><a href="/admin/products/new">Product Name</h3>
-        </div>
-      </li>
-      <li>
-        <a class="product-photo placeholder" href="/admin/products/new"></a>
-        <div class="product-information">
-          <span class="product-price">0.00</span>
-          <h3><a href="/admin/products/new">Product Name</h3>
-        </div>
-      </li>
-      <li class="last-in-row">
-        <a class="product-photo placeholder" href="/admin/products/new"></a>
-        <div class="product-information">
-          <span class="product-price">0.00</span>
-          <h3><a href="/admin/products/new">Product Name</h3>
-        </div>
-      </li>
-    </ul>
-  </section>
+  {% if shop.products_count < 1 %}
+  <!-- 
+  ////////////////////////////////////////////////////////////////////////////////////////
+  No Products
+  This only appears if a shop has no products. This is a rare scenario which only really applies to new Shopify stores. 
+  ////////////////////////////////////////////////////////////////////////////////////////  
+  -->
+  <div class="no-products">
 
-  <section class="diagonal-divider clearfix">
-    <header class="section-details clearfix">
-      <h1 class="section-title">No Products Yet</h1>
-    </header>    
-    <ul class="product-grid" id="secondary-grid">
-      <li>
-        <div class="product-grid-item">
-          <a class="product-link placeholder"><span class="product-price">0.00</span></a>
-          <div class="product-information">
-            <a href="">Product Name</a>                    
-          </div>              
-        </div>   
-      </li> 
-      <li>
-        <div class="product-grid-item">
-          <a class="product-link placeholder"><span class="product-price">0.00</span></a>
-          <div class="product-information">
-            <a href="">Product Name</a>                    
-          </div>              
-        </div>   
-      </li> 
-      <li>
-        <div class="product-grid-item">
-          <a class="product-link placeholder"><span class="product-price">0.00</span></a>
-          <div class="product-information">
-            <a href="">Product Name</a>                    
-          </div>              
-        </div>   
-      </li> 
-      <li class="last-in-row">
-        <div class="product-grid-item">
-          <a class="product-link placeholder"><span class="product-price">0.00</span></a>
-          <div class="product-information">
-            <a href="">Product Name</a>                    
-          </div>              
-        </div>   
-      </li>       
-    </ul>      
-  </section>
+    <div class="no-products-post-it">
+      <div class="no-products-post-it-content">
+        <em>Welcome to your store!</em>
+        <p>It looks like you don't have any products yet, would you like to <a href="/admin/products/new">create some now</a>?</p>
+      </div>
+    </div>
 
+    <a class="no-products-overlay" href="/admin/products/new"></a>
 
+    <!-- Placeholder featured products: visible when shop has 0 products -->
+    <section class="products-prominent clearfix diagonal-divider">
+      <ul class="product-grid wide" id="featured-grid">
+        <li>
+          <a class="product-photo placeholder" href="/admin/products/new"></a>
+          <div class="product-information">
+            <span class="product-price">0.00</span>
+            <h3>Product</h3>
+          </div>
+        </li>
+        <li>
+          <a class="product-photo placeholder" href="/admin/products/new"></a>
+          <div class="product-information">
+            <span class="product-price">0.00</span>
+            <h3>Product</h3>
+          </div>
+        </li>
+        <li class="last-in-row">
+          <a class="product-photo placeholder" href="/admin/products/new"></a>
+          <div class="product-information">
+            <span class="product-price">0.00</span>
+            <h3>Product</h3>
+          </div>
+        </li>
+      </ul>
+    </section>
 
-    {% if shop.products_count < 1 %}
-{% endif %}
+    <!-- Placeholder collection: visible when shop has 0 products -->
+    <section class="diagonal-divider clearfix">
+      <header class="section-details clearfix">
+        <h1 class="section-title">Product Collection</h1>
+      </header>    
+      <ul class="product-grid" id="secondary-grid">
+        <li>
+          <div class="product-grid-item">
+            <a class="product-link placeholder"><span class="product-price">0.00</span></a>
+            <div class="product-information">
+              Product                    
+            </div>              
+          </div>   
+        </li> 
+        <li>
+          <div class="product-grid-item">
+            <a class="product-link placeholder"><span class="product-price">0.00</span></a>
+            <div class="product-information">
+             Product               
+            </div>              
+          </div>   
+        </li> 
+        <li>
+          <div class="product-grid-item">
+            <a class="product-link placeholder"><span class="product-price">0.00</span></a>
+            <div class="product-information">
+              Product                    
+            </div>              
+          </div>   
+        </li> 
+        <li class="last-in-row">
+          <div class="product-grid-item">
+            <a class="product-link placeholder"><span class="product-price">0.00</span></a>
+            <div class="product-information">
+              Product                  
+            </div>              
+          </div>   
+        </li>       
+      </ul>      
+    </section>
+
+  </div>
+  {% endif %}
+
 
 
   {% if settings.home_featured_collection != "" and collections[settings.home_featured_collection].products.size > 0 %}
     <!-- Three featured products -->
     <section class="products-prominent clearfix diagonal-divider">
 
-      {% if settings.home_featured_header_show %}
-      <header class="section-details clearfix">
-        
-        <h1 class="section-title">{{collections[settings.home_featured_collection].title | link_to: collections[settings.home_featured_collection].url }}</h1>
-
+      <header class="section-details clearfix {% if settings.home_featured_header_show == false %}visuallyhidden{%endif%}">
+        <h2 class="section-title">{{collections[settings.home_featured_collection].title | link_to: collections[settings.home_featured_collection].url }}</h2>
         {% if collections[settings.home_featured_collection].products.size > 3 %}
           <div class="view-more">{{ 'View More &raquo;' | link_to: collections[settings.home_featured_collection].url }}</div>
         {% endif %}
-
       </header>    
-      {% endif %}
 
       <ul class="product-grid wide" id="featured-grid">
-
         {% for product in collections[settings.home_featured_collection].products offset: 0 limit: 3 %}
         <li class="product{% if forloop.last %} last-in-row{% endif %}">
-           <a class="product-photo" href="{{ product.url | within: collection }}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title }}" /></a>
+          <a class="product-photo" href="{{ product.url | within: collection }}"><img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title }}" /></a>
           <div class="product-information">
             <span class="product-price">{% if product.price_varies %}<small>from</small> {{ product.price_min | money }}{% else %}{{ product.price_min | money }}{% endif %}</span>
             <h3><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>
@@ -104,7 +117,6 @@
           </div>
         </li>
         {% endfor %}
-
       </ul>
     </section>
   {% endif %}
@@ -115,8 +127,7 @@
     <section class="diagonal-divider clearfix">
 
       <header class="section-details clearfix">
-        <h1 class="section-title">{{collections[settings.home_products_collection].title | link_to: collections[settings.home_products_collection].url }}</h1>
-        
+        <h2 class="section-title">{{collections[settings.home_products_collection].title | link_to: collections[settings.home_products_collection].url }}</h2>
         {% capture home_products_size %}{{ collections[settings.home_products_collection].products.size }}{% endcapture %}
         {% if home_products_size > settings.home_products_limit %}
           <div class="view-more">{{ 'View More &raquo;' | link_to: collections[settings.home_products_collection].url }}</div>
