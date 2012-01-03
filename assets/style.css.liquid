@@ -1560,9 +1560,7 @@ col.checkout-delete{ width: 80px; }
 .right{ float: right; }
 
 .btn,
-a.btn,
-a.btn.disabled,
-a.btn.disabled:hover{
+a.btn{
   display: inline-block;
   background: {{settings.btn_colour}} url({{ 'btn-small-depth.png' | asset_url }}) 0 100% repeat-x;
   -webkit-border-radius: 4px;
@@ -1655,23 +1653,19 @@ a.btn:hover{
 
 /** 
  * No products 
+ * Visible only to an empty store.
  */
 
-.no-products-wrapper{
-  padding: 15px; 
-  background: {{ settings.footer_bg_colour }};
-  color: {{ settings.footer_txt_colour }};
+#featured-grid .placeholder{
+  display: block;
+  width: 240px;
+  height: 200px; 
+  background: {{settings.btn_colour}} url({{ 'placeholder-product.png' | asset_url }}) 50% 50% no-repeat;
   }
 
-.no-products-wrapper a{ color: {{ settings.footer_link_colour }};}
-.no-products-wrapper a:hover{ color: {{ settings.footer_link_hover_colour }};}
-
-.no-products-wrapper h2{
-  {% if settings.sm_colour == "black" %}
-   background: url({{ 'add-medium.png' | asset_url }}) 0 5px no-repeat;
-  {% else %}
-   background: url({{ 'add-medium.png' | asset_url }}) 0 -47px no-repeat;
-  {% endif %}
-  padding: 12px 0 12px 45px;
-  margin: 0;  
+.product-grid .placeholder{
+  width: 177px;
+  height: 130px;
+  display: block;
+  background: {{settings.btn_colour}} url({{ 'placeholder-product.png' | asset_url }}) 50% 50% no-repeat;  
   }

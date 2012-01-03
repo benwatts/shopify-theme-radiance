@@ -2,11 +2,77 @@
 
   {% include 'carousel' %}
 
-  {% if shop.products_count < 1 %}
-    <div class="no-products-wrapper">
-      <h2 class="no-products">Your shop currently has no products. You should <a href="/admin/products/new">add some</a>.</h2>
-    </div>
-  {% endif %}
+  <section class="products-prominent clearfix diagonal-divider">
+    <ul class="product-grid wide" id="featured-grid">
+      <li>
+        <a class="product-photo placeholder" href="/admin/products/new"></a>
+        <div class="product-information">
+          <span class="product-price">0.00</span>
+          <h3><a href="/admin/products/new">Product Name</h3>
+        </div>
+      </li>
+      <li>
+        <a class="product-photo placeholder" href="/admin/products/new"></a>
+        <div class="product-information">
+          <span class="product-price">0.00</span>
+          <h3><a href="/admin/products/new">Product Name</h3>
+        </div>
+      </li>
+      <li class="last-in-row">
+        <a class="product-photo placeholder" href="/admin/products/new"></a>
+        <div class="product-information">
+          <span class="product-price">0.00</span>
+          <h3><a href="/admin/products/new">Product Name</h3>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="diagonal-divider clearfix">
+    <header class="section-details clearfix">
+      <h1 class="section-title">No Products Yet</h1>
+    </header>    
+    <ul class="product-grid" id="secondary-grid">
+      <li>
+        <div class="product-grid-item">
+          <a class="product-link placeholder"><span class="product-price">0.00</span></a>
+          <div class="product-information">
+            <a href="">Product Name</a>                    
+          </div>              
+        </div>   
+      </li> 
+      <li>
+        <div class="product-grid-item">
+          <a class="product-link placeholder"><span class="product-price">0.00</span></a>
+          <div class="product-information">
+            <a href="">Product Name</a>                    
+          </div>              
+        </div>   
+      </li> 
+      <li>
+        <div class="product-grid-item">
+          <a class="product-link placeholder"><span class="product-price">0.00</span></a>
+          <div class="product-information">
+            <a href="">Product Name</a>                    
+          </div>              
+        </div>   
+      </li> 
+      <li class="last-in-row">
+        <div class="product-grid-item">
+          <a class="product-link placeholder"><span class="product-price">0.00</span></a>
+          <div class="product-information">
+            <a href="">Product Name</a>                    
+          </div>              
+        </div>   
+      </li>       
+    </ul>      
+  </section>
+
+
+
+    {% if shop.products_count < 1 %}
+{% endif %}
+
 
   {% if settings.home_featured_collection != "" and collections[settings.home_featured_collection].products.size > 0 %}
     <!-- Three featured products -->
