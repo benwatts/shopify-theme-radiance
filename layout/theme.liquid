@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   {% if template contains "product" %}
-    <meta name="description" content="{{ product.description | strip_html | escape | truncate: 50   }}, Price: {% if product.price_varies %} starting at {% endif %} {{ product.price_min | money }}">
+    <meta name="description" content="{{ product.description | strip_html | escape | truncate: 50 }}, Price: {% if product.price_varies %} starting at {% endif %} {{ product.price_min | money }}">
   {% elsif template == "index" %}
     <meta name="description" content="{{ shop.description | strip_html | escape }}">
   {% endif %}
