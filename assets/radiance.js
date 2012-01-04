@@ -131,10 +131,7 @@ var RADIANCE = {
  * Balances the height of rows of products/collections. 
  * Finds the tallest item in a row, makes each <li> in that row as tall as the tallest. 
  */
-$.fn.balanceRowHeight = function(numPerRow) {
-
-  //console.info('Balancing rows. Expected ', numPerRow, ' per row')
-  
+$.fn.balanceRowHeight = function(numPerRow) {  
   var nPerRow = numPerRow || 4; 
   var nItems = $(this).find('li').length;
   var nRows = Math.round( nItems / nPerRow );
@@ -153,8 +150,6 @@ $.fn.balanceRowHeight = function(numPerRow) {
         tallestTitleInRow = $(this).find('.product-information').height();
       }
     }).height(tallestInRow).addClass('generated-height').find('.product-information').height(tallestTitleInRow);
-
-    //console.log('Row #', row,  ' >> slice from ', min, ' to ', max);
   }
 
   return this;

@@ -9,10 +9,10 @@
 
       <div id="product-header" class="diagonal-divider clearfix">
 
-        <hgroup>
+        <div id="product-header-title">
           <h1 id="product-title">{{ product.title }}</h1>
           {%if settings.show_vendor %}<h2 id="product-vendor">{{ product.vendor | link_to_vendor }}</h2>{% endif %}
-        </hgroup>
+        </div>
 
         {% if product.available %}
           <form action="/cart/add" method="post" class="variants" id="product-actions">
@@ -74,7 +74,7 @@
   </div><!-- /#product -->
 
 
-  {% if settings.productspg_featured_collection != "" and collections[settings.productspg_featured_collection].products.size > 0 %}
+  {% if settings.productspg_featured_collection != empty and collections[settings.productspg_featured_collection].products.size > 0 %}
     <!-- A collection of products -->
     <section class="diagonal-divider clearfix">
 

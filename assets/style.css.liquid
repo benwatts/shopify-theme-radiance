@@ -4,7 +4,7 @@
  *
  * Last update: January 4, 2012
  * 
- * @version     2.1.1
+ * @version     2.1.2
  * @author      Ben Watts @ Shopify
  * @theme_url   http://radiance-theme.myshopify.com/
  *
@@ -646,7 +646,7 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
   margin: 0 0 20px 0;
   border-bottom: 1px solid {{ settings.content_secondary_colour }};
   }
-#product-header hgroup{ 
+#product-header #product-header-title{ 
   float: left;
   width: 60%;
   margin: 5px 0 16px 0;
@@ -1014,7 +1014,8 @@ article footer .btn { padding: 2px 10px; }
   min-width: 120px;
   line-height: 22px;
   }
-.templateCustomersLogin .form-row{
+.templateCustomersLogin .form-row,
+.templateCustomersActivateAccount .form-row{
   margin: 0 0 8px 0;
   }
 .templateCustomersLogin .action-bottom{

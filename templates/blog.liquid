@@ -18,9 +18,7 @@
       <p class="comments-link">
         {% if article.comments_enabled? %}
           {% if article.comments_count > 0 %}
-            <a class="btn" href="{{article.url}}#comments" title="Add your thoughts"><span class="count">{{ article.comments_count }}</span> comments</a>
-          {% elsif article.comments_count == 1 %}
-            <a class="btn" href="{{article.url}}#comments" title="Add your thoughts"><span class="count">{{ article.comments_count }}</span> comment</a>
+            <a class="btn" href="{{article.url}}#comments" title="Add your thoughts">{{ article.comments_count }} {{ article.comments_count | pluralize: 'comment', 'comments' }}</a>
           {% else %}
             <a class="btn" href="{{article.url}}#comments" title="Add your thoughts">Add a comment</a>
           {% endif %}

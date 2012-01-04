@@ -7,20 +7,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  {% comment %} 
-    Provide a *slightly* better product description for search engines. 
-    Descriptions don't affect rankings, but can influence click-throughs.
-  {% endcomment %}
   {% if template contains "product" %}
-    <meta name="description" content="{{ product.description | strip_html | truncate: 50  }}, Price: {% if product.price_varies %} starting at {{ product.price_min | money }} {% else %} {{ product.price_min | money }} {% endif %}">
+    <meta name="description" content="{{ product.description | strip_html | escape | truncate: 50   }}, Price: {% if product.price_varies %} starting at {% endif %} {{ product.price_min | money }}">
   {% elsif template == "index" %}
-    <meta name="description" content="{{ shop.description }}">
+    <meta name="description" content="{{ shop.description | strip_html | escape }}">
   {% endif %}
 
   {% comment %} 
     Open Graph tags for Facebook Like buttons 
   {% endcomment %} 
-  <meta property="og:site_name" content="{{ shop.name }}" />
+  <meta property="og:site_name" content="{{ shop.name | escape }}" />
   {% if template contains 'product' %}
     <meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}" />
   {% else %}
@@ -30,7 +26,7 @@
   {% endif %}  
 
   <title>
-    {% if template == "index" %} {{ shop.name }} {% else %} {{ page_title }} &ndash; {{ shop.name }} {% endif %}
+    {% if template == "index" %} {{ shop.name | escape }} {% else %} {{ page_title | escape }} &ndash; {{ shop.name | escape }} {% endif %}
   </title>
 
   {{ content_for_header }}
@@ -57,7 +53,7 @@
  
 </head>
 
-<body class="{% if customer %}customer-logged-in{% endif %} template{{ template | camelize }}" id="{{ page_title | handle }} {{ page.handle }}">
+<body class="{% if customer %}customer-logged-in{% endif %} template{{ template | camelize }}">
   
     
   <div class="wrapper">
@@ -68,9 +64,9 @@
       <h1 id="site-title">
         <a href="/" title="Home">
           {% if settings.logo_image == "logo.png" %} 
-            <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" /> 
+            <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name | escape }}" /> 
           {% else %} 
-            {{ shop.name }} 
+            {{ shop.name | escape }} 
           {% endif %}
         </a>
       </h1>
@@ -78,22 +74,22 @@
       <nav id="top-menu" class="clearfix">
         <ul>
           {% for link in linklists.main-menu.links %}
-          <li{% if forloop.first %} class="first"{% endif %}{% if forloop.last %} class="last"{% endif %}>
-            {% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
-            {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+          <li class="{% if forloop.first %}first{% elsif forloop.last %}last{%endif%}">
+            {% assign child_list_handle = link.title | handleize %}
+            {% if linklists[child_list_handle].links != blank %}
             <div class="has-dropdown">
               <a href="{{ link.url }}" class="clearfix">
-                <span class="nav-label">{{ link.title }}</span> 
+                <span class="nav-label">{{ link.title | escape }}</span> 
                 <span class="nav-arrow"></span>
               </a>
               <ul>
-                {% for l in linklists[child_list_handle].links %}
-                <li><a href="{{ l.url }}">{{ l.title }}</a></li>
+                {% for childlink in linklists[child_list_handle].links %}
+                <li><a href="{{ l.url }}">{{ childlink.title | escape }}</a></li>
                 {% endfor %}
               </ul>
             </div>
             {% else %}
-              <a href="{{ link.url }}">{{ link.title }}</a>
+              <a href="{{ link.url }}">{{ link.title | escape }}</a>
             {% endif %}
           </li>
           {% endfor %}
@@ -107,13 +103,13 @@
         </form>
         {% endif %}
       </nav>
-      
+            
       <div id="umbrella">
         <ul>          
           {% if shop.customer_accounts_enabled %}
           <li class="customer-account-links">
             {% if customer %}
-              <p>Welcome {{ customer.first_name }} {{ '(Logout)' | customer_logout_link }}</p>
+              <p>Welcome {{ customer.first_name | escape }} {{ '(Logout)' | customer_logout_link }}</p>
             {% else %}
               <p>{{ 'Login' | customer_login_link }}</p>
             {% endif %}
@@ -129,7 +125,7 @@
           <li class="cart-link">
             <a href="/cart" class="num-items-in-cart">
               <span class="icon">
-               {{ cart.item_count }} item{% if cart.item_count != 1 %}s{% endif %}
+               {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}
               </span>
             </a>             
           </li>
@@ -157,7 +153,7 @@
       <div id="footer-left">
         <ul id="footer-nav" class="clearfix">
         {% for link in linklists.[settings.footer_linklist].links %}
-          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
         {% endfor %}
           <li>{{ powered_by_link }}</li>
         </ul>
@@ -178,15 +174,11 @@
 
   </div><!-- /.wrapper -->
 
-
-
-
-
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
 
   <!--[if lt IE 8]>
   <script>
-    // IE 6+7 don't calculate the width of the #umbrella properly
+    // IE 6+7 do not calculate the width of the #umbrella properly
     $('#umbrella').width( $('#umbrella ul').width() );
   </script>
   <![endif]-->
@@ -194,20 +186,21 @@
   {% if settings.twitterwidget_visible and settings.show_right_column %}
     {{ 'jquery.tweet.js' | asset_url | script_tag }}    
     <script>
-      $(".tweets-wrapper").tweet({
-        count: {{ settings.twitterwidget_numtweets }},
-        username: "{{ settings.twitterwidget_username }}",
-        loading_text: "loading tweets...",
-        template: function(i){ return i["text"]}    
+      $(".tweets-wrapper").tweet(
+        {
+          count: {{ settings.twitterwidget_numtweets }},
+          username: "{{ settings.twitterwidget_username }}",
+          loading_text: "loading tweets...",
+          template: function(i){ return i["text"]
+        }    
       });
     </script>
   {% endif %}
 
-  {%if product and product.available %}
+  {%if product.available %}
   <script>
-
     var selectCallback = function(variant, selector) {
-      if (variant && variant.available == true) {
+      if (variant.available == true) {
         // selected a valid variant
         $('#add-to-cart').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
         if(variant.compare_at_price == null){
@@ -217,7 +210,7 @@
         }
       } else {
         // variant doesn't exist
-        $('#add-to-cart').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+        $('#add-to-cart').addClass('disabled').attr('disabled', 'disabled'); // set add-to-cart button to unavailable class and disable button
         var message = variant ? "Sold Out" : "Unavailable";    
         $('.options .price').text(message); // update price-field message
       }
@@ -236,7 +229,6 @@
           {% endfor %}
         {% endif %}
       {% endfor %}  
-      
     });
   </script>
   {% endif %}
