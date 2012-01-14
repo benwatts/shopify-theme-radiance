@@ -107,7 +107,7 @@ var RADIANCE = {
   templateProduct : { 
     init: function(){
       console.info(' > Product Template');
-      $('#add-to-cart').click( addToCart ); 
+      $('#add-to-cart').bind( 'click', addToCart );
       $('#product-gallery').enhanceGallery();
       $('#thumbs li:nth-child(4n+4)').addClass('last-in-row');
     }
@@ -192,19 +192,23 @@ function setupDropdownMenus(){
  */
 function addToCart(e){
 
+  if (typeof e !== 'undefined') e.preventDefault();
+  
+  var id        = $(this).parents('form').find('[name="id"]').val();
+  var quantity  = $(this).parents('form').find('[name="quantity"]').val() || 1;
+
   $.ajax({ 
     type: 'POST',
     url: '/cart/add.js',
     async: false, 
     cache: false, 
-    data: 'quantity=1&' + $(this).parents('form').serialize(),
+    data: 'quantity=' + quantity + '&id=' + id,
     dataType: 'json',
     error: addToCartFail,
     success: addToCartSuccess,
     cache: false 
   });
-
-  e.preventDefault();
+  
 }
   
 function addToCartSuccess (jqXHR, textStatus, errorThrown){
