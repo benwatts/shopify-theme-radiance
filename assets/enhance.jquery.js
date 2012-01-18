@@ -20,16 +20,18 @@
       $.extend(settings, options);
     }
 
-    $thumbList = $(settings.thumbListId);
-    $activeWrapper = $(settings.activeWrapperId);
-    $loading = $('<div id="active-image-loading">'+settings.loadingLabel+'</div>');
+    if( this.length > 0 ){
+      $thumbList = $(settings.thumbListId, this);
+      $activeWrapper = $(settings.activeWrapperId, this);
+      $loading = $('<div id="active-image-loading">'+settings.loadingLabel+'</div>');
 
-    preloadImage( $thumbList.find('a:first').attr('href') ); // preload 1st image
+      preloadImage( $thumbList.find('a:first').attr('href') ); // preload 1st image
 
-    $thumbList.find('a').click( function(e){
-      preloadImage( this.href );
-      e.preventDefault();
-    });
+      $thumbList.find('a').click( function(e){
+        preloadImage( this.href );
+        e.preventDefault();
+      });
+    }
 
     return this;
 
