@@ -155,7 +155,7 @@
         {% for link in linklists.[settings.footer_linklist].links %}
           <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
         {% endfor %}
-          <li>{{ powered_by_link }}</li>
+          <li>&copy; {{ 'now' | date: '%Y' }} <a href="/">{{ shop.name }}</a>. All Rights Reserved. {{ powered_by_link }}</li>
         </ul>
       </div>
 
