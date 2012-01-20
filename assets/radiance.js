@@ -109,7 +109,7 @@ var RADIANCE = {
       console.info(' > Product Template');
       $('#add-to-cart').bind( 'click', addToCart );
       $('#product-gallery').enhanceGallery();
-      $('#thumbs li:nth-child(4n+4)').addClass('last-in-row');
+      $('#thumbs li:nth-child(5n+5)').addClass('last-in-row');
     }
   }, 
 

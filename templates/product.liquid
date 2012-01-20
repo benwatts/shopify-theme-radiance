@@ -53,7 +53,7 @@
     <div id="product-gallery">
 
       <div id="active-wrapper">      
-        <img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title | escape }}" id="large-thumb" />
+        <img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.title | escape }}" id="large-thumb" />
       </div>
 
       <ul id="thumbs" {% if product.images.size == 1 %}class="visuallyhidden"{% endif %}>
