@@ -2,14 +2,13 @@
 
   <article class="post clearfix">
     <div id="page-header">
-      {% include 'breadcrumb' %}          
       <h2 id="page-title">{{ article.title | escape }}</h2> 
     </div>
 
     {{ article.content }}
 
     <footer class="article-extras">
-      <p class="author">Written by {{ article.author }} &mdash; {{ article.created_at | date: "%B %d, %Y" }}</p>
+      <p class="author">Written by {{ article.author | escape }} &mdash; {{ article.created_at | date: "%B %d, %Y" }}</p>
     </footer>
   </article>
 

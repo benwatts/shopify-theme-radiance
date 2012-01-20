@@ -492,21 +492,6 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
   margin: 0 0 20px 0;
   }
 
-#breadcrumb{
-  {% if settings.use_diagonal %}
-  background: url({{ settings.diagonal_colour | asset_url }}) 0 100% repeat-x;
-  {% else %}
-  border-bottom: dotted 1px {{ settings.content_secondary_colour }};
-  {% endif %}
-  padding: 0 0 5px 0;
-  margin: 0 0 20px 0;
-  font-size: 11px;
-  }
-#breadcrumb .separator{
-  color: {{ settings.content_secondary_colour }};
-  }
-
-
 
 /** 
  * Product and Collection Grid 
