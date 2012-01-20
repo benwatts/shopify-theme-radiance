@@ -2,8 +2,8 @@
 
   <section class="diagonal-divider clearfix">
     <header class="section-details clearfix">
-      <h1 class="section-title">{{ collection.title }}</h1>
-      {% if collection.description.size > 0 %}
+      <h2 class="section-title">{{ collection.title | escape }}</h2>
+      {% if collection.description != empty %}
         <div class="description content">{{ collection.description }}</div>
       {% endif %}
     </header>
@@ -28,6 +28,3 @@
   </section>
   
 </div> <!-- /#col-main -->
-
-
-{% include 'col-widgets' %}

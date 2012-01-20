@@ -1,6 +1,10 @@
 <div id="col-main" class="content">
     
-  <h1 class="title">Search</h1>
+  <div id="page-header">
+    {% include 'breadcrumb' %}          
+    <h2 id="page-title">Search</h2>  
+  </div>
+  
   <form id="search-form" name="search" action="/search">
     <input type="text" id="q" name="q" value="" class="search replace" title="Search" />
     <input type="submit" class="btn" id="search-submit" alt="Search" class="submit" value="Search" />
@@ -21,9 +25,10 @@
             <h3>{{ item.title | link_to: item.url }}</h3>
             {{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }}
           </div>
+          
         </div> <!-- end .item -->
         {% else %}
-          <p class="empty">Your search for "{{search.terms | escape}}" did not return any results.</p>
+          <p class="empty">Your search for "{{ search.terms | escape }}" did not return any results.</p>
         {% endfor %}
       </div> <!-- end .results -->
 
@@ -32,5 +37,3 @@
   {% endif %}
 
 </div><!-- /#col-main -->
-
-{% include 'col-widgets' %}

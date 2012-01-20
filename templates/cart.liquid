@@ -1,17 +1,17 @@
 <div id="col-main" class="full content">
 
   <script>
-  function remove_item(id) {
+  function removeItem(id) {
     document.getElementById('updates_'+id).value = 0;
     document.getElementById('cartform').submit();
   }
   </script>
 
   <div id="page-header">
-    <h1 id="page-title">Shopping Cart</h1>
+    <h2 id="page-title">Shopping Cart</h2>
   </div>
 
-  {% if cart.item_count == 0 %} 
+  {% if cart.items == empty %} 
     <p class="empty">Your shopping cart is empty. Check out our <a href="/collections/all">catalog</a> to see what's available.</p>
 
   {% else %}
@@ -40,27 +40,27 @@
 
         <tbody>
           {% for item in cart.items %}
-          <tr class="{{ item.product.handle }} item">
+          <tr class="item {{ item.product.handle }}">
             <td>
               <a href="{{ item.product.url }}">
                 <img src="{{ item.product.featured_image | product_img_url: 'thumb' }}"  alt="{{ item.product.title }}" />
               </a>
             </td>
-            <td> <a href="{{item.product.url }}">{{ item.title }}</a></td>
+            <td> <a href="{{ item.product.url }}">{{ item.title | escape }}</a></td>
             <td>{{ item.price | money }}</td>
             <td> <input class="text" type="text" size="4" name="updates[{{item.variant.id}}]" id="updates_{{item.variant.id}}" value="{{ item.quantity }}" onfocus="this.select();" class="replace" /> </td>
             <td>{{ item.line_price | money }}</td>
-            <td><a class="btn" onClick="remove_item({{item.variant.id}}); return false;">Remove</a></td>
+            <td><a class="btn" onclick="removeItem({{item.variant.id}}); return false;">Remove</a></td>
           </tr>
           {% endfor %}
         </tbody>
         
         <tfoot>
           <tr class="bottom-summary">
-            <th colspan="3"></th>
-            <th class="update-quantities"><input type="submit" id="update-cart" class="btn" name="update" value="Update quantities" /></th>
-            <th class="subtotal">{{ cart.total_price | money }}</th>
-            <th>&nbsp;</th>
+            <td colspan="3"></td>
+            <td class="update-quantities"><input type="submit" id="update-cart" class="btn" name="update" value="Update quantities" /></td>
+            <td class="subtotal">{{ cart.total_price | money }}</td>
+            <td>&nbsp;</td>
           </tr>
         </tfoot>
       </table>

@@ -140,11 +140,17 @@
     
     <!-- Content -->
     <div class="content-wrapper clearfix">    
+
       {% if template == 'list-collections' %}
         {% include 'collection-listing' %}
       {% else %}
         {{ content_for_layout }}
       {% endif %}
+
+      {% unless template contains "customer" or template contains "cart" %}
+        {% include 'col-widgets' %}
+      {% endunless %}
+
     </div><!-- /.content -->
     
     <!-- Footer -->

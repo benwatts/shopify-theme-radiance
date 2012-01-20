@@ -2,19 +2,20 @@
 
   <div id="page-header">
     {% include 'breadcrumb' %}          
-    <h1 id="page-title">{{ blog.title }}</h1>
+    <h2 id="page-title">{{ blog.title | escape }}</h2>
   </div>
 
   {% paginate blog.articles by 10 %}
+
   {% for article in blog.articles %}
 
   <article class="post clearfix">
-    <h2 class="title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+    <h2 class="title"><a href="{{ article.url }}">{{ article.title | escape }}</a></h2>
 
     {{ article.excerpt_or_content }}
 
     <footer class="article-extras clearfix">
-      <p class="author">Written by {{ article.author }} &mdash; {{ article.created_at | date: "%B %d, %Y" }}</p>
+      <p class="author">Written by {{ article.author | escape }} &mdash; {{ article.created_at | date: "%B %d, %Y" }}</p>
       <p class="comments-link">
         {% if article.comments_enabled? %}
           {% if article.comments_count > 0 %}
@@ -30,10 +31,9 @@
   </article>
 
   {% endfor %}
+
   {% include 'pagination' %}
+
   {% endpaginate %}
 
-</div> <!-- end #col-main -->
-
-
-{% include 'col-widgets' %}
+</div> <!-- /#col-main -->

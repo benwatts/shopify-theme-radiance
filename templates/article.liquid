@@ -3,7 +3,7 @@
   <article class="post clearfix">
     <div id="page-header">
       {% include 'breadcrumb' %}          
-      <h1 id="page-title">{{ article.title }}</h1> 
+      <h2 id="page-title">{{ article.title | escape }}</h2> 
     </div>
 
     {{ article.content }}
@@ -16,7 +16,7 @@
 
   {% if blog.comments_enabled? %}
 
-    {% if article.comments.size > 0 %}
+    {% if article.comments != blank %}
     {% paginate article.comments by 100 %}
       <div id="comments" class="comments">
         <h2 class="title">Comments</h2>
@@ -26,7 +26,7 @@
           {% include 'comment-template' %}
         {% endfor %}  
 
-        {% comment %} Show a comment that was *just* posted {% endcomment %}
+        {% comment %} Show a comment that was *just* submitted {% endcomment %}
         {% if comment and comment.created_at %}
           {% include 'comment-template' %}
         {% endif %}       
@@ -53,11 +53,11 @@
       {% endif %}
 
       {% if form.errors %}
-        <div class="notice error-msg">Not all the fields have been filled out correctly!</div>
+        <p class="notice error-msg">Not all the fields have been filled out correctly!</p>
       {% endif %}
 
       {% if blog.moderated? %}
-      <p class="notice">Please note: comments must be approved before they are published.</p>
+        <p class="notice">Please note: comments must be approved before they are published.</p>
       {% endif %}   
 
       <div class="clearfix{% if form.errors contains 'author' %} has-error{% endif %}">
@@ -80,6 +80,3 @@
   {% endif %}
 
 </div> <!-- /#col-main -->
-
-
-{% include 'col-widgets' %}

@@ -6,9 +6,9 @@
           
       <ol class="items">
         
-        {% if settings.show_carousel_item_1 == true %}
+        {% if settings.show_carousel_item_1 %}
         <li>
-          {% if settings.carousel_item_1_link != "" %}
+          {% if settings.carousel_item_1_link != empty %}
             {{ 'carousel-item-1.jpg' | asset_url | img_tag | link_to: settings.carousel_item_1_link }}
           {% else %}
             {{ 'carousel-item-1.jpg' | asset_url | img_tag }}
@@ -16,9 +16,9 @@
         </li>
         {% endif %}
         
-        {% if settings.show_carousel_item_2 == true %}
+        {% if settings.show_carousel_item_2 %}
         <li>
-          {% if settings.carousel_item_2_link != "" %}
+          {% if settings.carousel_item_2_link != empty %}
           {{ 'carousel-item-2.jpg' | asset_url | img_tag | link_to: settings.carousel_item_2_link }}
           {% else %}
             {{ 'carousel-item-2.jpg' | asset_url | img_tag }}
@@ -26,9 +26,9 @@
         </li>
         {% endif %}
         
-        {% if settings.show_carousel_item_3 == true %}
+        {% if settings.show_carousel_item_3 %}
         <li>
-          {% if settings.carousel_item_3_link != "" %}
+          {% if settings.carousel_item_3_link != empty %}
           {{ 'carousel-item-3.jpg' | asset_url | img_tag | link_to: settings.carousel_item_3_link }}
           {% else %}
             {{ 'carousel-item-3.jpg' | asset_url | img_tag }}
@@ -36,9 +36,9 @@
         </li>
         {% endif %}
         
-        {% if settings.show_carousel_item_4 == true %}
+        {% if settings.show_carousel_item_4 %}
         <li>
-          {% if settings.carousel_item_4_link != "" %}        
+          {% if settings.carousel_item_4_link != empty %}        
           {{ 'carousel-item-4.jpg' | asset_url | img_tag | link_to: settings.carousel_item_4_link }}
           {% else %}
             {{ 'carousel-item-4.jpg' | asset_url | img_tag }}
@@ -46,9 +46,9 @@
         </li>
         {% endif %}
         
-        {% if settings.show_carousel_item_5 == true %}
+        {% if settings.show_carousel_item_5 %}
         <li>
-          {% if settings.carousel_item_5_link != "" %}        
+          {% if settings.carousel_item_5_link != empty %}        
           {{ 'carousel-item-5.jpg' | asset_url | img_tag | link_to: settings.carousel_item_5_link }}
           {% else %}
             {{ 'carousel-item-5.jpg' | asset_url | img_tag }}
@@ -56,9 +56,9 @@
         </li>
         {% endif %}
       
-        {% if settings.show_carousel_item_6 == true %}
+        {% if settings.show_carousel_item_6 %}
         <li>
-          {% if settings.carousel_item_6_link != "" %}      
+          {% if settings.carousel_item_6_link != empty %}      
           {{ 'carousel-item-6.jpg' | asset_url | img_tag | link_to: settings.carousel_item_6_link }}
           {% else %}
             {{ 'carousel-item-6.jpg' | asset_url | img_tag }}

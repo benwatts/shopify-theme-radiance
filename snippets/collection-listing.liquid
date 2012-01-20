@@ -2,13 +2,13 @@
 
   <section class="diagonal-divider {{ collection.handle }} clearfix">
     <header class="section-details clearfix">
-      <h1 class="section-title">Product Collections</h1>
+      <h2 class="section-title">Product Collections</h2>
     </header>
 
     <ul id="collection-grid" class="product-grid">
     {% for collection in collections %}
     {% unless collection.handle == 'frontpage' %}
-      <li class="{{ collection.handle }}-collection {% cycle '', '', '', ' last-in-row' %}">
+      <li class="{% cycle '', '', '', ' last-in-row' %}">
         <div class="product-grid-item">
           <div class="collection-image">
             <a href="{{ collection.url }}" title="Browse our {{ collection.title | escape }} collection">
@@ -17,7 +17,7 @@
           </div>
           <div class="product-information">
             <a href="{{ collection.url }}" title="Browse our {{ collection.title | escape }} collection">
-              {{ collection.title }}
+              {{ collection.title | escape }}
             </a>
             <small class="num-in-collection">
               {{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }}
@@ -31,7 +31,4 @@
 
   </section>
  
-</div><!-- #col-main -->
-
-
-{% include 'col-widgets' %}
+</div><!-- /#col-main -->
