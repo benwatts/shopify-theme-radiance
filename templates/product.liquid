@@ -59,8 +59,8 @@
       <ul id="thumbs" {% if product.images.size == 1 %}class="visuallyhidden"{% endif %}>
         {% for image in product.images %}
         <li>
-          <a class="gallery" href="{{ image | product_img_url: 'original' }}">
-            <img src="{{ image | product_img_url: 'thumb' }}" alt="{{ product.title | escape }}" />
+          <a class="gallery" href="{{ image | product_img_url: 'original' }}" title="{{ image.alt | escape }}">
+            <img src="{{ image | product_img_url: 'thumb' }}" alt="{{ image.alt | escape }}" />
           </a>
         </li>
         {% endfor %}

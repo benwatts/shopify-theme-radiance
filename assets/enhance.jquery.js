@@ -25,10 +25,10 @@
       $activeWrapper = $(settings.activeWrapperId, this);
       $loading = $('<div id="active-image-loading">'+settings.loadingLabel+'</div>');
 
-      preloadImage( $thumbList.find('a:first').attr('href') ); // preload 1st image
+      preloadImage( $thumbList.find('a:first').attr('href'), $thumbList.find('a:first img').attr('alt') ); // preload 1st image
 
       $thumbList.find('a').click( function(e){
-        preloadImage( this.href );
+        preloadImage( this.href, this.alt );
         e.preventDefault();
       });
     }
@@ -74,7 +74,8 @@
   }
 
 
-  function preloadImage(url){
+  function preloadImage(url, alt){
+    var alt = alt || "";
     var image = getCachedImage(url);
     if( image === false ){
       var cacheImage = document.createElement('img');
@@ -83,6 +84,7 @@
         imageLoaded(cacheImage, url);
       };
       cacheImage.src = url;
+      cacheImage.alt = alt;
       showSpinner();
     } else {
       swap(image);

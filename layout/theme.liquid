@@ -9,8 +9,8 @@
 
   {% if template contains "product" %}
     <meta name="description" content="{{ product.description | strip_html | escape | truncate: 50 }}, Price: {% if product.price_varies %} starting at {% endif %} {{ product.price_min | money }}">
-  {% elsif template == "index" %}
-    <meta name="description" content="{{ shop.description | strip_html | escape }}">
+  {% elsif template == "index" and shop.description != empty %}
+    <meta name="description" content="{{ shop.description | strip_html | escape }}">  
   {% endif %}
 
   {% comment %} 

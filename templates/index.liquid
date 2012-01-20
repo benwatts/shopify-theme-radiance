@@ -21,8 +21,8 @@
 
         {% for product in featuredCollection.products offset: 0 limit: 3 %}
         <li class="product {% if forloop.last %}last-in-row{% endif %}">
-          <a class="product-photo" href="{{ product.url | within: collection }}">
-            <img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title | escape }}" />
+          <a class="product-photo" href="{{ product.url | within: collection }}" title="{{ product.featured_image.alt | escape }}">
+            <img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
           </a>
           <div class="product-information">
             <span class="product-price">

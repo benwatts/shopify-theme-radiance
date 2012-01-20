@@ -1,6 +1,6 @@
 <div class="product-grid-item " id="product-{{ product.variants.first.id }}">
 
-  <a href="{{ product.url | within: collection }}" class="product-link" title="{{product.title}}">
+  <a href="{{ product.url | within: collection }}" class="product-link" title="{{ product.featured_image.alt | escape }}">
     <span class="product-price">
     {% if product.price_varies %} 
       <small>from</small> {{ product.price_min | money }}
@@ -8,7 +8,7 @@
       {{ product.price_min | money }}
     {% endif %}
     </span>
-    <img src="{{ product.featured_image | product_img_url: 'medium' }}" class="product-photo" alt="{{ product.title | escape }}" />
+    <img src="{{ product.featured_image | product_img_url: 'medium' }}" class="product-photo" alt="{{ product.featured_image.alt | escape }}" />
   </a>
   
   <div class="product-information">
