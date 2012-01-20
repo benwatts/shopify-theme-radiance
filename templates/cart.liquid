@@ -1,12 +1,5 @@
 <div id="col-main" class="full content">
 
-  <script>
-  function removeItem(id) {
-    document.getElementById('updates_'+id).value = 0;
-    document.getElementById('cartform').submit();
-  }
-  </script>
-
   <div id="page-header">
     <h2 id="page-title">Shopping Cart</h2>
   </div>
@@ -48,9 +41,9 @@
             </td>
             <td> <a href="{{ item.product.url }}">{{ item.title | escape }}</a></td>
             <td>{{ item.price | money }}</td>
-            <td> <input class="text" type="text" size="4" name="updates[{{item.variant.id}}]" id="updates_{{item.variant.id}}" value="{{ item.quantity }}" onfocus="this.select();" class="replace" /> </td>
+            <td> <input class="text quantity" type="text" size="4" name="updates[{{ item.variant.id }}]" value="{{ item.quantity }}" class="replace" /> </td>
             <td>{{ item.line_price | money }}</td>
-            <td><a class="btn" onclick="removeItem({{item.variant.id}}); return false;">Remove</a></td>
+            <td><a class="btn remove-from-cart">Remove</a></td>
           </tr>
           {% endfor %}
         </tbody>
