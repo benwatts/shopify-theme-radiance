@@ -161,8 +161,8 @@
         {% for link in linklists.[settings.footer_linklist].links %}
           <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
         {% endfor %}
-          <li>&copy; {{ 'now' | date: '%Y' }} <a href="/">{{ shop.name }}</a>. All Rights Reserved. {{ powered_by_link }}</li>
         </ul>
+        <p>&copy; {{ 'now' | date: '%Y' }} <a href="/">{{ shop.name }}</a>. All Rights Reserved.<br />{{ powered_by_link }}</p>
       </div>
 
       {%if settings.sm_facebook || settings.sm_twitter || settings.sm_youtube || settings.sm_flickr %}
