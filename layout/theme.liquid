@@ -53,7 +53,7 @@
  
 </head>
 
-<body class="{% if customer %}customer-logged-in{% endif %} template{{ template | split: '.' | first | camelize }}">
+<body class="{% if customer %}customer-logged-in {% endif %}template{{ template | split: '.' | first | camelize }}">
   
     
   <div class="wrapper">
