@@ -119,12 +119,7 @@ var RADIANCE = {
       $('#toggle-note').toggle(
         function(){ $('#checkout-addnote').find('textarea').show(); }, 
         function(){ $('#checkout-addnote').find('textarea').hide();  }      
-      );                
-
-      $('.remove-from-cart').bind('click', function(e){
-        $(this).parents('tr').find('.quantity').val(0);
-        $('#cartform').submit();
-      });  
+      );
           
     }
   }
