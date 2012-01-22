@@ -41,7 +41,7 @@
             </td>
             <td> <a href="{{ item.product.url }}">{{ item.title | escape }}</a></td>
             <td>{{ item.price | money }}</td>
-            <td> <input class="text quantity" type="text" size="4" name="updates[{{ item.id }}]" value="{{ item.quantity }}" class="replace" /> </td>
+            <td> <input class="text quantity" type="text" size="4" id="updates_{{ item.id }}" name="updates[{{ item.id }}]" value="{{ item.quantity }}" class="replace" /> </td>
             <td>{{ item.line_price | money }}</td>
             <td><a class="btn remove-from-cart" href="/cart/change?id={{ item.id }}&quantity=0">Remove</a></td>
           </tr>
