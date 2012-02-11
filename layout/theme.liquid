@@ -214,7 +214,7 @@
   {%if product.available %}
   <script>
     var selectCallback = function(variant, selector) {
-      if (variant.available == true) {
+      if (variant && variant.available) {
         // selected a valid variant
         $('#add-to-cart').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
         if(variant.compare_at_price == null){
