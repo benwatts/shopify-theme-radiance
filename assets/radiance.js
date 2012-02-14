@@ -222,7 +222,7 @@ function addToCartSuccess (jqXHR, textStatus, errorThrown){
     dataType: 'json',
     success: updateCartDesc  
   });         
-  $('#add-to-cart-msg').hide().addClass('success').html('Item added to cart! <a href="/cart" title="view cart">View cart and checkout &raquo;</a>').fadeIn();   
+  $('#add-to-cart-msg').hide().addClass('success').html('Item added to cart! <a href="/cart" title="view cart">View cart and check out &raquo;</a>').fadeIn();   
 }
 
 function addToCartFail(jqXHR, textStatus, errorThrown){

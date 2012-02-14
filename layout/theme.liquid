@@ -117,9 +117,9 @@
           {% if shop.customer_accounts_enabled %}
           <li class="customer-account-links">
             {% if customer %}
-              <p>Welcome {{ customer.first_name | escape }} {{ '(Logout)' | customer_logout_link }}</p>
+              <p>Welcome {{ customer.first_name | escape }} {{ '(Log out)' | customer_logout_link }}</p>
             {% else %}
-              <p>{{ 'Login' | customer_login_link }}</p>
+              <p>{{ 'Log in' | customer_login_link }}</p>
             {% endif %}
           </li>
           {% endif %}     
@@ -139,7 +139,11 @@
           </li>
 
           <li class="checkout-link">
+<<<<<<< HEAD
             <a href="/cart" class="btn">Check Out</a>              
+=======
+            <a href="/cart" class="btn">Check out</a>              
+>>>>>>> Took care of additional Checkout / Check out, Login / Log in, Logout / Log out.
           </li>
 
         </ul>
