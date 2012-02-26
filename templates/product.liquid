@@ -50,19 +50,27 @@
 
     </div><!-- /#product-information -->
     
-    <div id="product-gallery">
+    <div id="product-gallery"{% if settings.main_image_display == 'Zoom-in' %} class="zoom-in"{% endif %}>
 
-      <div id="active-wrapper">      
-        <img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.title | escape }}" id="large-thumb" />
+      <div id="active-wrapper">
+        {% if settings.main_image_display == 'Lightbox' %}
+        <a href="{{ product.featured_image | product_img_url: 'original' }}" title="{{ product.featured_image.alt | escape }}" rel="fancybox">
+        {% endif %}     
+          <img style="max-width:303px" src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.title | escape }}" id="large-thumb" />
+        {% if settings.main_image_display == 'Lightbox' %}
+        </a>
+        {% endif %}
       </div>
 
       <ul id="thumbs" {% if product.images.size == 1 %}class="visuallyhidden"{% endif %}>
         {% for image in product.images %}
+        {% unless forloop.first and settings.main_image_display == 'Lightbox' %}
         <li>
-          <a class="gallery" href="{{ image | product_img_url: 'original' }}" title="{{ image.alt | escape }}">
+          <a{% if settings.main_image_display == 'Lightbox' %} rel="fancybox"{% endif %} class="gallery" href="{{ image | product_img_url: 'original' }}" title="{{ image.alt | escape }}">
             <img src="{{ image | product_img_url: 'thumb' }}" alt="{{ image.alt | escape }}" />
           </a>
         </li>
+        {% endunless %}
         {% endfor %}
       </ul>
       
