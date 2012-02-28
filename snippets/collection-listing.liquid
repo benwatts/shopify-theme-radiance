@@ -12,7 +12,11 @@
         <div class="product-grid-item">
           <div class="collection-image">
             <a href="{{ collection.url }}" title="Browse our {{ collection.title | escape }} collection">
-              <img src="{{ collection.products.first.featured_image | product_img_url: 'medium' }}" class="product-photo" alt="{{ product.title | escape }}" />
+              {% if collection.image %}
+              <img src="{{ collection.image.src | collection_img_url: 'medium' }}" class="product-photo" alt="{{ collection.title | escape }}" />
+              {% else %}
+              <img src="{{ collection.products.first.featured_image | product_img_url: 'medium' }}" class="product-photo" alt="{{ collection.title | escape }}" />
+              {% endif %}
             </a>
           </div>
           <div class="product-information">
