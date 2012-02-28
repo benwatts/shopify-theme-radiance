@@ -33,7 +33,7 @@
               {% endif %}
             </span>
 
-            <h3><a href="{{ product.url | within: collection }}">{{ product.title | escape }}</a></h3>
+            <h3><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>
 
             {% if settings.show_featured_desc %}
               <p>{{ product.description | strip_html | truncatewords: 40 }}</p>

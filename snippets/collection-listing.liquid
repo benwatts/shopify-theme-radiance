@@ -17,7 +17,7 @@
           </div>
           <div class="product-information">
             <a href="{{ collection.url }}" title="Browse our {{ collection.title | escape }} collection">
-              {{ collection.title | escape }}
+              {{ collection.title }}
             </a>
             <small class="num-in-collection">
               {{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }}

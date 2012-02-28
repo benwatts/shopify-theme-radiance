@@ -4,7 +4,7 @@
   <!-- Widget: display some text -->
   <section class="widget widget-text">
     <div class="widget-header">
-      <h3>{{ settings.textwidget_title | escape }}</h3>
+      <h3>{{ settings.textwidget_title }}</h3>
     </div>
     <div class="widget-content">
       {{ settings.textwidget_content }}
@@ -16,7 +16,7 @@
   <!-- Widget: list all collections -->
   <div class="widget widget-linklist" id="widget-allcollections">
     <div class="widget-header">
-      <h3><a href="/collections">{{ settings.allcollections_title | escape }}</a></h3>
+      <h3><a href="/collections">{{ settings.allcollections_title }}</a></h3>
     </div>
     <div class="widget-content">
       <ul>
@@ -35,7 +35,7 @@
   <!-- Widget: list all vendors -->
   <div class="widget widget-linklist" id="widget-allvendors">
     <div class="widget-header">
-      <h3>{{ settings.vendors_widget_title | escape }}</h3>
+      <h3>{{ settings.vendors_widget_title }}</h3>
     </div>
     <div class="widget-content">
       <ul>

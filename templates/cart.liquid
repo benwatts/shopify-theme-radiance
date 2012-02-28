@@ -39,7 +39,7 @@
                 <img src="{{ item.product.featured_image | product_img_url: 'thumb' }}"  alt="{{ item.product.title }}" />
               </a>
             </td>
-            <td> <a href="{{ item.product.url }}">{{ item.title | escape }}</a></td>
+            <td> <a href="{{ item.product.url }}">{{ item.title }}</a></td>
             <td>{{ item.price | money }}</td>
             <td> <input class="text quantity" type="text" size="4" id="updates_{{ item.id }}" name="updates[{{ item.id }}]" value="{{ item.quantity }}" class="replace" /> </td>
             <td>{{ item.line_price | money }}</td>

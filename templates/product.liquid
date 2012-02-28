@@ -9,7 +9,7 @@
       <div id="product-header" class="diagonal-divider clearfix">
 
         <div id="product-header-title">
-          <h1 id="product-title">{{ product.title | escape }}</h1>
+          <h1 id="product-title">{{ product.title }}</h1>
           {% if settings.show_vendor %}<h2 id="product-vendor">{{ product.vendor | link_to_vendor }}</h2>{% endif %}
         </div>
 
