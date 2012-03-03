@@ -5,7 +5,7 @@
     {% if paginate.previous %}
       <li class="prev">{{ paginate.previous.title | link_to: paginate.previous.url }}</li>
     {% else %}
-      <li class="prev disabled"><a href="#">&laquo; Previous</a></li>
+      <li class="prev disabled"><a href="#" onclick="return false;">&laquo; Previous</a></li>
     {% endif %}
     
     {% for part in paginate.parts %}
@@ -13,7 +13,7 @@
         <li>{{ part.title | link_to: part.url }}</li>
       {% else %}
         {% if part.title == '&hellip;' %}
-        <li class="ellipsis disabled"><a href="">{{ part.title }}</a></li>
+        <li class="ellipsis disabled"><a href="#" onclick="return false;">{{ part.title }}</a></li>
         {% else %}
         <li class="active">{{ part.title | link_to: part.url }}</li>
         {% endif %}
@@ -23,7 +23,7 @@
     {% if paginate.next %}
       <li class="next">{{ paginate.next.title | link_to: paginate.next.url }}</li>
     {% else %}
-      <li class="next disabled"><a href="#">Next &raquo;</a></li>
+      <li class="next disabled"><a href="#" onclick="return false;">Next &raquo;</a></li>
     {% endif %}    
   </ul>
 
