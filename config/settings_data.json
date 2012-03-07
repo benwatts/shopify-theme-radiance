@@ -1,5 +1,5 @@
 {"presets":
-  {"Minimal ":
+  {"Minimal":
     {"header_font": "BebasNeueRegular, arial, sans-serif",
      "sm_twitter": true,
      "show_widget_linklist3": false,
@@ -519,4 +519,4 @@
      "show_widget_linklist2": false,
      "carousel_height": "300",
      "comment_date_colour": "#3A3D3F"}},
- "current": "Minimal "}
+ "current": "Minimal"}
