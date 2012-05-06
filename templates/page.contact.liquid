@@ -14,24 +14,29 @@
 
     {% if form.errors %}
     <p class="error-msg">
-      <ul class="error-list">
+      <ul class="error-list" style="color:#E0360F">
       {% for field in form.errors %}
-        <li>{{ field }} - {{ form.errors.messages[field] }}</li>
+        {% if field == 'body' %}
+        <li>Your message cannot be blank.</li>
+        {% endif %}
+        {% if field == 'email' %}
+        <li>Please enter a valid email address.</li>
+        {% endif %}        
       {% endfor %}
       </ul>
     </p>
-    {% endif %} 
+    {% endif %}
     
     <ul id="contact-form">
       <li class="clearfix type-text">
         <label for="name">Name</label>
         <input type="text" id="name" name="contact[name]" />
       </li> 
-      <li class="clearfix type-text">
+      <li class="clearfix type-text{% if form.errors contains 'email' %} has-error{% endif %}">
         <label for="email">Email</label>
         <input type="email" id="email" class="email" name="contact[email]" />
       </li>   
-      <li class="clearfix type-textarea">
+      <li class="clearfix type-textarea{% if form.errors contains 'body' %} has-error{% endif %}">
         <label for="message">Message</label>
         <textarea id="message" name="contact[body]"></textarea>
       </li>
