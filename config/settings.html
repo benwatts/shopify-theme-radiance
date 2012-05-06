@@ -847,10 +847,24 @@
   <h3>Collection Beneath Product</h3>
   <p>You may need to <a href="/admin/custom_collections">create some collections</a> before modifying these settings.</p>
   <p>
+    <label for="productspg_related_products">Show products from the same collection?</label>
+    <input type="checkbox" id="productspg_related_products" name="productspg_related_products" checked="checked" />
+  </p>
+  <p>
+    <small>
+      If you're not showing products from the same collection, pick a collection below.<br />
+      The first products in that collection will be used.<br />
+      Pick 'None' if you don't want products shown beneath your product information.
+    </small>
+  </p>
+  <p>
     <label for="productspg_featured_collection">Collection to show beneath the product information: </label>
-    <select class="collection" name="productspg_featured_collection">
-      <option selected="selected" value="frontpage">Frontpage</option>
-    </select>
+    <select class="collection" id="productspg_featured_collection" name="productspg_featured_collection" />
+  </p>
+  <p>
+    <label for="productspg_featured_collection_heading">Section heading:</label>
+    <input type="text" class="text" name="productspg_featured_collection_heading" id="productspg_featured_collection_heading" value="" />
+    <small>Leave blank if you don't want a heading</small>
   </p>
   <p>
     <label for="productspg_featured_limit">Maximum number of items to show: </label>

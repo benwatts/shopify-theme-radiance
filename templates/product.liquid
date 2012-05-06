@@ -78,8 +78,11 @@
 
   </div><!-- /#product -->
 
+  {% if settings.productspg_related_products %}
+  
+    {% include 'related-products' %}
 
-  {% if settings.productspg_featured_collection != empty %}
+  {% elsif settings.productspg_featured_collection != blank %}
 
     {% assign collection = collections[settings.productspg_featured_collection] %}
     {% assign products   = collection.products %}
@@ -87,9 +90,11 @@
     {% if products.size > 0 %}
       <section class="diagonal-divider clearfix">
 
+        {% unless settings.productspg_featured_collection_heading == blank %}
         <header class="section-details clearfix">
-          <h1 class="section-title">{{ collection.title | link_to: collection.url }}</h1>
-        </header>    
+          <h1 class="section-title">{{ settings.productspg_featured_collection_heading | link_to: collection.url }}</h1>
+        </header> 
+        {% endunless %}
 
         <ul class="product-grid" id="secondary-grid">
           {% for product in products limit: settings.productspg_featured_limit %}

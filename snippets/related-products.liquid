@@ -1,0 +1,51 @@
+{% assign number_of_related_products_to_show = settings.productspg_featured_limit %}
+
+{% capture number_of_related_products_to_fetch %}{{ number_of_related_products_to_show | plus: 1 }}{% endcapture %}
+
+{% if collection == null or collection.handle == 'frontpage' or collection.handle == 'all' %}
+{% assign found_a_collection = false %}
+{% for c in product.collections %}
+  {% if found_a_collection == false and c.handle != 'frontpage' and c.handle != 'all' and c.all_products_count > 1 %}
+    {% assign found_a_collection = true %}
+    {% assign collection = c %}
+  {% endif %}
+{% endfor %}
+{% endif %}
+
+{% if collection %}
+  <section class="diagonal-divider clearfix">
+    {% unless settings.productspg_featured_collection_heading == blank %}
+    <header class="section-details clearfix">
+      <h1 class="section-title">{{ settings.productspg_featured_collection_heading | link_to: collection.url }}</h1>
+    </header> 
+    {% endunless %}
+    <ul class="product-grid clearfix">
+    {% assign current_product_found = false %}
+    {% for prod in collection.products limit: number_of_related_products_to_fetch %}
+    {% if prod.title == product.title %}
+       {% assign current_product_found = true %}
+    {% else %}
+       {% unless current_product_found == false and forloop.last %}
+       <li{% cycle 'related': '', '', '', ' class="last-in-row"' %}>
+         <div class="product-grid-item">
+            <a href="{{ prod.url | within: collection }}" class="product-link" title="{{ prod.featured_image.alt | escape }}">
+                <span class="product-price">
+                {% if prod.price_varies %} 
+                <small>from</small> {{ prod.price_min | money }}
+                {% else %}
+                {{ prod.price_min | money }}
+                {% endif %}
+                </span>
+                <img src="{{ prod.featured_image | product_img_url: 'medium' }}" class="product-photo" alt="{{ prod.featured_image.alt | escape }}" />
+            </a>  
+            <div class="product-information">
+                <a href="{{ prod.url | within: collection }}">{{ prod.title | escape | truncate: 45 }}</a>                    
+            </div>  
+          </div>
+        </li>
+       {% endunless %}
+    {% endif %}
+    {% endfor %}
+    </ul>
+  </section>
+{% endif %}
