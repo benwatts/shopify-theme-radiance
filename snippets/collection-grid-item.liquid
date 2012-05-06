@@ -1,0 +1,21 @@
+<li class="{% cycle 'collection-grid': '', '', '', ' last-in-row' %}">
+  <div class="product-grid-item">
+    <div class="collection-image">
+      <a href="{{ collection.url }}" title="Browse our {{ collection.title | escape }} collection">
+        {% if collection.image %}
+        <img src="{{ collection.image.src | collection_img_url: 'medium' }}" class="product-photo" alt="{{ collection.title | escape }}" />
+        {% else %}
+        <img src="{{ collection.products.first.featured_image | product_img_url: 'medium' }}" class="product-photo" alt="{{ collection.title | escape }}" />
+        {% endif %}
+      </a>
+    </div>
+    <div class="product-information">
+      <a href="{{ collection.url }}" title="Browse our {{ collection.title | escape }} collection">
+        {{ collection.title }}
+      </a>
+      <small class="num-in-collection">
+        {{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }}
+      </small>
+    </div>
+  </div>
+</li>

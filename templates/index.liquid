@@ -2,6 +2,37 @@
 
   {% include 'carousel' %}
   {% include 'if-shop-has-no-products' %}
+  
+  {% if settings.feature_collections_on_homepage %}
+
+    <!-- Featured Collections -->
+    <section class="diagonal-divider clearfix">
+
+      {% unless settings.feature_collections_on_homepage_heading == blank %}
+      <header class="section-details clearfix">
+        <h2 class="section-title">{{ settings.feature_collections_on_homepage_heading | link_to: '/collections/all' }}</h2>
+      </header>
+      {% endunless %}
+
+      <ul id="collection-grid" class="product-grid">
+        {% if settings.use_linklist_for_categories %}
+        {% for link in linklists[settings.linklist_for_categories].links %}
+          {% if link.type == 'collection_link' %}
+            {% assign collection = link.object %}
+            {% include 'collection-grid-item' %}
+          {% endif %}
+        {% endfor %}
+        {% else %}
+        {% for collection in collections %}
+        {% unless collection.handle == 'frontpage' or collection.handle == 'all' %}
+          {% include 'collection-grid-item' %}
+        {% endunless %}
+        {% endfor %}
+        {% endif %}
+      </ul>      
+
+    </section>
+  {% endif %}
 
   {% if settings.home_featured_collection and collections[settings.home_featured_collection].products != empty %}
 

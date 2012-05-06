@@ -164,6 +164,7 @@ $(window).load( function(){
     // homepage has two grids, needs a bit of special treatment:
     $('#featured-grid').balanceRowHeight(3);
     $('#secondary-grid').balanceRowHeight(4);
+    $('#collection-grid').balanceRowHeight(4);
   } else {
     $('.product-grid').balanceRowHeight(4);
   }
