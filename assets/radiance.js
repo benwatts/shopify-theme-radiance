@@ -146,7 +146,7 @@ $.fn.balanceRowHeight = function(numPerRow) {
       if( $(this).find('.product-information:first').height() > tallestTitleInRow ){
         tallestTitleInRow = $(this).find('.product-information').height();
       }
-    }).height(tallestInRow).addClass('generated-height').find('.product-information').height(tallestTitleInRow);
+    }).height(tallestInRow).addClass('generated-height');
   }
 
   return this;
@@ -224,7 +224,7 @@ function addToCartSuccess (jqXHR, textStatus, errorThrown){
 
 function addToCartFail(jqXHR, textStatus, errorThrown){
   var response = $.parseJSON(jqXHR.responseText);
-  $('#add-to-cart-msg').addClass('error').text(response.description);
+  $('#add-to-cart-msg').addClass('error').text(response.description).fadeIn('fast');
 }
 
 function updateCartDesc(data){
