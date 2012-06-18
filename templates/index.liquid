@@ -1,7 +1,17 @@
 <div id="col-main">
 
   {% include 'carousel' %}
-  {% include 'if-shop-has-no-products' %}
+
+  {% if settings.home_page != "" %}
+    <section class="content">
+        {{ pages[settings.home_page].content }}
+    </section>
+  {% endif %}
+  
+
+{% include 'if-shop-has-no-products' %}
+
+
 
   {% if settings.home_featured_collection and collections[settings.home_featured_collection].products != empty %}
 
@@ -46,6 +56,8 @@
 
     </section>
   {% endif %}
+  
+
   
   {% if settings.feature_collections_on_homepage %}
 
