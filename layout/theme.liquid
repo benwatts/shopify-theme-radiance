@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <link rel="canonical" href="{{ canonical_url }}" /> 
+  <link rel="canonical" href="{{ canonical_url }}" />
 
   {% assign maxmeta = 155 %}
   {% if template contains 'product' %}
@@ -17,9 +17,9 @@
   <meta name="description" content="{{ shop.description }}" />
   {% endif %}
 
-  {% comment %} 
-    Open Graph tags for Facebook Like buttons 
-  {% endcomment %} 
+  {% comment %}
+    Open Graph tags for Facebook Like buttons
+  {% endcomment %}
   <meta property="og:site_name" content="{{ shop.name | escape }}" />
   {% if template contains 'product' %}
     <meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}" />
@@ -27,7 +27,7 @@
     {% if settings.logo_image == "logo.png" %}
       <meta property="og:image" content="{{ 'logo.png' | asset_url }}" />
     {% endif %}
-  {% endif %}  
+  {% endif %}
 
   {% if template == 'index' %}
    <title>{{ shop.name }}</title>
@@ -38,7 +38,7 @@
   {% endif %}
 
   {{ content_for_header }}
-  
+
   {% case settings.header_font %}
   {% when "Rancho, cursive" %}
     <link href='http://fonts.googleapis.com/css?family=Rancho' rel='stylesheet' type='text/css'>
@@ -61,27 +61,27 @@
   {% endif %}
 
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js' | script_tag }}
- 
+
 </head>
 
 <body class="{% if customer %}customer-logged-in {% endif %}template{{ template | split: '.' | first | camelize }}">
-  
-    
+
+
   <div class="wrapper">
-    
+
     <!-- Header -->
     <header id="top" class="clearfix">
 
       <h1 id="site-title">
         <a href="/" title="Home">
-          {% if settings.logo_image == "logo.png" %} 
-            <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name | escape }}" /> 
-          {% else %} 
-            {{ shop.name | escape }} 
+          {% if settings.logo_image == "logo.png" %}
+            <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name | escape }}" />
+          {% else %}
+            {{ shop.name | escape }}
           {% endif %}
         </a>
       </h1>
-      
+
       <nav id="top-menu" class="clearfix">
         <ul>
           {% for link in linklists.main-menu.links %}
@@ -90,7 +90,7 @@
             {% if linklists[child_list_handle].links != blank %}
             <div class="has-dropdown">
               <a href="{{ link.url }}" class="clearfix">
-                <span class="nav-label">{{ link.title | escape }}</span> 
+                <span class="nav-label">{{ link.title | escape }}</span>
                 <span class="nav-arrow"></span>
               </a>
               <ul>
@@ -114,9 +114,9 @@
         </form>
         {% endif %}
       </nav>
-            
+
       <div id="umbrella">
-        <ul>          
+        <ul>
           {% if shop.customer_accounts_enabled %}
           <li class="customer-account-links">
             {% if customer %}
@@ -125,20 +125,20 @@
               <p>{{ 'Log in' | customer_login_link }}</p>
             {% endif %}
           </li>
-          {% endif %}     
-          
+          {% endif %}
+
           {% if customer %}
           <li>
             <a href="/account">My Account</a>
           </li>
-          {% endif %}               
+          {% endif %}
 
           <li class="cart-link">
             <a href="/cart" class="num-items-in-cart">
               <span class="icon">
                {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}
               </span>
-            </a>             
+            </a>
           </li>
 
           <li class="checkout-link">
@@ -148,9 +148,9 @@
         </ul>
       </div><!-- /#umbrella -->
     </header>
-    
+
     <!-- Content -->
-    <div class="content-wrapper clearfix">    
+    <div class="content-wrapper clearfix">
 
       {% if template == 'list-collections' %}
         {% include 'collection-listing' %}
@@ -163,7 +163,7 @@
       {% endunless %}
 
     </div><!-- /.content -->
-    
+
     <!-- Footer -->
     <footer id="bottom">
 
@@ -183,25 +183,26 @@
           {%if settings.sm_flickr %}<li id="sm-flickr"><a href="{{settings.sm_flickr_link}}" class="ir">Flickr</a></li>{% endif %}
           {%if settings.sm_twitter %}<li id="sm-twitter"><a href="{{settings.sm_twitter_link}}" class="ir">Twitter</a></li>{% endif %}
           {%if settings.sm_facebook %}<li id="sm-facebook"><a href="{{settings.sm_facebook_link}}" class="ir">Facebook</a></li>{% endif %}
+          {%if settings.sm_vimeo %}<li id="sm-vimeo"><a href="{{settings.sm_vimeo_link}}" class="ir">Vimeo</a></li>{% endif %}
         </ul>
       </div>
       {% endif %}
-      
+
       {% if settings.show_amex or settings.show_discover or settings.show_visa or settings.show_mastercard or settings.show_maestro or settings.show_cirrus or settings.show_paypal or settings.show_google %}
       <div id="footer-payment-methods">
         <p>Payment methods we accept</p>
         {% if settings.show_amex %}       {{ 'cc-amex.png' | asset_url | img_tag }} {% endif %}
         {% if settings.show_discover %}   {{ 'cc-discover.png' | asset_url | img_tag }} {% endif %}
-        {% if settings.show_visa %}       {{ 'cc-visa.png' | asset_url | img_tag }} {% endif %}     
-        {% if settings.show_mastercard %} {{ 'cc-mastercard.png' | asset_url | img_tag }} {% endif %}     
+        {% if settings.show_visa %}       {{ 'cc-visa.png' | asset_url | img_tag }} {% endif %}
+        {% if settings.show_mastercard %} {{ 'cc-mastercard.png' | asset_url | img_tag }} {% endif %}
         {% if settings.show_maestro %}    {{ 'cc-maestro.png' | asset_url | img_tag }} {% endif %}
-        {% if settings.show_cirrus %}     {{ 'cc-cirrus.png' | asset_url | img_tag }} {% endif %} 
+        {% if settings.show_cirrus %}     {{ 'cc-cirrus.png' | asset_url | img_tag }} {% endif %}
         {% if settings.show_paypal %}     {{ 'cc-paypal.png' | asset_url | img_tag }} {% endif %}
-        {% if settings.show_google %}     {{ 'cc-google.png' | asset_url | img_tag }} {% endif %}     
+        {% if settings.show_google %}     {{ 'cc-google.png' | asset_url | img_tag }} {% endif %}
       </div>
-      {% endif %}     
-  
-    </footer> 
+      {% endif %}
+
+    </footer>
 
   </div><!-- /.wrapper -->
 
@@ -211,9 +212,9 @@
     $('#umbrella').width( $('#umbrella ul').width() );
   </script>
   <![endif]-->
-    
+
   {% if settings.twitterwidget_visible and settings.show_right_column %}
-    {{ 'jquery.tweet.js' | asset_url | script_tag }}    
+    {{ 'jquery.tweet.js' | asset_url | script_tag }}
     <script>
       $(".tweets-wrapper").tweet(
         {
@@ -221,7 +222,7 @@
           username: "{{ settings.twitterwidget_username }}",
           loading_text: "loading tweets...",
           template: function(i){ return i["text"]
-        }    
+        }
       });
     </script>
   {% endif %}
@@ -240,7 +241,7 @@
       } else {
         // variant doesn't exist
         $('#add-to-cart').addClass('disabled').attr('disabled', 'disabled'); // set add-to-cart button to unavailable class and disable button
-        var message = variant ? "Sold Out" : "Unavailable";    
+        var message = variant ? "Sold Out" : "Unavailable";
         $('.options .price').text(message); // update price-field message
       }
     };
@@ -256,18 +257,18 @@
           $('.single-option-selector:eq(' + {{ forloop.index0 }} + ')').val({{ variant.options[forloop.index0] | json }}).trigger('change');
           {% endfor %}
         {% endif %}
-      {% endfor %}  
+      {% endfor %}
     });
   </script>
   {% endif %}
-  
+
   {% if template == 'index' and settings.show_carousel %}
     {{ 'jquery.tools.min.js' | asset_url | script_tag }}
   {% endif %}
-  
+
   {% if template contains 'product' and settings.main_image_display == 'Lightbox' %}
-  {{ 'jquery.easing-1.3.pack.js' | asset_url | script_tag }}  
-  {{ 'jquery.mousewheel-3.0.4.pack.js' | asset_url | script_tag }} 
+  {{ 'jquery.easing-1.3.pack.js' | asset_url | script_tag }}
+  {{ 'jquery.mousewheel-3.0.4.pack.js' | asset_url | script_tag }}
   {{ 'jquery.fancybox-1.3.4.pack.js' | asset_url | script_tag }}
   <script>
   $("a[rel='fancybox']").fancybox({
@@ -290,6 +291,6 @@
 
   //]]>
   </script>
-    
+
 </body>
 </html>
