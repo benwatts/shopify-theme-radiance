@@ -2,21 +2,20 @@
 
   {% include 'carousel' %}
 
-  {% if settings.home_page != "" %}
+  {% if settings.home_page != '' and settings.home_page  %}
     <section class="content">
         {{ pages[settings.home_page].content }}
     </section>
   {% endif %}
-  
+
 
 {% include 'if-shop-has-no-products' %}
-
 
 
   {% if settings.home_featured_collection and collections[settings.home_featured_collection].products != empty %}
 
     {% assign featuredCollection = collections[settings.home_featured_collection] %}
-    
+
     <!-- Three featured products -->
     <section class="products-prominent clearfix diagonal-divider">
 
