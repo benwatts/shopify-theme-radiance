@@ -9,13 +9,13 @@
   {% endif %}
 
 
-{% include 'if-shop-has-no-products' %}
+  {% include 'if-shop-has-no-products' %}
 
 
   {% if settings.home_featured_collection and collections[settings.home_featured_collection].products != empty %}
 
     {% assign featuredCollection = collections[settings.home_featured_collection] %}
-
+    
     <!-- Three featured products -->
     <section class="products-prominent clearfix diagonal-divider">
 
@@ -34,11 +34,14 @@
             <img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
           </a>
           <div class="product-information">
-            <span class="product-price">
+            <span class="product-price{% if product.compare_at_price > product.price %} sale{% endif %}">
               {% if product.price_varies %}
                 <small>from</small> {{ product.price_min | money }}
               {% else %}
                 {{ product.price_min | money }}
+              {% endif %}
+              {% if product.compare_at_price > product.price %}
+                <small>was {{ product.compare_at_price | money }}</small>
               {% endif %}
             </span>
 
@@ -55,8 +58,6 @@
 
     </section>
   {% endif %}
-  
-
   
   {% if settings.feature_collections_on_homepage %}
 
