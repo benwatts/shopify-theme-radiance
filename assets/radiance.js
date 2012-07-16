@@ -75,9 +75,13 @@ var RADIANCE = {
   templateIndex : {
     init: function(){
       if( $("#carousel").length > 0 ){
-        $("#carousel").scrollable({
-          circular: true
-        });
+       $("#carousel").scrollable({
+    circular: true
+  }).navigator({
+    navi: "#carousel-slide-menu",
+    naviItem: 'li'
+  });
+
 
         if ( $("#carousel").find('.items li[class!=cloned]').length > 1 ) {
           window.api = $("#carousel").autoscroll({

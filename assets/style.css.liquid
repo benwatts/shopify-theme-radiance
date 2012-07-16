@@ -1540,8 +1540,9 @@ col.checkout-delete{ width: 80px; }
 #carousel .browse:hover{ background: {{ settings.carousel_button_hover_colour }}; }
 #carousel-next:hover .arrow{ border-left-color: {{ settings.carousel_arrow_hover_colour }}; }
 #carousel-prev:hover .arrow{ border-right-color: {{ settings.carousel_arrow_hover_colour }}; }
-
-
+#carousel-slide-menu{list-style-type:none; text-align: center;}
+#carousel-slide-menu li{width:14px; height:14px; border-radius:7px; background: {{ settings.carousel_dots_colour }}; display:inline-block; margin:10px 3px 0; cursor: pointer;}
+#carousel-slide-menu .active{background:{{ settings.carousel_dots_active_colour }};}
 
 /**
  * Utils
