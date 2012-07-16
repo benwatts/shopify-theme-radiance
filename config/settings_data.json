@@ -8,6 +8,8 @@
       "content_link_hover_colour": "#6db038",
       "content_secondary_colour": "#dddddd",
       "cart_header_colour": "#d6d6d6",
+      "sale_background_color": "#444444",
+      "sale_text_color": "#ffffff",
       "header_font": "BebasNeueRegular, arial, sans-serif",
       "general_font": "Helvetica, Arial, sans-serif",
       "general_font_size": "13px",
@@ -279,7 +281,9 @@
       "show_widget_linklist1": false,
       "comment_date_colour": "#cccccc",
       "carousel_height": "300",
-      "show_widget_linklist2": false
+      "show_widget_linklist2": false,
+      "sale_background_color": "#444444",
+      "sale_text_color": "#ffffff"
     },
     "Wood": {
       "header_font": "BebasNeueRegular, arial, sans-serif",
@@ -410,7 +414,9 @@
       "nav_hover_colour": "#ffffff",
       "show_widget_linklist2": false,
       "carousel_height": "300",
-      "comment_date_colour": "#9a8361"
+      "comment_date_colour": "#9a8361",
+      "sale_background_color": "#444444",
+      "sale_text_color": "#ffffff"
     },
     "Slate": {
       "header_font": "BebasNeueRegular, arial, sans-serif",
@@ -541,7 +547,9 @@
       "nav_hover_colour": "#282c2e",
       "show_widget_linklist2": false,
       "carousel_height": "300",
-      "comment_date_colour": "#3A3D3F"
+      "comment_date_colour": "#3A3D3F",
+      "sale_background_color": "#444444",
+      "sale_text_color": "#ffffff"
     }
   },
   "current": "Minimal"
