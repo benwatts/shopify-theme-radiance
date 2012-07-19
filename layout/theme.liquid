@@ -161,22 +161,11 @@
     </div><!-- /.content -->
 
     <!-- Footer -->
-    <footer id="bottom">
-
-      <div id="footer-left">
-        {% if settings.show_footer_links %}
-        <ul id="footer-nav" class="clearfix">
-        {% for link in linklists.[settings.footer_linklist].links %}
-          <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
-        {% endfor %}
-        </ul>
-        {% endif %}
-        <p>&copy; {{ 'now' | date: '%Y' }} <a href="/">{{ shop.name }}</a>. All Rights Reserved.<br />{{ powered_by_link }}</p>
-      </div>
+    <div class="footer" id="bottom">
 
       {%if settings.sm_facebook || settings.sm_twitter || settings.sm_youtube || settings.sm_flickr || settings.sm_vimeo || settings.sm_pinterest %}
-      <div id="footer-right">
-        <ul id="sm-icons" class="clearfix">
+      <div class="footer-social-links">
+        <ul class="footer-social-links-list">
           {%if settings.sm_youtube %}<li id="sm-youtube"><a href="{{settings.sm_youtube_link}}" class="ir">YouTube</a></li>{% endif %}
           {%if settings.sm_flickr %}<li id="sm-flickr"><a href="{{settings.sm_flickr_link}}" class="ir">Flickr</a></li>{% endif %}
           {%if settings.sm_twitter %}<li id="sm-twitter"><a href="{{settings.sm_twitter_link}}" class="ir">Twitter</a></li>{% endif %}
@@ -186,6 +175,17 @@
         </ul>
       </div>
       {% endif %}
+
+      <div class="footer-extras">
+        {% if settings.show_footer_links %}
+        <ul class="footer-nav clearfix">
+        {% for link in linklists.[settings.footer_linklist].links %}
+          <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        <p>&copy; {{ 'now' | date: '%Y' }} <a href="/">{{ shop.name }}</a>. All Rights Reserved.<br />{{ powered_by_link }}</p>
+      </div>
 
       {% if settings.show_amex or settings.show_discover or settings.show_visa or settings.show_mastercard or settings.show_maestro or settings.show_cirrus or settings.show_paypal or settings.show_google %}
       <div class="footer-payment-methods">
@@ -200,7 +200,7 @@
       </div>
       {% endif %}
 
-    </footer>
+    </div>
 
   </div><!-- /.wrapper -->
 
