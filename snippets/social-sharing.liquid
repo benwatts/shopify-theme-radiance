@@ -1,49 +1,46 @@
 {% if settings.share_prod_on_twitter ||  settings.share_prod_on_facebook ||  settings.share_prod_on_googleplus %}
 
-<ul id="sharing">
+  <ul class="product-sharing">
+    {% if settings.share_prod_on_pinterest %}
+    <li class="share-via-pinterest">
+      <a href="http://pinterest.com/pin/create/button/?url={{ shop.url }}{{ product.url }}&media={{ product.featured_image | product_img_url: 'compact' | split:'?' | first  }}&description={{ product.title | escape | replace:' ','%20' }}" class="pin-it-button" count-layout="none">Pin It</a>
+      <script defer src="http://assets.pinterest.com/js/pinit.js"></script>
+    </li>
+    {% endif %}
 
+    {% if settings.share_prod_on_twitter %}
+    <li class="share-via-twitter">
+      <a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a>
+      <script defer type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    </li>
+    {% endif %}
 
-  {% if settings.share_prod_on_twitter %}
-  <li>
-    <a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a>
-  </li>
-  {% endif %}
+    {% if settings.share_prod_on_facebook %}
+    <li class="share-via-facebook">
+      <div id="fb-root"></div>
+      <div class="fb-like" data-send="false" data-layout="button_count" data-width="" data-show-faces="false"></div>
+      <script defer>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    </li>
+    {% endif %}
 
-  {% if settings.share_prod_on_facebook %}
-  <li>
-    <div id="fb-root"></div>
-    <div class="fb-like" data-send="false" data-layout="button_count" data-width="" data-show-faces="false"></div>          
-  </li>
-  {% endif %}
-
-  {% if settings.share_prod_on_googleplus %}
-  <li>
-    <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="120"></div>
-  </li>
-  {% endif %}  
-
-</ul>
-
-<!-- fb like button -->
-<div id="fb-root"></div>
-<script defer>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-<!-- +1 button -->
-<script defer type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-
-<!-- tweet btn -->
-<script defer type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    {% if settings.share_prod_on_googleplus %}
+    <li class="share-via-googleplus">
+      <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="120"></div>
+      <script defer type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </li>
+    {% endif %}
+  </ul>
 
 {% endif %}

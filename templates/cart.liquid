@@ -4,7 +4,7 @@
     <h2 id="page-title">Shopping Cart</h2>
   </div>
 
-  {% if cart.items == empty %} 
+  {% if cart.items == empty %}
     <p class="empty">Your shopping cart is empty. Check out our <a href="/collections/all">catalog</a> to see what's available.</p>
 
   {% else %}
@@ -19,7 +19,7 @@
           <col class="checkout-totals" />
           <col class="checkout-delete" />
         </colgroup>
-    
+
         <thead>
           <tr class="top-labels">
             <th class="empty">&nbsp;</th>
@@ -47,7 +47,7 @@
           </tr>
           {% endfor %}
         </tbody>
-        
+
         <tfoot>
           <tr class="bottom-summary">
             <td colspan="3"></td>
@@ -66,13 +66,13 @@
       {% endif %}
 
       <div id="checkout-proceed">
-        <input class="btn-reversed btn" type="submit" id="update-cart" name="checkout" value="Proceed to Checkout" />
+        <input class="btn" type="submit" id="update-cart" name="checkout" value="Proceed to Checkout" />
         {% if additional_checkout_buttons %}
         <div id="additional-checkout-buttons">
           <span id="additional-checkout-buttons-label">Or check out using:</span>
          {{ content_for_additional_checkout_buttons }}
         </div>
-        {% endif %}                       
+        {% endif %}
       </div>
 
     </form>

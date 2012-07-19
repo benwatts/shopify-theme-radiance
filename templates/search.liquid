@@ -1,30 +1,30 @@
 <div id="col-main" class="content">
-    
+
   <div id="page-header">
-    <h2 id="page-title">Search</h2>  
+    <h2 id="page-title">Search</h2>
   </div>
-  
+
   <form id="search-form" name="search" action="/search">
     <input type="text" id="q" name="q" value="" class="search replace" title="Search" />
     <input type="submit" class="btn" id="search-submit" alt="Search" class="submit" value="Search" />
-  </form>     
+  </form>
 
-  {% if search.performed %}     
-    {% paginate search.results by 10 %}  
-      <div class="results diagonal-divider">
-        {% for item in search.results %} 
-        <div class="item clearfix">     
+  {% if search.performed %}
+    {% paginate search.results by 10 %}
+      <div class="results">
+        {% for item in search.results %}
+        <div class="item clearfix">
           <div class="thumbnail">
           {% if item.featured_image %}
             <a href="{{ item.url }}">{{ item.featured_image | product_img_url: 'thumb' | img_tag }}</a>
           {% endif %}
-          </div>      
-  
+          </div>
+
           <div class="search-excerpt">
             <h3>{{ item.title | link_to: item.url }}</h3>
             {{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }}
           </div>
-          
+
         </div> <!-- end .item -->
         {% else %}
           <p class="empty">Your search for "{{ search.terms | escape }}" did not return any results.</p>

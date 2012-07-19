@@ -6,7 +6,7 @@
 
       <p id="add-to-cart-msg"></p>
 
-      <div id="product-header" class="diagonal-divider clearfix">
+      <div id="product-header" class="clearfix">
 
         <div id="product-header-title">
           <h1 id="product-title">{{ product.title }}</h1>
@@ -15,18 +15,18 @@
 
         {% if product.available %}
           <form action="/cart/add" method="post" class="variants" id="product-actions">
-            <div class="options clearfix">  
+            <div class="options clearfix">
 
-              <div class="variants-wrapper clearfix {% if product.variants.size == 1 %}visuallyhidden{% endif %}"> 
+              <div class="variants-wrapper clearfix {% if product.variants.size == 1 %}visuallyhidden{% endif %}">
                 <select id="product-select" name="id">
                   {% for variant in product.variants %}
                   <option value="{{ variant.id }}">{{ variant.title | escape }} - {{ variant.price | money }}</option>
                   {% endfor %}
                 </select>
-              </div>            
-                
+              </div>
+
               <div id="purchase">
-                <p class="price"></p>                                 
+                <p class="price"></p>
                 <input class="btn" type="submit" name="add" id="add-to-cart" value="Add to Cart" />
               </div>
 
@@ -36,26 +36,26 @@
         {% else %}
           <div id="product-actions" class="sold-out">
             <div id="purchase">
-              <p class="price">Sold out.</p>      
+              <p class="price">Sold out.</p>
             </div>
-          </div>      
+          </div>
         {% endif %}
       </div><!-- /#product-header -->
 
-      
+
       <div class="description">
         {{ product.description }}
-        {% include 'social-sharing' %} 
-      </div>            
+        {% include 'social-sharing' %}
+      </div>
 
     </div><!-- /#product-information -->
-    
+
     <div id="product-gallery"{% if settings.main_image_display == 'Zoom-in' %} class="zoom-in"{% endif %}>
 
       <div id="active-wrapper">
         {% if settings.main_image_display == 'Lightbox' %}
         <a href="{{ product.featured_image | product_img_url: 'original' }}" title="{{ product.featured_image.alt | escape }}" rel="fancybox">
-        {% endif %}     
+        {% endif %}
           <img style="max-width:303px" src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.title | escape }}" id="large-thumb" />
         {% if settings.main_image_display == 'Lightbox' %}
         </a>
@@ -73,13 +73,13 @@
         {% endunless %}
         {% endfor %}
       </ul>
-      
+
     </div><!-- /#product-gallery -->
 
   </div><!-- /#product -->
 
   {% if settings.productspg_related_products %}
-  
+
     {% include 'related-products' %}
 
   {% elsif settings.productspg_featured_collection != blank %}
@@ -88,12 +88,12 @@
     {% assign products   = collection.products %}
 
     {% if products.size > 0 %}
-      <section class="diagonal-divider clearfix">
+      <section class="clearfix">
 
         {% unless settings.productspg_featured_collection_heading == blank %}
         <header class="section-details clearfix">
           <h1 class="section-title">{{ settings.productspg_featured_collection_heading | link_to: collection.url }}</h1>
-        </header> 
+        </header>
         {% endunless %}
 
         <ul class="product-grid" id="secondary-grid">
@@ -102,7 +102,7 @@
             {% include 'product-grid-item' %}
           </li>
           {% endfor %}
-        </ul>      
+        </ul>
 
       </section>
     {% endif %}

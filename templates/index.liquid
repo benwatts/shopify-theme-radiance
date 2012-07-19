@@ -15,16 +15,16 @@
   {% if settings.home_featured_collection and collections[settings.home_featured_collection].products != empty %}
 
     {% assign featuredCollection = collections[settings.home_featured_collection] %}
-    
+
     <!-- Three featured products -->
-    <section class="products-prominent clearfix diagonal-divider">
+    <section class="products-prominent clearfix">
 
       <header class="section-details clearfix {% if settings.home_featured_header_show == false %}visuallyhidden{% endif %}">
         <h2 class="section-title">{{ featuredCollection.title | link_to: featuredCollection.url }}</h2>
         {% if featuredCollection.products.size > 3 %}
           <div class="view-more">{{ 'View More &raquo;' | link_to: featuredCollection.url }}</div>
         {% endif %}
-      </header>    
+      </header>
 
       <ul id="featured-grid" class="product-grid wide">
 
@@ -58,11 +58,11 @@
 
     </section>
   {% endif %}
-  
+
   {% if settings.feature_collections_on_homepage %}
 
     <!-- Featured Collections -->
-    <section class="diagonal-divider clearfix">
+    <section class="clearfix">
 
       {% unless settings.feature_collections_on_homepage_heading == blank %}
       <header class="section-details clearfix">
@@ -85,21 +85,21 @@
         {% endunless %}
         {% endfor %}
         {% endif %}
-      </ul>      
+      </ul>
 
     </section>
-  {% endif %}  
+  {% endif %}
 
   {% if settings.home_products_collection and collections[settings.home_products_collection].products != empty %}
 
     {% assign homeCollection = collections[settings.home_products_collection] %}
 
     <!-- A collection of products -->
-    <section class="diagonal-divider clearfix">
+    <section class="clearfix">
 
       <header class="section-details clearfix">
         <h2 class="section-title">{{ homeCollection.title | link_to: homeCollection.url }}</h2>
-      </header>    
+      </header>
 
       <ul class="product-grid" id="secondary-grid">
         {% for product in homeCollection.products limit: settings.home_products_limit %}
@@ -107,7 +107,7 @@
           {% include 'product-grid-item' %}
         </li>
         {% endfor %}
-      </ul>      
+      </ul>
 
     </section>
   {% endif %}

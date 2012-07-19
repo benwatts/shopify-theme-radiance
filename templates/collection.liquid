@@ -1,6 +1,6 @@
 <div id="col-main" class="{{ collection.handle }}">
 
-  <section class="diagonal-divider clearfix">
+  <section class="clearfix">
     <header class="section-details clearfix">
       <h2 class="section-title">{{ collection.title }}</h2>
       {% if collection.description != empty %}
@@ -10,7 +10,7 @@
 
     {% paginate collection.products by 12 %}
       {% if collection.products.size > 0 %}
-    
+
         <ul class="product-grid clearfix">
         {% for product in collection.products %}
           <li{% cycle '', '', '', ' class="last-in-row"' %}>
@@ -20,11 +20,11 @@
         </ul>
 
         {% include 'pagination' %}
-      
-      {% else %}    
+
+      {% else %}
         <strong>No products found in this collection.</strong>
       {% endif %}
     {% endpaginate %}
   </section>
-  
+
 </div> <!-- /#col-main -->

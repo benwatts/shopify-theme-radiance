@@ -103,6 +103,10 @@
 			<td><input id="btn_text_colour" name="btn_text_colour" class="color" value="#ffffff" /></td>
 		</tr>
 		<tr>
+			<td><label for="btn_colour">Button border colour</label></td>
+			<td><input id="btn_colour" name="btn_brd_colour" class="color" value="#cccccc" /></td>
+		</tr>
+		<tr>
 			<td><label for="btn_hover_colour">Button colour on hover</label></td>
 			<td><input id="btn_hover_colour" name="btn_hover_colour" class="color" value="#FCF3C1" /></td>
 		</tr>
@@ -110,25 +114,11 @@
 			<td><label for="btn_hover_text_colour">Button text colour on hover</label></td>
 			<td><input id="btn_hover_text_colour" name="btn_hover_text_colour" class="color" value="#554B60" /></td>
 		</tr>
+		<tr>
+			<td><label for="btn_colour">Button border colour</label></td>
+			<td><input id="btn_colour" name="btn_hover_brd_colour" class="color" value="#ff0000" /></td>
+		</tr>
 	</table>
-
-	<br />
-	<hr />
-
-	<h3>Miscellaneous</h3>
-	<p>
-		<input type="checkbox" id="use_diagonal" name="use_diagonal" value="1" checked="checked" />
-		<label for="use_diagonal"> Use diagonal line pattern motif?</label>
-		<small>(Used to separate blog posts and key sections)</small>
-	</p>
-	<p>
-		Colour of diagonal line pattern:
-		<select name="diagonal_colour">
-			<option value="diagonal-black.png" selected="selected">Transparent Black</option>
-			<option value="diagonal-light-grey.png">Transparent Grey</option>
-			<option value="diagonal-white.png">Transparent White</option>
-		</select>
-	</p>
 
 </fieldset>
 
@@ -291,8 +281,15 @@
 	<h3>Navigation</h3>
 	<table>
 		<tr>
-			<td><label for="nav_font_size">Font size and style</label></td>
+			<td><label for="nav_font_size">Font</label></td>
 			<td>
+				<select class="font" name="nav_font" id="header_font">
+					<option value="BebasNeueRegular, arial, sans-serif" selected="selected">Bebas Neue</option>
+					<option value="Rancho, cursive">Rancho</option>
+					<option value="'Amatic SC', cursive">Amatic SC</option>
+					<option value="'Sancreek', cursive">Sancreek</option>
+					<option value="'Ubuntu Condensed', sans-serif">Ubuntu Condensed</option>
+				</select><br />
 				<select id="nav_font_size" name="nav_font_size">
 					<optgroup label="Font Size">
 						<option value="10px">10px</option>
@@ -352,15 +349,11 @@
 			<td><input type="checkbox" id="show_header_search" name="show_header_search" value="1" checked="checked" /></td>
 		</tr>
 		<tr>
-			<td><label for="header_search_border_colour">Search box border:</label></td>
-			<td><input id="header_search_border_colour" name="header_search_border_colour" class="color" value="#E7E7CE" /></td>
-		</tr>
-		<tr>
 			<td> <label for="search_icon_colour">Search icon colour:</label></td>
 			<td>
 				<select name="search_icon_colour">
-					<option value="white">Transparent White</option>
-					<option value="black" selected="selected">Transparent Black</option>
+					<option value="white">White</option>
+					<option value="black" selected="selected">Black</option>
 				</select>
 			</td>
 		</tr>
@@ -534,7 +527,7 @@
 	<td><label for="carousel_dots_active_colour">Active dot color</label></td>
 	<td><input id="carousel_dots_active_colour" name="carousel_dots_active_colour" class="color" value="#000" /></td>
 </tr>
-        
+
 >>>>>>> Added ability to show dots for slideshow position.
 
 	</table>
@@ -905,6 +898,12 @@
 				<label for="share_prod_on_googleplus">Google +1 button</label>
 			</td>
 		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" id="share_prod_on_pinterest" name="share_prod_on_pinterest" value="0" />
+				<label for="share_prod_on_googleplus">Pinterest button</label>
+			</td>
+		</tr>
 	</table>
 
 	<br />
@@ -1014,6 +1013,11 @@
 	<hr />
 
 	<h3>Footer Menu</h3>
+
+	<p>
+		<label for="show_footer_links">Show a list of links in the footer? </label>
+		<input type="checkbox" id="show_footer_links" name="show_footer_links" />
+	</p>
 	<p>
 		<label for="footer_linklist">Footer link list:</label>
 		<select class="linklist" name="footer_linklist">
@@ -1064,6 +1068,11 @@
 			<td><input type="checkbox" id="sm_vimeo" name="sm_vimeo" value="0" /></td>
 			<td><input type="text" id="sm_vimeo_link" name="sm_vimeo_link" value="http://www.vimeo.com" class="long" /></td>
 		</tr>
+		<tr class="even">
+			<td><strong>Pinterest</strong></td>
+			<td><input type="checkbox" id="sm_pinterest" name="sm_pinterest" value="0" /></td>
+			<td><input type="text" id="sm_pinterest_link" name="sm_pinterest_link" value="http://www.pinterest.com" class="long" /></td>
+		</tr>
 	</table>
 
 
@@ -1094,10 +1103,6 @@
 			<td>
 				<input type="checkbox" id="show_maestro" name="show_maestro" value="1" checked="checked" />
 				<label for="show_maestro">Maestro</label>
-			</td>
-			<td>
-				<input type="checkbox" id="show_cirrus" name="show_cirrus" value="1" checked="checked" />
-				<label for="show_cirrus">Cirrus</label>
 			</td>
 		</tr>
 		<tr>

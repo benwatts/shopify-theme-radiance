@@ -176,7 +176,7 @@ $(window).load( function(){
  * Support for dropdown menus
  */
 function setupDropdownMenus(){
-  $('#top-menu .has-dropdown').hoverIntent( navRollOver, navRollOut );
+  $('.top-menu .has-dropdown').hoverIntent( navRollOver, navRollOut );
 
   function navRollOver(e){
     $(this).addClass('active').find('ul:first').css('top', $(this).height()).show();

@@ -1,8 +1,8 @@
   {% if shop.products_count < 1 %}
 
   {% comment %}
-  This only appears if a shop has no products. 
-  This scenario should only occur when a Shopify store is first created. 
+  This only appears if a shop has no products.
+  This scenario should only occur when a Shopify store is first created.
   {% endcomment %}
 
   <div class="no-products">
@@ -17,7 +17,7 @@
     <a class="no-products-overlay" href="/admin/products/new"></a>
 
     <!-- Placeholder featured products: visible when shop has 0 products -->
-    <section class="products-prominent clearfix diagonal-divider">
+    <section class="products-prominent clearfix">
       <ul class="product-grid wide" id="featured-grid">
         <li>
           <a class="product-photo placeholder" href="/admin/products/new"></a>
@@ -44,44 +44,44 @@
     </section>
 
     <!-- Placeholder collection: visible when shop has 0 products -->
-    <section class="diagonal-divider clearfix">
+    <section class="clearfix">
       <header class="section-details clearfix">
         <h1 class="section-title">Product Collection</h1>
-      </header>    
+      </header>
       <ul class="product-grid" id="secondary-grid">
         <li>
           <div class="product-grid-item">
             <a class="product-link placeholder"><span class="product-price">0.00</span></a>
             <div class="product-information">
-              Product                    
-            </div>              
-          </div>   
-        </li> 
+              Product
+            </div>
+          </div>
+        </li>
         <li>
           <div class="product-grid-item">
             <a class="product-link placeholder"><span class="product-price">0.00</span></a>
             <div class="product-information">
-             Product               
-            </div>              
-          </div>   
-        </li> 
+             Product
+            </div>
+          </div>
+        </li>
         <li>
           <div class="product-grid-item">
             <a class="product-link placeholder"><span class="product-price">0.00</span></a>
             <div class="product-information">
-              Product                    
-            </div>              
-          </div>   
-        </li> 
+              Product
+            </div>
+          </div>
+        </li>
         <li class="last-in-row">
           <div class="product-grid-item">
             <a class="product-link placeholder"><span class="product-price">0.00</span></a>
             <div class="product-information">
-              Product                  
-            </div>              
-          </div>   
-        </li>       
-      </ul>      
+              Product
+            </div>
+          </div>
+        </li>
+      </ul>
     </section>
 
   </div>
