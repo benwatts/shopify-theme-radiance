@@ -74,34 +74,34 @@ var RADIANCE = {
 
   templateIndex : {
     init: function(){
-      if( $("#carousel").length > 0 ){
-       $("#carousel").scrollable({
-    circular: true
-  }).navigator({
-    navi: "#carousel-slide-menu",
-    naviItem: 'li'
-  });
+      if( $('#has-only-one-product').length === 1 ){
+        $('#add-to-cart').bind( 'click', addToCart );
+        $('#product-image-gallery.zoom-in').enhanceGallery();
+      }
 
+      if( $("#carousel").length > 0 ){
+        $("#carousel").scrollable({ circular: true }).navigator({
+          navi: "#carousel-slide-menu",
+          naviItem: 'li'
+        });
 
         if ( $("#carousel").find('.items li[class!=cloned]').length > 1 ) {
           window.api = $("#carousel").autoscroll({
             autoplay: true,
             api: true,
             interval: 7500
-          })
+          });
           $("#carousel").hover(
-              function() {
-                api.pause();
-                $(this).find('.browse').fadeIn('fast');
-              },
-              function() {
-                api.play();
-                $(this).find('.browse').fadeOut('fast');
-              }
-          );
-        }
-
-        $('#carousel-thumbs li:first a').addClass('active');
+            function() {
+              api.pause();
+              $(this).find('.browse').fadeIn('fast');
+            },
+            function() {
+              api.play();
+              $(this).find('.browse').fadeOut('fast');
+            });
+          }
+          $('#carousel-thumbs li:first a').addClass('active');
       }
     }
   },

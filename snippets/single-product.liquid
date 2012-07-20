@@ -22,21 +22,21 @@
   </div><!-- /#product-gallery -->
 
   <div class="product-details">
-    <p id="add-to-cart-msg"></p>
 
-    <div class="product-details-header">
-      <div class="product-details-title">
-        <h2 class="product-title">{{ product.title }}</h2>
-        {% if settings.show_vendor %}
-          <h3 class="product-vendor">{{ product.vendor | link_to_vendor }}</h2>
-        {% endif %}
-      </div>
+    <div class="page-header">
+      <h2 class="page-title product-title">{{ product.title }}</h2>
+      {% if settings.show_vendor %}
+        <h3 class="product-vendor">{{ product.vendor | link_to_vendor }}</h2>
+      {% endif %}
+    </div>
 
-      {% if product.available %}
-        <form action="/cart/add" method="post" class="variants" id="product-actions">
-          <div class="options clearfix">
+    <div class="purchase-box">
+      <div class="purchase-box-content">
+        {% if product.available %}
+        <form action="/cart/add" method="post" class="variants">
+          <div class="options {% if product.variants.size == 1 %}has-one-option{% endif %}">
 
-            <div class="variants-wrapper clearfix {% if product.variants.size == 1 %}visuallyhidden{% endif %}">
+            <div class="variants-wrapper {% if product.variants.size == 1 %}visuallyhidden{% endif %}">
               <select id="product-select" name="id">
                 {% for variant in product.variants %}
                 <option value="{{ variant.id }}">{{ variant.title | escape }} - {{ variant.price | money }}</option>
@@ -44,22 +44,24 @@
               </select>
             </div>
 
-            <div id="purchase">
+            <div class="purchase-box-right">
               <p class="price"></p>
               <input class="btn" type="submit" name="add" id="add-to-cart" value="Add to Cart" />
             </div>
 
           </div><!-- /.options -->
         </form>
-
-      {% else %}
-        <div id="product-actions" class="sold-out">
-          <div id="purchase">
+        {% else %}
+        <div class="sold-out">
+          <div class="purchase-box-right">
             <p class="price">Sold out.</p>
           </div>
         </div>
-      {% endif %}
-    </div><!-- /#product-header -->
+        {% endif %}
+      </div>
+      <p id="add-to-cart-msg"></p>
+    </div>
+
 
 
     <div class="description">

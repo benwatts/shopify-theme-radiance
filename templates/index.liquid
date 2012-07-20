@@ -12,15 +12,16 @@
 
   {% if settings.home_featured_collection and collections[settings.home_featured_collection].products != empty %}
     {% assign featuredCollection = collections[settings.home_featured_collection] %}
-    {% if featuredCollection.products > 1 %}
+
+    {% if featuredCollection.products.size > 1 %}
     <div class="row clearfix">
 
-      <header class="section-details clearfix {% if settings.home_featured_header_show == false %}visuallyhidden{% endif %}">
+      <div class="section-details clearfix {% if settings.home_featured_header_show == false %}visuallyhidden{% endif %}">
         <h2 class="section-title">{{ featuredCollection.title | link_to: featuredCollection.url }}</h2>
         {% if featuredCollection.products.size > 3 %}
           <div class="view-more">{{ 'View More &raquo;' | link_to: featuredCollection.url }}</div>
         {% endif %}
-      </header>
+      </div>
 
       <ul id="featured-grid" class="product-grid wide">
         {% for product in featuredCollection.products offset: 0 limit: 3 %}
@@ -52,7 +53,7 @@
 
     </div>
     {% else %} {% comment %} ONLY 1 PRODUCT IN COLLECTION! Handle the layout differently {% endcomment %}
-      <div class="row clearfix">
+      <div class="row clearfix" id="has-only-one-product">
       {% assign product = featuredCollection.products.first %}
       {% include 'single-product' %}
       </div>
@@ -63,9 +64,9 @@
     <div class="row clearfix">
 
       {% unless settings.feature_collections_on_homepage_heading == blank %}
-      <header class="section-details clearfix">
+      <div class="section-details clearfix">
         <h2 class="section-title">{{ settings.feature_collections_on_homepage_heading | link_to: '/collections/all' }}</h2>
-      </header>
+      </div>
       {% endunless %}
 
       <ul id="collection-grid" class="product-grid">
@@ -95,9 +96,9 @@
     <!-- A collection of products -->
     <section class="clearfix">
 
-      <header class="section-details clearfix">
+      <div class="section-details clearfix">
         <h2 class="section-title">{{ homeCollection.title | link_to: homeCollection.url }}</h2>
-      </header>
+      </div>
 
       <ul class="product-grid" id="secondary-grid">
         {% for product in homeCollection.products limit: settings.home_products_limit %}

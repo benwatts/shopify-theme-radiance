@@ -12,9 +12,9 @@
       <section class="clearfix">
 
         {% unless settings.productspg_featured_collection_heading == blank %}
-        <header class="section-details clearfix">
+        <div class="section-details clearfix">
           <h1 class="section-title">{{ settings.productspg_featured_collection_heading | link_to: collection.url }}</h1>
-        </header>
+        </div>
         {% endunless %}
 
         <ul class="product-grid" id="secondary-grid">

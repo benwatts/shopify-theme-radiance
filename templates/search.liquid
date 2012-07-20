@@ -1,12 +1,12 @@
 <div class="main-column">
 
-  <div id="page-header">
-    <h2 id="page-title">Search</h2>
+  <div class="page-header">
+    <h2 class="page-title">Search</h2>
   </div>
 
-  <form id="search-form" name="search" action="/search">
-    <input type="text" id="q" name="q" value="" class="search replace" title="Search" />
-    <input type="submit" class="btn" id="search-submit" alt="Search" class="submit" value="Search" />
+  <form class="search-form" name="search" action="/search">
+    <input type="text" id="q" name="q" class="search-form-input" />
+    <input type="submit" class="search-form-submit btn btn-attached" class="submit" value="Search" />
   </form>
 
   {% if search.performed %}

@@ -3,11 +3,11 @@
 <div class="content clearfix">
 
   <div class="page-header clearfix">
-    <h1 id="page-title">Manage Account Address</h1>
+    <h1 class="page-title">Manage Account Address</h1>
 
     <div id="page-actions">
       <a href="#" class="action_add note" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Add New Address</a>
-    </div>    
+    </div>
 
   </div><!-- /.page-header -->
 
@@ -71,14 +71,14 @@
     {% endform %}
   </div>
 
-  <div id="address_tables">  
+  <div id="address_tables">
   {% paginate customer.addresses by 10 %}
-    
+
     {% for address in customer.addresses %}
     <div class="address_table">
       <div id="view_address_{{address.id}}" class="customer_address">
         <h3 class="address_title">
-          {{ address.street }} 
+          {{ address.street }}
           {% if address == customer.default_address %}<span class="default_address note">(Default Address)</span>{% endif %}
         </h3>
         <p class="address_actions">
@@ -93,7 +93,7 @@
           <p>{{ address.country }} {{ address.zip }}</p>
           <p>{{ address.phone }}</p>
         </div>
-      </div>    
+      </div>
       <div id="edit_address_{{address.id}}" class="customer_address edit_address" style="display:none;">
         {% form 'customer_address', address %}
           <table class="customer_address_table">
@@ -138,7 +138,7 @@
             <tr>
               <td class="label"><label for="address_phone_{{form.id}}">Phone</label></td>
               <td class="value"><input type="text" id="address_phone_{{form.id}}" class="address_form" name="address[phone]" value="{{form.phone}}" size="40" /></td>
-            </tr>      
+            </tr>
             <tr>
               <td class="label"></td>
               <td class="value">{{ form.set_as_default_checkbox }} Set as Default Address?</td>
@@ -147,19 +147,19 @@
           <div class="action-bottom">
             <input class="btn" type="submit" value="Update Address" />
             <span class="note"> or <a href="#" onclick="Shopify.CustomerAddress.toggleForm({{form.id}}); return false;">Cancel</a></span>
-          </div>        
+          </div>
         {% endform %}
       </div>
     </div><!-- end .address_table -->
     {% endfor %}
-    
-    <div id="address_pagination">{{ paginate | default_pagination }}</div>  
+
+    <div id="address_pagination">{{ paginate | default_pagination }}</div>
   {% endpaginate %}
   </div><!-- end #address_tables -->
 
   <script type="text/javascript" charset="utf-8">
     // initialize observers on address selectors
-    new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', {hideElement: 'address_province_container_new'});  
+    new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', {hideElement: 'address_province_container_new'});
     {% for address in customer.addresses %}
       new Shopify.CountryProvinceSelector('address_country_{{address.id}}', 'address_province_{{address.id}}', {hideElement: 'address_province_container_{{address.id}}'});
     {% endfor %}

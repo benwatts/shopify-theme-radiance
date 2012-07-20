@@ -3,7 +3,7 @@
 <div class="content clearfix">
 
   <div class="page-header clearfix">
-    <h1 id="page-title">Order {{ order.name }}</h1>
+    <h1 class="page-title">Order {{ order.name }}</h1>
   </div><!-- /.page-header -->
 
   {% if order.cancelled %}
@@ -58,7 +58,7 @@
       {% for line_item in order.line_items %}
       <tr id="{{ line_item.id }}" class="{% cycle 'odd', 'even' %}">
         <td class="product">
-          {{ line_item.title | link_to: line_item.product.url }} 
+          {{ line_item.title | link_to: line_item.product.url }}
           {% if line_item.fulfillment %}
             <div class="note">
               Fulfilled {{ line_item.fulfillment.created_at | date: "%b %d" }}
@@ -74,32 +74,32 @@
         <td class="total money">{{ line_item.quantity | times: line_item.price | money }}</td>
       </tr>
       {% endfor %}
-    </tbody>  
+    </tbody>
     <tfoot>
       <tr class="order_summary note">
         <td class="label" colspan="4">Subtotal:</td>
         <td class="total money">{{ order.subtotal_price | money }}</td>
-      </tr>   
-      
+      </tr>
+
       {% for shipping_method in order.shipping_methods %}
       <tr class="order_summary note">
         <td class="label" colspan="4">Shipping ({{ shipping_method.title }}):</td>
         <td class="total money">{{ shipping_method.price | money }}</td>
       </tr>
       {% endfor %}
-      
+
       {% for tax_line in order.tax_lines %}
         <tr class="order_summary note">
           <td class="label" colspan="4">Tax ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%):</td>
           <td class="total money">{{ tax_line.price | money }}</td>
         </tr>
-      {% endfor %}    
-              
+      {% endfor %}
+
       <tr class="order_summary order_total">
         <td class="label" colspan="4">Total:</td>
         <td class="total money">{{ order.total_price | money }} {{ order.currency }}</td>
-      </tr>   
-    </tfoot>  
+      </tr>
+    </tfoot>
   </table>
 
 </div><!-- /.content -->
