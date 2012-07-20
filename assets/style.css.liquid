@@ -313,6 +313,7 @@ body { text-align: center; }
 .top-menu-list .active .top-menu-primary-link {
   color: {{settings.nav_hover_colour}};
 }
+.top-menu-list a:hover .nav-arrow,
 .js .has-dropdown.active .nav-arrow{
   border-top-color: {{settings.nav_hover_colour}};
 }
@@ -873,9 +874,12 @@ article footer .btn { padding: 2px 10px; }
 .widgets-column a:hover{ color: {{settings.widget_link_hover_colour}} }
 
 .widget{
-  margin: 0 0 20px 0;
+  margin: 0 0 40px 0;
+  {% if settings.widget_bg_is_transparent == false %}
+  background: {{settings.widget_bg_colour}};
   padding: 15px 10px;
-  background: {{settings.widget_bg_colour}}
+  margin: 0 0 20px 0;
+  {% endif %}
   }
 
 .widget h3{

@@ -65,7 +65,6 @@
   <label for="frame_bg_is_transparent" class="pl">&nbsp;or don't use a colour (<b>transparent</b>):</label>
   <input id="frame_bg_is_transparent" name="frame_bg_is_transparent" type="checkbox" />
 
-
   <h3>Content Background</h3>
   <table>
     <tr>
@@ -85,8 +84,6 @@
   </table>
   <label for="footer_bg_is_transparent" class="pl">&nbsp;or don't use a colour (<b>transparent</b>):</label>
   <input id="footer_bg_is_transparent" name="footer_bg_is_transparent" type="checkbox" />
-
-
 </fieldset>
 
 <fieldset>
@@ -622,10 +619,10 @@
 
 
 <fieldset>
-  <legend>Right Column</legend>
+  <legend>Sidebar</legend>
 
   <input type="checkbox" id="show_right_column" name="show_right_column" value="1" checked="checked" />
-  <label for="show_right_column">Show right column</label>
+  <label for="show_right_column">Show sidebar?</label>
 
   <br />
   <hr />
@@ -665,12 +662,14 @@
       </td>
     </tr>
     <tr>
-      <td><label for="widget_text_colour">Text</label></td>
-      <td><input id="widget_text_colour" name="widget_text_colour" class="color" value="#AFAFAF" /></td>
+      <td><label for="widget_bg_colour">Widget background</label></td>
+      <td><input id="widget_bg_colour" name="widget_bg_colour" class="color" value="#1D1F20" />
+        Transparent? <input type="checkbox" id="widget_bg_is_transparent" name="widget_bg_is_transparent" /> <br />
+      </td>
     </tr>
     <tr>
-      <td><label for="widget_bg_colour">Widget background</label></td>
-      <td><input id="widget_bg_colour" name="widget_bg_colour" class="color" value="#1D1F20" /></td>
+      <td><label for="widget_text_colour">Text</label></td>
+      <td><input id="widget_text_colour" name="widget_text_colour" class="color" value="#AFAFAF" /></td>
     </tr>
     <tr>
       <td><label for="widget_link_colour">Link</label></td>
