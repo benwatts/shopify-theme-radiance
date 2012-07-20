@@ -366,7 +366,7 @@ body { text-align: center; }
   text-align: right;
 }
 .header-search-input{
-  width: 150px;
+  width: 120px;
   display: inline;
   display: inline-block;
   margin-right: -1px;
@@ -1388,35 +1388,35 @@ col.checkout-delete{ width: 80px; }
 .footer-social-links-list a{
   width: 36px;
   height: 37px;
-  background-image: url({{ 'social-media.png' | asset_url }});
+  background-image: url({{ 'sprite.png' | asset_url }});
   display: block;
 }
 {% if settings.sm_colour == 'white' %}
-#sm-youtube a{ background-position: 0 0; }
-#sm-flickr a{ background-position:-36px 0; }
-#sm-twitter a{ background-position: -72px 0; }
-#sm-facebook a{ background-position: -108px 0; }
-#sm-vimeo a{ background-position: -144px 0; }
-#sm-pinterest a{ background-position: -180px 0; }
-#sm-youtube a:hover{ background-position: 0 -39px; }
-#sm-flickr a:hover{ background-position:-36px -39px; }
-#sm-twitter a:hover{ background-position: -72px -39px; }
-#sm-facebook a:hover{ background-position: -108px -39px; }
-#sm-vimeo a:hover{ background-position: -144px -39px; }
-#sm-pinterest a:hover{ background-position: -180px -39px; }
+.sm-youtube a{ background-position: -90px 0; }
+.sm-flickr a{ background-position:-126px 0; }
+.sm-twitter a{ background-position: -162px 0; }
+.sm-facebook a{ background-position: -198px 0; }
+.sm-vimeo a{ background-position: -234px 0; }
+.sm-pinterest a{ background-position: -270px 0; }
+.sm-youtube a:hover{ background-position: -90px -39px; }
+.sm-flickr a:hover{ background-position:-126px -39px; }
+.sm-twitter a:hover{ background-position: -162px -39px; }
+.sm-facebook a:hover{ background-position: -198px -39px; }
+.sm-vimeo a:hover{ background-position: -234px -39px; }
+.sm-pinterest a:hover{ background-position: -270px -39px; }
 {% else %}
-#sm-youtube a{ background-position: 0 -78px; }
-#sm-flickr a{ background-position:-36px -78px; }
-#sm-twitter a{ background-position: -72px -78px; }
-#sm-facebook a{ background-position: -108px -78px; }
-#sm-vimeo a{ background-position: -144px -78px; }
-#sm-pinterest a{ background-position: -180px -78px; }
-#sm-youtube a:hover{ background-position: 0 -117px; }
-#sm-flickr a:hover{ background-position:-36px -117px; }
-#sm-twitter a:hover{ background-position: -72px -117px; }
-#sm-facebook a:hover{ background-position: -108px -117px; }
-#sm-vimeo a:hover{ background-position: -144px -117px; }
-#sm-pinterest a:hover{ background-position: -180px -117px; }
+.sm-youtube a{ background-position: -90px -78px; }
+.sm-flickr a{ background-position:-126px -78px; }
+.sm-twitter a{ background-position: -162px -78px; }
+.sm-facebook a{ background-position: -198px -78px; }
+.sm-vimeo a{ background-position: -234px -78px; }
+.sm-pinterest a{ background-position: -270px -78px; }
+.sm-youtube a:hover{ background-position: -90px -117px; }
+.sm-flickr a:hover{ background-position:-126px -117px; }
+.sm-twitter a:hover{ background-position: -162px -117px; }
+.sm-facebook a:hover{ background-position: -198px -117px; }
+.sm-vimeo a:hover{ background-position: -234px -117px; }
+.sm-pinterest a:hover{ background-position: -270px -117px; }
 {% endif %}
 
 /* footer > payment methods */

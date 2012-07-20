@@ -65,15 +65,13 @@
 </head>
 
 <body class="{% if customer %}customer-logged-in {% endif %}template{{ template | split: '.' | first | camelize }}">
-
-
   <div class="wrapper">
 
 
     <!-- header -->
     <div class="header clearfix" id="top">
 
-      <h1 id="site-title" class="header-logo">
+      <h1 class="header-logo">
         <a href="/" title="Home">
           {% if settings.logo_image == "logo.png" %}
             <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name | escape }}" />
@@ -117,8 +115,17 @@
 
       <div class="umbrella">
         <ul>
+
+          <li class="cart-link">
+            <a href="/cart" class="num-items-in-cart">
+              <span class="icon">
+              {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}
+              </span>
+            </a>
+          </li>
+
           {% if shop.customer_accounts_enabled %}
-          <li class="customer-account-links">
+          <li>
             {% if customer %}
               <p>Welcome {{ customer.first_name | escape }} {{ '(Log out)' | customer_logout_link }}</p>
             {% else %}
@@ -132,20 +139,14 @@
             <a href="/account">My Account</a>
           </li>
           {% endif %}
-          <li class="cart-link">
-            <a href="/cart" class="num-items-in-cart">
-              <span class="icon">
-              {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}
-              </span>
-            </a>
-          </li>
+
         </ul>
-      </div><!-- /#umbrella -->
+      </div><!-- /umbrella -->
 
     </div><!-- /header -->
 
 
-    <!-- Content -->
+    <!-- content -->
     <div class="content-wrapper clearfix">
 
       {% if template == 'list-collections' %}
@@ -158,20 +159,21 @@
         {% include 'col-widgets' %}
       {% endunless %}
 
-    </div><!-- /.content -->
+    </div><!-- /content -->
+
 
     <!-- Footer -->
-    <div class="footer" id="bottom">
+    <div class="footer">
 
       {%if settings.sm_facebook || settings.sm_twitter || settings.sm_youtube || settings.sm_flickr || settings.sm_vimeo || settings.sm_pinterest %}
       <div class="footer-social-links">
         <ul class="footer-social-links-list">
-          {%if settings.sm_youtube %}<li id="sm-youtube"><a href="{{settings.sm_youtube_link}}" class="ir">YouTube</a></li>{% endif %}
-          {%if settings.sm_flickr %}<li id="sm-flickr"><a href="{{settings.sm_flickr_link}}" class="ir">Flickr</a></li>{% endif %}
-          {%if settings.sm_twitter %}<li id="sm-twitter"><a href="{{settings.sm_twitter_link}}" class="ir">Twitter</a></li>{% endif %}
-          {%if settings.sm_facebook %}<li id="sm-facebook"><a href="{{settings.sm_facebook_link}}" class="ir">Facebook</a></li>{% endif %}
-          {%if settings.sm_vimeo %}<li id="sm-vimeo"><a href="{{settings.sm_vimeo_link}}" class="ir">Vimeo</a></li>{% endif %}
-          {%if settings.sm_pinterest %}<li id="sm-pinterest"><a href="{{settings.sm_pinterest_link}}" class="ir">Pinterest</a></li>{% endif %}
+          {%if settings.sm_youtube %}<li class="sm-youtube"><a href="{{settings.sm_youtube_link}}" class="ir">YouTube</a></li>{% endif %}
+          {%if settings.sm_flickr %}<li class="sm-flickr"><a href="{{settings.sm_flickr_link}}" class="ir">Flickr</a></li>{% endif %}
+          {%if settings.sm_twitter %}<li class="sm-twitter"><a href="{{settings.sm_twitter_link}}" class="ir">Twitter</a></li>{% endif %}
+          {%if settings.sm_facebook %}<li class="sm-facebook"><a href="{{settings.sm_facebook_link}}" class="ir">Facebook</a></li>{% endif %}
+          {%if settings.sm_vimeo %}<li class="sm-vimeo"><a href="{{settings.sm_vimeo_link}}" class="ir">Vimeo</a></li>{% endif %}
+          {%if settings.sm_pinterest %}<li class="sm-pinterest"><a href="{{settings.sm_pinterest_link}}" class="ir">Pinterest</a></li>{% endif %}
         </ul>
       </div>
       {% endif %}
