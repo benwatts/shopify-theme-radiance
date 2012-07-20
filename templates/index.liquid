@@ -8,16 +8,11 @@
     </section>
   {% endif %}
 
-
   {% include 'if-shop-has-no-products' %}
 
-
   {% if settings.home_featured_collection and collections[settings.home_featured_collection].products != empty %}
-
     {% assign featuredCollection = collections[settings.home_featured_collection] %}
-
-    <!-- Three featured products -->
-    <section class="products-prominent clearfix">
+    <div class="row clearfix">
 
       <header class="section-details clearfix {% if settings.home_featured_header_show == false %}visuallyhidden{% endif %}">
         <h2 class="section-title">{{ featuredCollection.title | link_to: featuredCollection.url }}</h2>
@@ -56,13 +51,11 @@
 
       </ul>
 
-    </section>
+    </div>
   {% endif %}
 
   {% if settings.feature_collections_on_homepage %}
-
-    <!-- Featured Collections -->
-    <section class="clearfix">
+    <div class="row clearfix">
 
       {% unless settings.feature_collections_on_homepage_heading == blank %}
       <header class="section-details clearfix">
@@ -87,11 +80,11 @@
         {% endif %}
       </ul>
 
-    </section>
+    </div>
   {% endif %}
 
+  {% comment %} Render some fake placeholders if there are no products {% endcomment %}
   {% if settings.home_products_collection and collections[settings.home_products_collection].products != empty %}
-
     {% assign homeCollection = collections[settings.home_products_collection] %}
 
     <!-- A collection of products -->

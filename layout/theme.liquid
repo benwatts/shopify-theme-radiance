@@ -73,6 +73,7 @@
 
       <h1 class="header-logo">
         <a href="/" title="Home">
+          {{ settings.frame_bg_is_transparent }}
           {% if settings.logo_image == "logo.png" %}
             <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name | escape }}" />
           {% else %}
