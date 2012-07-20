@@ -1,6 +1,6 @@
-{% if settings.share_prod_on_twitter ||  settings.share_prod_on_facebook ||  settings.share_prod_on_googleplus %}
-
+{% if settings.share_prod_on_pinterest || settings.share_prod_on_twitter ||  settings.share_prod_on_facebook ||  settings.share_prod_on_googleplus %}
   <ul class="product-sharing">
+
     {% if settings.share_prod_on_pinterest %}
     <li class="share-via-pinterest">
       <a href="http://pinterest.com/pin/create/button/?url={{ shop.url }}{{ product.url }}&media={{ product.featured_image | product_img_url: 'compact' | split:'?' | first  }}&description={{ product.title | escape | replace:' ','%20' }}" class="pin-it-button" count-layout="none">Pin It</a>
@@ -41,6 +41,6 @@
       </script>
     </li>
     {% endif %}
-  </ul>
 
+  </ul>
 {% endif %}
