@@ -239,7 +239,7 @@ body { text-align: center; }
   position: relative; z-index: 1;
   }
 .main-column.content{
-  width: 700px;
+  width: 75%;
   }
 .main-column.full{
   width: auto;
@@ -592,10 +592,12 @@ body { text-align: center; }
  * Single Product
  */
 
-#product-information{
-  float: right;
-  width: 375px;
-  }
+.product-details{
+  margin-left: 323px;
+}
+.product-gallery{
+  float: left;
+}
 
 #product-actions{
   padding: 4px 0 12px 0;
@@ -614,28 +616,28 @@ body { text-align: center; }
   margin: 8px 0 0 0;
   }
 
-#product-header{
+.product-details-header{
   margin: 0 0 20px 0;
   border-bottom: 1px solid {{ settings.content_secondary_colour }};
-  }
-#product-header #product-header-title{
-  float: left;
+}
+.product-details-title {
   width: 60%;
   margin: 5px 0 16px 0;
-  }
-#product-title{
+  float: left;
+}
+.product-details-title .product-title{
   margin: 0 0 5px 0;
   font-size: {{ settings.product_name_font_size }};
   font-style: {{ settings.product_name_font_style }};
-  }
-#product-vendor{
+}
+.product-details-title .product-vendor{
   font-size: 12px;
   font-weight: normal;
   margin: 0;
-  }
-#product-vendor a{
+}
+.product-details-title .product-vendor a{
   text-decoration: none;
-  }
+}
 
 #product-actions select{
   padding: 3px;
@@ -695,7 +697,7 @@ body { text-align: center; }
  * @see https://github.com/benwatts/enhance-gallery
  */
 
-#product-gallery,
+.product-gallery,
 #active-wrapper{
   width: 303px;
   }
