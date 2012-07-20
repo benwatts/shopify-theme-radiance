@@ -1,8 +1,8 @@
-<div id="col-main" class="content">
+<div class="content main-column">
 
   <article class="post clearfix">
     <div id="page-header">
-      <h2 id="page-title">{{ article.title }}</h2> 
+      <h2 id="page-title">{{ article.title }}</h2>
     </div>
 
     {{ article.content }}
@@ -20,26 +20,26 @@
       <div id="comments" class="comments">
         <h2 class="title">Comments</h2>
 
-        {% comment %} Loop through approved comments: {% endcomment %}        
+        {% comment %} Loop through approved comments: {% endcomment %}
         {% for comment in article.comments reversed %}
           {% include 'comment-template' %}
-        {% endfor %}  
+        {% endfor %}
 
         {% comment %} Show a comment that was *just* submitted {% endcomment %}
         {% if comment and comment.created_at %}
           {% include 'comment-template' %}
-        {% endif %}       
-      
+        {% endif %}
+
         {% include 'pagination' %}
 
       </div> <!-- end #comments -->
-    {% endpaginate %}   
+    {% endpaginate %}
     {% endif %}
 
     {% form article %}
     <div class="comment_form" id="comment-form">
 
-      <h2 class="title">Leave a comment</h2>    
+      <h2 class="title">Leave a comment</h2>
 
       {% if form.posted_successfully? %}
         {% if blog.moderated? %}
@@ -57,7 +57,7 @@
 
       {% if blog.moderated? %}
         <p class="notice">Please note: comments must be approved before they are published.</p>
-      {% endif %}   
+      {% endif %}
 
       <div class="clearfix{% if form.errors contains 'author' %} has-error{% endif %}">
         <label for="comment_author">Name <strong class="req">*</strong></label>
@@ -70,12 +70,12 @@
       <div class="clearfix{% if form.errors contains 'body' %} has-error{% endif %}">
         <label for="comment_body">Comment <strong class="req">*</strong></label>
         <textarea id="comment_body" name="comment[body]" cols="40" rows="5" class="text {% if form.errors contains 'body' %}input-error{% endif %}">{{form.body}}</textarea>
-      </div> 
+      </div>
 
       <input type="submit" value="Post comment" id="comment-submit" class="btn" />
 
     </div> <!-- end div.comment_form -->
-    {% endform %}  
+    {% endform %}
   {% endif %}
 
-</div> <!-- /#col-main -->
+</div>
