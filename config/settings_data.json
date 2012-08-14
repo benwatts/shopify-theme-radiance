@@ -54,7 +54,7 @@
       "show_featured_desc": true,
       "home_products_collection": "frontpage",
       "home_products_limit": "4",
-      "show_carousel": true,
+      "show_carousel": false,
       "carousel_height": "300",
       "carousel_button_colour": "#ffffff",
       "carousel_arrow_colour": "#cccccc",
