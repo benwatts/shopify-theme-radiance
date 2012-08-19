@@ -18,41 +18,6 @@
 
 
 
-
-/**
- * Fire function based upon attributes on the body tag.
- * This is the reason for "template{{ template | camelize }}" in layout/theme.liquid
- *
- * @see http://paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution/
- */
-var UTIL = {
-
-  fire : function(func,funcname, args){
-    var namespace = RADIANCE;
-    funcname = (funcname === undefined) ? 'init' : funcname;
-    if (func !== '' && namespace[func] && typeof namespace[func][funcname] == 'function'){
-      namespace[func][funcname](args);
-    }
-  },
-
-  loadEvents : function(){
-    var bodyId = document.body.id;
-
-    // hit up common first.
-    UTIL.fire('common');
-
-    // do all the classes too.
-    $.each(document.body.className.split(/\s+/),function(i,classnm){
-      UTIL.fire(classnm);
-      UTIL.fire(classnm,bodyId);
-    });
-  }
-
-};
-$(document).ready(UTIL.loadEvents);
-
-
-
 /**
  * Page-specific call-backs
  * Called after dom has loaded.
@@ -77,11 +42,10 @@ var RADIANCE = {
       if( $("#carousel").length > 0 ){
        $("#carousel").scrollable({
     circular: true
-  }).navigator({
-    navi: "#carousel-slide-menu",
-    naviItem: 'li'
-  });
-
+    }).navigator({
+      navi: "#carousel-slide-menu",
+      naviItem: 'li'
+    });
 
         if ( $("#carousel").find('.items li[class!=cloned]').length > 1 ) {
           window.api = $("#carousel").autoscroll({
@@ -125,6 +89,40 @@ var RADIANCE = {
   }
 
 }
+
+
+
+/**
+ * Fire function based upon attributes on the body tag.
+ * This is the reason for "template{{ template | camelize }}" in layout/theme.liquid
+ *
+ * @see http://paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution/
+ */
+var UTIL = {
+
+  fire : function(func,funcname, args){
+    var namespace = RADIANCE;
+    funcname = (funcname === undefined) ? 'init' : funcname;
+    if (func !== '' && namespace[func] && typeof namespace[func][funcname] == 'function'){
+      namespace[func][funcname](args);
+    }
+  },
+
+  loadEvents : function(){
+    var bodyId = document.body.id;
+
+    // hit up common first.
+    UTIL.fire('common');
+
+    // do all the classes too.
+    $.each(document.body.className.split(/\s+/),function(i,classnm){
+      UTIL.fire(classnm);
+      UTIL.fire(classnm,bodyId);
+    });
+  }
+
+};
+$(document).ready(UTIL.loadEvents);
 
 
 
