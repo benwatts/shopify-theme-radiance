@@ -194,15 +194,13 @@ function addToCart(e){
 
   if (typeof e !== 'undefined') e.preventDefault();
 
-  var id        = $(this).parents('form').find('[name="id"]').val();
-  var quantity  = $(this).parents('form').find('[name="quantity"]').val() || 1;
+  var form      = $(this).parents('form');
 
   $.ajax({
     type: 'POST',
     url: '/cart/add.js',
     async: false,
-    cache: false,
-    data: 'quantity=' + quantity + '&id=' + id,
+    data: form.serialize(),
     dataType: 'json',
     error: addToCartFail,
     success: addToCartSuccess,

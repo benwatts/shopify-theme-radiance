@@ -14,7 +14,7 @@
         </div>
 
         {% if product.available %}
-          <form action="/cart/add" method="post" class="variants" id="product-actions">
+          <form action="/cart/add" method="post" class="variants" id="product-actions" enctype="multipart/form-data">
             <div class="options clearfix">  
 
               <div class="variants-wrapper clearfix {% if product.variants.size == 1 %}visuallyhidden{% endif %}"> 

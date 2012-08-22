@@ -39,11 +39,24 @@
                 <img src="{{ item.product.featured_image | product_img_url: 'thumb' }}"  alt="{{ item.product.title }}" />
               </a>
             </td>
-            <td> <a href="{{ item.product.url }}">{{ item.title }}</a></td>
+            <td>
+              <a href="{{ item.product.url }}">{{ item.title }}</a>
+              {% for p in item.properties %}
+                {% unless p.last == blank %}
+                  {{ p.first }}:
+                  {% if p.last contains '/uploads/' %}
+                  <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                  {% else %}
+                  {{ p.last }}
+                  {% endif %}
+                  <br />
+                {% endunless %}
+              {% endfor %}
+            </td>
             <td>{{ item.price | money }}</td>
-            <td> <input class="text quantity" type="text" size="4" id="updates_{{ item.id }}" name="updates[{{ item.id }}]" value="{{ item.quantity }}" class="replace" /> </td>
+            <td> <input class="text quantity" type="text" size="4" id="updates_{{ item.id }}" name="updates[]" value="{{ item.quantity }}" class="replace" /> </td>
             <td>{{ item.line_price | money }}</td>
-            <td><a class="btn remove-from-cart" href="/cart/change?id={{ item.id }}&quantity=0">Remove</a></td>
+            <td><a class="btn remove-from-cart" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a></td>
           </tr>
           {% endfor %}
         </tbody>
