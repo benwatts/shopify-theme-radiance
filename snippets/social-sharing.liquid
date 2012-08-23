@@ -1,4 +1,4 @@
-{% if settings.share_prod_on_twitter ||  settings.share_prod_on_facebook ||  settings.share_prod_on_googleplus %}
+{% if settings.share_prod_on_twitter or  settings.share_prod_on_facebook or  settings.share_prod_on_googleplus %}
 
 <ul id="sharing">
 
@@ -17,7 +17,7 @@
   {% endif %}
 
   {% if settings.share_prod_on_googleplus %}
-  <li>
+  <li style="margin-left:40px">
     <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="120"></div>
   </li>
   {% endif %}  
