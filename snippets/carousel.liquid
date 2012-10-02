@@ -9,9 +9,9 @@
         {% if settings.show_carousel_item_1 %}
         <li>
           {% if settings.carousel_item_1_link != empty %}
-            {{ 'carousel-item-1.jpg' | asset_url | img_tag | link_to: settings.carousel_item_1_link }}
+            {{ 'carousel-item-1.jpg' | asset_url | img_tag: settings.carousel_item_1_alt | link_to: settings.carousel_item_1_link }}
           {% else %}
-            {{ 'carousel-item-1.jpg' | asset_url | img_tag }}
+            {{ 'carousel-item-1.jpg' | asset_url | img_tag: settings.carousel_item_1_alt }}
           {%endif%}
         </li>
         {% endif %}
@@ -19,9 +19,9 @@
         {% if settings.show_carousel_item_2 %}
         <li>
           {% if settings.carousel_item_2_link != empty %}
-          {{ 'carousel-item-2.jpg' | asset_url | img_tag | link_to: settings.carousel_item_2_link }}
+          {{ 'carousel-item-2.jpg' | asset_url | img_tag: settings.carousel_item_2_alt | link_to: settings.carousel_item_2_link }}
           {% else %}
-            {{ 'carousel-item-2.jpg' | asset_url | img_tag }}
+            {{ 'carousel-item-2.jpg' | asset_url | img_tag: settings.carousel_item_2_alt }}
           {%endif%}
         </li>
         {% endif %}
@@ -29,9 +29,9 @@
         {% if settings.show_carousel_item_3 %}
         <li>
           {% if settings.carousel_item_3_link != empty %}
-          {{ 'carousel-item-3.jpg' | asset_url | img_tag | link_to: settings.carousel_item_3_link }}
+          {{ 'carousel-item-3.jpg' | asset_url | img_tag: settings.carousel_item_3_alt | link_to: settings.carousel_item_3_link }}
           {% else %}
-            {{ 'carousel-item-3.jpg' | asset_url | img_tag }}
+            {{ 'carousel-item-3.jpg' | asset_url | img_tag: settings.carousel_item_3_alt }}
           {%endif%}
         </li>
         {% endif %}
@@ -39,9 +39,9 @@
         {% if settings.show_carousel_item_4 %}
         <li>
           {% if settings.carousel_item_4_link != empty %}        
-          {{ 'carousel-item-4.jpg' | asset_url | img_tag | link_to: settings.carousel_item_4_link }}
+          {{ 'carousel-item-4.jpg' | asset_url | img_tag: settings.carousel_item_4_alt | link_to: settings.carousel_item_4_link }}
           {% else %}
-            {{ 'carousel-item-4.jpg' | asset_url | img_tag }}
+            {{ 'carousel-item-4.jpg' | asset_url | img_tag: settings.carousel_item_4_alt }}
           {%endif%}
         </li>
         {% endif %}
@@ -49,9 +49,9 @@
         {% if settings.show_carousel_item_5 %}
         <li>
           {% if settings.carousel_item_5_link != empty %}        
-          {{ 'carousel-item-5.jpg' | asset_url | img_tag | link_to: settings.carousel_item_5_link }}
+          {{ 'carousel-item-5.jpg' | asset_url | img_tag: settings.carousel_item_5_alt | link_to: settings.carousel_item_5_link }}
           {% else %}
-            {{ 'carousel-item-5.jpg' | asset_url | img_tag }}
+            {{ 'carousel-item-5.jpg' | asset_url | img_tag: settings.carousel_item_5_alt }}
           {%endif%}
         </li>
         {% endif %}
@@ -59,9 +59,9 @@
         {% if settings.show_carousel_item_6 %}
         <li>
           {% if settings.carousel_item_6_link != empty %}      
-          {{ 'carousel-item-6.jpg' | asset_url | img_tag | link_to: settings.carousel_item_6_link }}
+          {{ 'carousel-item-6.jpg' | asset_url | img_tag: settings.carousel_item_6_alt | link_to: settings.carousel_item_6_link }}
           {% else %}
-            {{ 'carousel-item-6.jpg' | asset_url | img_tag }}
+            {{ 'carousel-item-6.jpg' | asset_url | img_tag: settings.carousel_item_6_alt }}
           {%endif%}
         </li>
         {% endif %}                                 
