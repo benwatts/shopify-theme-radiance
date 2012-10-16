@@ -24,7 +24,7 @@
   {% else %}
    <title>{{ page_title }} | {{ shop.name }}</title>
   {% endif %}
-  
+
   {% include 'fb-open-graph' %}
 
   {% case settings.header_font %}
@@ -49,7 +49,7 @@
   {% endif %}
 
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js' | script_tag }}
-  
+
   {{ content_for_header }}
 
 </head>
@@ -174,6 +174,7 @@
           {%if settings.sm_twitter %}<li id="sm-twitter"><a href="{{settings.sm_twitter_link}}" class="ir">Twitter</a></li>{% endif %}
           {%if settings.sm_facebook %}<li id="sm-facebook"><a href="{{settings.sm_facebook_link}}" class="ir">Facebook</a></li>{% endif %}
           {%if settings.sm_vimeo %}<li id="sm-vimeo"><a href="{{settings.sm_vimeo_link}}" class="ir">Vimeo</a></li>{% endif %}
+          {%if settings.sm_pinterest %}<li id="sm-pinterest"><a href="{{settings.sm_pinterest_link}}" class="ir">Pinterest</a></li>{% endif %}
         </ul>
       </div>
       {% endif %}
