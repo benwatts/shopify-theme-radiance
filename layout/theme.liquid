@@ -17,18 +17,6 @@
   <meta name="description" content="{{ shop.description }}" />
   {% endif %}
 
-  {% comment %}
-    Open Graph tags for Facebook Like buttons
-  {% endcomment %}
-  <meta property="og:site_name" content="{{ shop.name | escape }}" />
-  {% if template contains 'product' %}
-    <meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}" />
-  {% else %}
-    {% if settings.logo_image == "logo.png" %}
-      <meta property="og:image" content="{{ 'logo.png' | asset_url }}" />
-    {% endif %}
-  {% endif %}
-
   {% if template == 'index' %}
    <title>{{ shop.name }}</title>
   {% elsif template == '404' %}
@@ -36,8 +24,8 @@
   {% else %}
    <title>{{ page_title }} | {{ shop.name }}</title>
   {% endif %}
-
-  {{ content_for_header }}
+  
+  {% include 'fb-open-graph' %}
 
   {% case settings.header_font %}
   {% when "Rancho, cursive" %}
@@ -61,6 +49,8 @@
   {% endif %}
 
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js' | script_tag }}
+  
+  {{ content_for_header }}
 
 </head>
 
