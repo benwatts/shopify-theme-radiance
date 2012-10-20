@@ -1,28 +1,38 @@
-{% if settings.share_prod_on_twitter or  settings.share_prod_on_facebook or  settings.share_prod_on_googleplus %}
+{% if settings.share_prod_on_twitter or settings.share_prod_on_facebook or settings.share_prod_on_googleplus or settings.share_prod_on_pinterest %}
 
-<ul id="sharing">
-
+<ul id="sharing" style="width:500px; overflow:visible">
 
   {% if settings.share_prod_on_twitter %}
   <li>
     <a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a>
   </li>
   {% endif %}
+  
+  {% if settings.share_prod_on_pinterest %}
+  <li style="margin-left:10px">
+    <a href="http://pinterest.com/pin/create/button/?url={{ shop.url }}{{ product.url }}&description={{ product.title | strip_html | escape | replace: ' ', '%20' }}&media={{ product.featured_image | product_img_url: 'original' }}" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+    <script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+  </li>
+  {% endif %}
 
   {% if settings.share_prod_on_facebook %}
   <li>
     <div id="fb-root"></div>
-    <div class="fb-like" data-send="false" data-layout="button_count" data-width="" data-show-faces="false"></div>          
+    <div class="fb-like" data-send="false" data-layout="button_count" data-show-faces="false"></div>          
   </li>
   {% endif %}
 
   {% if settings.share_prod_on_googleplus %}
-  <li style="margin-left:40px">
-    <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="120"></div>
+  <li style="margin-left: 20px">
+    <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="90"></div>
   </li>
-  {% endif %}  
+  {% endif %}
 
 </ul>
+
+<style>
+#sharing iframe { width: 85px !important }
+</style>
 
 <!-- fb like button -->
 <div id="fb-root"></div>
