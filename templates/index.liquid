@@ -35,6 +35,7 @@
           </a>
           <div class="product-information">
             <span class="product-price{% if product.compare_at_price > product.price %} sale{% endif %}">
+              {% if product.available %}
               {% if product.price_varies %}
                 <small>from</small> {{ product.price_min | money }}
               {% else %}
@@ -42,6 +43,9 @@
               {% endif %}
               {% if product.compare_at_price > product.price %}
                 <small>was {{ product.compare_at_price | money }}</small>
+              {% endif %}
+              {% else %}
+              Sold Out
               {% endif %}
             </span>
 
