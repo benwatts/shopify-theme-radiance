@@ -1,6 +1,8 @@
 {% if settings.share_prod_on_twitter or settings.share_prod_on_facebook or settings.share_prod_on_googleplus or settings.share_prod_on_pinterest %}
 
-<ul id="sharing" style="width:500px; overflow:visible">
+<div id="sharing">
+
+<ul style="width:500px; overflow:visible;">
 
   {% if settings.share_prod_on_twitter %}
   <li>
@@ -27,8 +29,10 @@
     <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="90"></div>
   </li>
   {% endif %}
-
+  
 </ul>
+
+</div>
 
 <style>
 #sharing iframe { width: 85px !important }
