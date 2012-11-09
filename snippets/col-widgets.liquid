@@ -74,5 +74,47 @@
     <div class="tweets-wrapper"></div>
   </div>
   {% endif %}
+  
+  {% if settings.show_mailing_list %}
+  <div class="widget widget-mailing-list" id="widget-mailing-list">
+    {% if settings.mailing_list_title.size > 0 %}
+    <div class="widget-header">
+      <h3>{{ settings.mailing_list_title }}</h3>
+    </div>
+    {% endif %}
+    {% if settings.mailing_list_tagline.size > 0 %}
+    <div class="widget-content">
+      <p>{{ settings.mailing_list_tagline }}</p>
+    </div>
+    {% endif %}
+    {% if settings.mailing_list_type == 'mailchimp' and settings.mailchimp_form_action.size > 0 %}
+    <form action="{{ settings.mailchimp_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+      <input type="email" placeholder="your@email.com" name="EMAIL" id="email-input" />
+      <input type="submit" class="btn" value="Sign Up" name="subscribe" id="email-submit" />
+    </form>
+    {% else %}
+    {% form 'customer' %}        
+    {% if form.posted_successfully? %}
+    <p class="success feedback">Thank you for signing up!</p>
+    {% endif %}
+    {% if form.errors %}
+    <p class="error feedback">
+    {% for field in form.errors %}
+    {{ field }} {{ form.errors.messages[field] }}
+    {% endfor %}
+    </p>
+    {% endif %}
+    <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter" />
+    <input type="hidden" id="newsletter-first-name" name="contact[first_name]" value="Subscriber" />
+    <input type="hidden" id="newsletter-last-name" name="contact[last_name]" value="Newsletter" />
+    <input type="email" placeholder="your@email.com" name="contact[email]" id="email-input" />
+    <input type="submit" class="btn" value="Sign Up" name="subscribe" id="email-submit" />
+    {% if form.posted_successfully? or form.errors %}
+    <script>window.location.hash = '#widget-mailing-list';</script>
+    {% endif %}
+    {% endform %} 
+    {% endif %}
+  </div>
+  {% endif %}
 
 </div><!-- /#col-widgets -->

@@ -101,6 +101,11 @@
       "widget_linklist2": "",
       "show_widget_linklist3": false,
       "widget_linklist3": "",
+      "show_mailing_list": false,
+      "mailing_list_type": "shopify",
+      "mailchimp_form_action": "",
+      "mailing_list_title": "Newsletter",
+      "mailing_list_tagline": "We promise to only send you good things.",
       "grid_header_colour": "#666666",
       "grid_header_font_size": "24px",
       "grid_header_font_style": "normal",
@@ -283,7 +288,12 @@
       "carousel_height": "300",
       "show_widget_linklist2": false,
       "sale_background_color": "#444444",
-      "sale_text_color": "#ffffff"
+      "sale_text_color": "#ffffff",
+      "show_mailing_list": false,
+      "mailing_list_type": "shopify",
+      "mailchimp_form_action": "",
+      "mailing_list_title": "Newsletter",
+      "mailing_list_tagline": "We promise to only send you good things."
     },
     "Wood": {
       "header_font": "BebasNeueRegular, arial, sans-serif",
@@ -416,7 +426,12 @@
       "carousel_height": "300",
       "comment_date_colour": "#9a8361",
       "sale_background_color": "#444444",
-      "sale_text_color": "#ffffff"
+      "sale_text_color": "#ffffff",
+      "show_mailing_list": false,
+      "mailing_list_type": "shopify",
+      "mailchimp_form_action": "",
+      "mailing_list_title": "Newsletter",
+      "mailing_list_tagline": "We promise to only send you good things."
     },
     "Slate": {
       "header_font": "BebasNeueRegular, arial, sans-serif",
@@ -549,7 +564,12 @@
       "carousel_height": "300",
       "comment_date_colour": "#3A3D3F",
       "sale_background_color": "#444444",
-      "sale_text_color": "#ffffff"
+      "sale_text_color": "#ffffff",
+      "show_mailing_list": false,
+      "mailing_list_type": "shopify",
+      "mailchimp_form_action": "",
+      "mailing_list_title": "Newsletter",
+      "mailing_list_tagline": "We promise to only send you good things."
     }
   },
   "current": "Minimal"

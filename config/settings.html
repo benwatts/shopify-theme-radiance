@@ -710,7 +710,7 @@
   <br />
   <hr />
 
-  <h3>Link Lists </h3>
+  <h3>Link Lists</h3>
   <table>
     <tr>
       <th><label for="show_allcollections_widget">Show all collections?</label></th>
@@ -745,6 +745,41 @@
       <td><input type="checkbox" id="show_widget_linklist3" name="show_widget_linklist3" value="0" /></td>
       <th><label for="widget_linklist3">Use list: </label></th>
       <td><select class="linklist" id="widget_linklist3" name="widget_linklist3" /></td>
+    </tr>
+  </table>
+  
+  <br />
+  <hr />
+  
+  <h3>Mailing List Widget</h3>
+  <table>
+    <tr>
+      <td><label for="show_mailing_list">Display mailing list widget?</label></td>
+      <td><input type="checkbox" id="show_mailing_list" name="show_mailing_list" value="1" /></td>
+    </tr>
+    <tr>
+      <td><label for="mailing_list_type">Mailing list type</label></td>
+      <td>
+        <select name="mailing_list_type" id="mailing_list_type">
+          <option value="shopify" selected="selected">Shopify</option>
+          <option value="mailchimp">Mailchimp</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="mailchimp_form_action">Mailchimp form action <a target="_blank" href="http://support.shopify.com/customer/portal/articles/640278">( ? )</a></label></td>
+      <td><textarea id="mailchimp_form_action" name="mailchimp_form_action" class="text long" value="" /></td>
+    </tr>
+    <tr>
+      <td colspan="2"><small><a target="_blank" href="http://support.shopify.com/customer/portal/articles/640278">Where do I get my MailChimp Form Action?</a></small></td>
+    </tr>
+    <tr>
+      <td><label for="mailing_list_title">Mailing List Title</label></td>
+      <td><input id="mailing_list_title" name="mailing_list_title" class="text long" value="Newsletter" /></td>
+    </tr>
+    <tr>
+      <td><label for="mailing_list_tagline">Mailing List Tagline</label></td>
+      <td><textarea id="mailing_list_tagline" name="mailing_list_tagline" class="text long" value="We promise to only send you good things." /></td>
     </tr>
   </table>
 
