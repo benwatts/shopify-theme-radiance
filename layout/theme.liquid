@@ -107,20 +107,25 @@
 
       <div id="umbrella">
         <ul>
+          
           {% if shop.customer_accounts_enabled %}
-          <li class="customer-account-links">
             {% if customer %}
-              <p>Welcome {{ customer.first_name | escape }} {{ '(Log out)' | customer_logout_link }}</p>
+            <li>
+              Welcome {{ customer.first_name }} {{ '(Log out)' | customer_logout_link }}
+            </li>
+            <li>
+              <a href="/account">My Account</a>
+            </li>
             {% else %}
-              <p>{{ 'Log in' | customer_login_link }}</p>
+            <li>
+              {{ 'Log in' | customer_login_link }}
+            </li>
+            {% if shop.customer_accounts_optional %} 
+            <li>
+              {{ 'Create an account' | customer_register_link }}
+            </li>
             {% endif %}
-          </li>
-          {% endif %}
-
-          {% if customer %}
-          <li>
-            <a href="/account">My Account</a>
-          </li>
+            {% endif %}
           {% endif %}
 
           <li class="cart-link">

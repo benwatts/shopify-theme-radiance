@@ -1,0 +1,42 @@
+{% layout settings.customer_layout %}
+
+<div id="customer-accounts" class="content clearfix">
+
+  <!-- Create Customer -->
+  <div id="customer-register">
+    
+    <div class="page-header">
+      <h1>Create Account</h1>
+    </div>
+
+    {% form 'create_customer' %}
+    {{ form.errors | default_errors }}
+
+    <div id="first_name" class="clearfix form-row">
+      <label for="first_name" class="login">First Name</label>
+      <input type="text" value="{{ form.first_name }}" name="customer[first_name]" id="first_name" class="large" size="30" />
+    </div>
+
+    <div id="last_name" class="clearfix form-row">
+      <label for="last_name" class="login">Last Name</label>
+      <input type="text" value="{{ form.last_name }}" name="customer[last_name]" id="last_name" class="large{% if form.errors contains 'last_name' %} error{% endif %}" size="30" />
+    </div>
+
+    <div id="email" class="clearfix form-row">
+      <label for="email" class="login">Email Address</label>
+      <input type="email" value="{{ form.email }}" name="customer[email]" id="email" class="large{% if form.errors contains 'email' %} error{% endif %}" size="30" />
+    </div>
+
+    <div id="password" class="clearfix form-row">
+      <label for="password" class="login">Password</label>
+      <input type="password" value="" name="customer[password]" id="password" class="large password{% if form.errors contains 'password' %} error{% endif %}" size="30" />
+    </div>
+
+    <div class="action_bottom">
+      <input class="btn" type="submit" value="Create" />
+    </div>
+    {% endform %}
+  
+  </div><!-- /#customer-register -->
+
+</div>
