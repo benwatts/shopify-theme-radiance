@@ -171,7 +171,7 @@
         <p>&copy; {{ 'now' | date: '%Y' }} <a href="/">{{ shop.name }}</a>. All Rights Reserved.<br />{{ powered_by_link }}</p>
       </div>
 
-      {%if settings.sm_facebook || settings.sm_twitter || settings.sm_youtube || settings.sm_flickr %}
+      {% if settings.sm_facebook or settings.sm_twitter or settings.sm_youtube or settings.sm_flickr or settings.sm_pinterest %}
       <div id="footer-right">
         <ul id="sm-icons" class="clearfix">
           {%if settings.sm_youtube %}<li id="sm-youtube"><a href="{{settings.sm_youtube_link}}" class="ir">YouTube</a></li>{% endif %}
