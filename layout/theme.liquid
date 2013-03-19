@@ -8,13 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <link rel="canonical" href="{{ canonical_url }}" />
 
-  {% assign maxmeta = 155 %}
-  {% if template contains 'product' %}
-  <meta name="description" content="{{ product.description | strip_html | strip_newlines | truncate: maxmeta | escape }}" />
-  {% elsif template contains 'page' %}
-  <meta name="description" content="{{ page.content | strip_html | strip_newlines | truncate: maxmeta | escape }}" />
-  {% elsif template == 'index' and shop.description != '' %}
-  <meta name="description" content="{{ shop.description }}" />
+  {% if page_description %}
+  <meta name="description" content="{{ page_description }}" />
   {% endif %}
 
   {% if template == 'index' %}
