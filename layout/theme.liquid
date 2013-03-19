@@ -170,19 +170,20 @@
         </ul>
         <p>&copy; {{ 'now' | date: '%Y' }} <a href="/">{{ shop.name }}</a>. All Rights Reserved.<br />{{ powered_by_link }}</p>
       </div>
-
-      {% if settings.sm_facebook or settings.sm_twitter or settings.sm_youtube or settings.sm_flickr or settings.sm_pinterest %}
+      
       <div id="footer-right">
         <ul id="sm-icons" class="clearfix">
-          {%if settings.sm_youtube %}<li id="sm-youtube"><a href="{{settings.sm_youtube_link}}" class="ir">YouTube</a></li>{% endif %}
-          {%if settings.sm_flickr %}<li id="sm-flickr"><a href="{{settings.sm_flickr_link}}" class="ir">Flickr</a></li>{% endif %}
-          {%if settings.sm_twitter %}<li id="sm-twitter"><a href="{{settings.sm_twitter_link}}" class="ir">Twitter</a></li>{% endif %}
-          {%if settings.sm_facebook %}<li id="sm-facebook"><a href="{{settings.sm_facebook_link}}" class="ir">Facebook</a></li>{% endif %}
-          {%if settings.sm_vimeo %}<li id="sm-vimeo"><a href="{{settings.sm_vimeo_link}}" class="ir">Vimeo</a></li>{% endif %}
-          {%if settings.sm_pinterest %}<li id="sm-pinterest"><a href="{{settings.sm_pinterest_link}}" class="ir">Pinterest</a></li>{% endif %}
+          {% if settings.twitter_link != '' %}<li><a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter" class="icon-social twitter ir">Twitter</a></li>{% endif %}
+          {% if settings.facebook_link != '' %}<li><a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook" class="icon-social facebook ir">Facebook</a></li>{% endif %}
+          {% if settings.youtube_link != '' %}<li><a href="{{ settings.youtube_link }}" title="{{ shop.name }} on YouTube" class="icon-social youtube ir">YouTube</a></li>{% endif %}
+          {% if settings.atom_link != '' %}<li><a href="{{ settings.atom_link }}" title="{{ shop.name }} news" class="icon-social atom ir">Blog feed</a></li>{% endif %}
+          {% if settings.instagram_link != '' %}<li><a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram" class="icon-social instagram ir">Instagram</a></li>{% endif %}
+          {% if settings.pinterest_link != '' %}<li><a href="{{ settings.pinterest_link }}" title="{{ shop.name }} on Pinterest" class="icon-social pinterest ir">Pinterest</a></li>{% endif %}
+          {% if settings.vimeo_link != '' %}<li><a href="{{ settings.vimeo_link }}" title="{{ shop.name }} on Vimeo" class="icon-social vimeo ir">Vimeo</a></li>{% endif %}
+          {% if settings.tumblr_link != '' %}<li><a href="{{ settings.tumblr_link }}" title="{{ shop.name }} on Tumblr" class="icon-social tumblr ir">Tumblr</a></li>{% endif %}
+          {% if settings.google_link != '' %}<li><a href="{{ settings.google_link }}" title="{{ shop.name }} on Google+" class="icon-social google ir">Google+</a></li>{% endif %}
         </ul>
       </div>
-      {% endif %}
 
       {% if settings.show_amex or settings.show_discover or settings.show_visa or settings.show_mastercard or settings.show_maestro or settings.show_cirrus or settings.show_paypal or settings.show_google %}
       <div id="footer-payment-methods">
