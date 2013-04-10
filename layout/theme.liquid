@@ -231,7 +231,6 @@
           $('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}") + '</strong> <span class="compare_at_price">was <del>' + Shopify.formatMoney(variant.compare_at_price, "{{shop.money_with_currency_format}}") + '</del></span>');
         }
       } else {
-        // variant doesn't exist
         $('#add-to-cart').addClass('disabled').attr('disabled', 'disabled'); // set add-to-cart button to unavailable class and disable button
         var message = variant ? "Sold Out" : "Unavailable";
         $('.options .price').text(message); // update price-field message
@@ -241,15 +240,23 @@
     // initialize multi selector for product
     $(function() {
       new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+      
+      // Add label if only one product option and it isn't 'Title'.
+      {% if product.options.size == 1 and product.options.first != 'Title' %}
+      $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
+      {% endif %}
+  
+      // Auto-select first available variant on page load.
       {% assign found_one_in_stock = false %}
       {% for variant in product.variants %}
         {% if variant.available and found_one_in_stock == false %}
           {% assign found_one_in_stock = true %}
           {% for option in product.options %}
-          $('.single-option-selector:eq(' + {{ forloop.index0 }} + ')').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+            $('.single-option-selector:eq({{ forloop.index0 }})').val({{ variant.options[forloop.index0] | json }}).trigger('change');
           {% endfor %}
         {% endif %}
       {% endfor %}
+      
     });
   </script>
   {% endif %}

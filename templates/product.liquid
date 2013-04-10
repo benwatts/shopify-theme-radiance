@@ -14,10 +14,16 @@
         </div>
 
         {% if product.available %}
+        
+          {% assign hide_default_title = false %}
+          {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+            {% assign hide_default_title = true %}
+          {% endif %} 
+          
           <form action="/cart/add" method="post" class="variants" id="product-actions" enctype="multipart/form-data">
             <div class="options clearfix">  
 
-              <div class="variants-wrapper clearfix {% if product.variants.size == 1 %}visuallyhidden{% endif %}"> 
+              <div class="variants-wrapper clearfix {% if hide_default_title %}visuallyhidden{% endif %}"> 
                 <select id="product-select" name="id">
                   {% for variant in product.variants %}
                   <option value="{{ variant.id }}">{{ variant.title | escape }} - {{ variant.price | money }}</option>
