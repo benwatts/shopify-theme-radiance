@@ -56,7 +56,7 @@
 
     </div><!-- /#product-information -->
     
-    <div id="product-gallery"{% if settings.main_image_display == 'Zoom-in' %} class="zoom-in"{% endif %}>
+    <div id="product-gallery"{% if settings.main_image_display == 'Zoom-in' and product.images.size > 0 %} class="zoom-in"{% endif %}>
 
       <div id="active-wrapper">
         {% if settings.main_image_display == 'Lightbox' %}
