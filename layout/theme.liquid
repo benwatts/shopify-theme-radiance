@@ -205,19 +205,6 @@
   </script>
   <![endif]-->
 
-  {% if settings.twitterwidget_visible and settings.show_right_column %}
-    {{ 'jquery.tweet.js' | asset_url | script_tag }}
-    <script>
-      $(".tweets-wrapper").tweet(
-        {
-          count: {{ settings.twitterwidget_numtweets }},
-          username: "{{ settings.twitterwidget_username }}",
-          loading_text: "loading tweets...",
-          template: function(i){ return i["text"]
-        }
-      });
-    </script>
-  {% endif %}
 
   {% if product.available %}
   <script>
