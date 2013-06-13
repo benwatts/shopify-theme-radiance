@@ -8,7 +8,7 @@
     {{ article.content }}
 
     <footer class="article-extras">
-      <p class="author">Written by {{ article.author | escape }} &mdash; {{ article.created_at | date: "%B %d, %Y" }}</p>
+      <p class="author">Written by {{ article.author | escape }} &mdash; {{ article.published_at | date: "%B %d, %Y" }}</p>
     </footer>
   </article>
 

@@ -14,7 +14,7 @@
     {{ article.excerpt_or_content }}
 
     <footer class="article-extras clearfix">
-      <p class="author">Written by {{ article.author | escape }} &mdash; {{ article.created_at | date: "%B %d, %Y" }}</p>
+      <p class="author">Written by {{ article.author | escape }} &mdash; {{ article.published_at | date: "%B %d, %Y" }}</p>
       <p class="comments-link">
         {% if article.comments_enabled? %}
           {% if article.comments_count > 0 %}
