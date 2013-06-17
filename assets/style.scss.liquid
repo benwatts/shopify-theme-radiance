@@ -1374,7 +1374,7 @@ col.checkout-delete{ width: 80px; }
 
 #bottom{
   padding: 15px 0;
-  {% unless ((settings.footer_bg_colour == settings.bg_colour) and (settings.body_bg_img == "none")) %}
+  {% unless settings.footer_bg_colour == settings.bg_colour and settings.body_bg_img == "none" %}
   padding-left: 20px;
   padding-right: 20px;
   {% endunless %}
@@ -1430,14 +1430,15 @@ col.checkout-delete{ width: 80px; }
   margin: 0 0 0 5px;
   padding: 0;
   }
+  
+@function get-social-icons() {
+  @return if( lightness({{ settings.footer_bg_colour }}) > 50, "{{ 'social-icons-light-bg.png'  | asset_url }}", "{{ 'social-icons-dark-bg.png' | asset_url }}" );
+  }  
+  
 .icon-social{
   width: 32px;
   height: 32px;
-  {% if settings.sm_colour == 'white' %}
-  background: url({{ 'social-icons-dark-bg.png'  | asset_url }}) no-repeat;
-  {% else %}
-  background: url({{ 'social-icons-light-bg.png' | asset_url }}) no-repeat;
-  {% endif %}
+  background: url(get-social-icons()) no-repeat;
   display: block;
   }
   
