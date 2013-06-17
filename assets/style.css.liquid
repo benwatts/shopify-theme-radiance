@@ -1174,13 +1174,13 @@ article footer .btn { padding: 2px 10px; }
   color: {{ settings.comment_text_colour }}
   }
 .comment-arrow{
-  width:0px;
-  height:0px;
+  width:0;
+  height:0;
   border-bottom:8px solid transparent;
   border-top:8px solid transparent;
-  border-right:8px solid {{ settings.comment_bg }}; /* arrow colour */
-  font-size:0px;
-  line-height:0px;
+  border-right:8px solid {{ settings.comment_bg }};
+  font-size:0;
+  line-height:0;
   position: absolute;
   top: 14px;
   left: -8px;
@@ -1214,7 +1214,7 @@ article footer .btn { padding: 2px 10px; }
   color: #666;
   }
 .comment-form .text:focus{
-  border-color: {{settings.primary_colour}};
+  border-color: {{settings.content_text_colour}};
   }
 .comment-form textarea.text{
   width: 500px;
@@ -1227,7 +1227,7 @@ article footer .btn { padding: 2px 10px; }
 .has-error .text{
   border: solid 1px #ff0000;
   -webit-box-shadow: 0 0 4px rgba(255,0,0,.6);
-  -moz-box-shadow: 0 0 4px rgba(255,0,0,6);
+  -moz-box-shadow: 0 0 4px rgba(255,0,0,.6);
   box-shadow: 0 0 4px rgba(255,0,0,.6);
   }
 
@@ -1237,7 +1237,7 @@ article footer .btn { padding: 2px 10px; }
   padding: 10px;
   color: #fff;
   text-align: left;
-  background: url({{ 'btn-small-depth.png' | asset_url }} 0 100% repeat-x);
+  background: url({{ 'btn-small-depth.png' | asset_url }}) 0 100% repeat-x;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -1316,7 +1316,7 @@ col.checkout-delete{ width: 80px; }
 
 
 #cartform td img{ display: block; }
-#cartform input.text { border: solid 1px {{settings.primary_colour}}; padding: 4px; color: {{settings.primary_colour}}; text-align: center; }
+#cartform input.text { border: solid 1px {{settings.content_text_colour}}; padding: 4px; color: {{settings.content_text_colour}}; text-align: center; }
 
 #cartform .subtotal{
   text-align: center;
