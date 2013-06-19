@@ -72,7 +72,7 @@ var RADIANCE = {
 
   templateProduct : {
     init: function(){
-      $('#add-to-cart').bind( 'click', addToCart );
+      $('#product-actions').bind( 'submit', addToCart );
       $('#product-gallery.zoom-in').enhanceGallery();
       $('#thumbs li:nth-child(5n+5)').addClass('last-in-row');
     }
@@ -194,7 +194,7 @@ function addToCart(e){
 
   if (typeof e !== 'undefined') e.preventDefault();
 
-  var form      = $(this).parents('form');
+  var form      = $(this);
 
   $.ajax({
     type: 'POST',
