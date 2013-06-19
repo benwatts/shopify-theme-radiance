@@ -429,18 +429,18 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
 #umbrella .num-items-in-cart .icon{
   display: block;
   padding: 0 0 0 26px;
-  {% if settings.cart_icon_colour == "black" %}
-  background: url({{ 'cart-icons.png' | asset_url }}) 0 0 no-repeat;
-  {% else %}
-  background: url({{ 'cart-icons.png' | asset_url }}) 0 -58px no-repeat;
-  {% endif %}
+  @if lightness({{settings.cart_bg_colour}}) > 50 {
+    background: url({{ 'cart-icons.png' | asset_url }}) 0 0 no-repeat;    
+  } @else {
+    background: url({{ 'cart-icons.png' | asset_url }}) 0 -58px no-repeat;
+  }
   }
 #umbrella .num-items-in-cart:hover .icon{
-  {% if settings.cart_icon_colour == "black" %}
-  background: url({{ 'cart-icons.png' | asset_url }}) 0 -29px no-repeat;
-  {% else %}
-  background: url({{ 'cart-icons.png' | asset_url }}) 0 -87px no-repeat;
-  {% endif %}
+  @if lightness({{settings.cart_bg_colour}}) > 50 {
+    background: url({{ 'cart-icons.png' | asset_url }}) 0 -29px no-repeat;    
+  } @else {
+    background: url({{ 'cart-icons.png' | asset_url }}) 0 -87px no-repeat;
+  }
   }
 
 #umbrella .checkout-link{
@@ -1431,14 +1431,14 @@ col.checkout-delete{ width: 80px; }
   padding: 0;
   }
   
-@function get-social-icons() {
-  @return if( lightness({{ settings.footer_bg_colour }}) > 50, "{{ 'social-icons-light-bg.png'  | asset_url }}", "{{ 'social-icons-dark-bg.png' | asset_url }}" );
-  }  
-  
 .icon-social{
   width: 32px;
   height: 32px;
-  background: url(get-social-icons()) no-repeat;
+  @if lightness({{ settings.footer_bg_colour }}) > 50 {
+    background: url({{ 'social-icons-light-bg.png'  | asset_url }}) no-repeat;
+  } @else {
+    background: url({{ 'social-icons-dark-bg.png' | asset_url }}) no-repeat;
+  }
   display: block;
   }
   
