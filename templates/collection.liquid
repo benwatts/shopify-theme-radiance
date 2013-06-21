@@ -1,3 +1,4 @@
+{% paginate collection.products by 12 %}
 <div id="col-main" class="{{ collection.handle }}">
 
   <section class="diagonal-divider clearfix">
@@ -8,7 +9,7 @@
       {% endif %}
     </header>
 
-    {% paginate collection.products by 12 %}
+    
       {% if collection.products.size > 0 %}
     
         <ul class="product-grid clearfix">
