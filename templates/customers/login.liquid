@@ -7,6 +7,8 @@
     <div class="page-header">
       <h1>Customer Login</h1>
     </div>
+    
+    <p id="success_pw" style="font-weight: bold;"></p>
 
     {% form 'customer_login' %}
       {{ form.errors | default_errors }}
@@ -44,6 +46,10 @@
 
     {% form 'recover_customer_password' %}
       {{ form.errors | default_errors }}
+
+      {% if form.posted_successfully? %}
+      <p class="success_pw">An email has been sent containing password reset instructions.</p>
+      {% endif %}
 
       <div id="recover_email" class="clearfix large_form">
         <label for="email" class="large">Email</label>
@@ -91,4 +97,10 @@
     document.getElementById('customer-login').style.display = 'block';
     return false;
   }
+  
+  $(window).load(function() {
+    var message = $('.success_pw').html();
+    $('#success_pw').html(message);
+  });
+  
 </script>
