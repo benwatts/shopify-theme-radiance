@@ -6,7 +6,8 @@
 
   {% if cart.items == empty %} 
     <p class="empty">Your shopping cart is empty. Check out our <a href="/collections/all">catalog</a> to see what's available.</p>
-
+	{% if settings.show_right_column == false %}{% assign limit = 4 %}{% else %}{% assign limit = 5 %}{% endif %}
+	{% include 'featured-products' %}
   {% else %}
     <form action="/cart" method="post" id="cartform" class="clearfix">
 
@@ -90,5 +91,4 @@
 
     </form>
   {% endif %}
-
 </div><!--/#col-main -->
