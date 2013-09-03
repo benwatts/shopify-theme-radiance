@@ -17,8 +17,7 @@
  * - https://github.com/benwatts/shopify-theme-radiance
  */
 
-
-{%if settings.header_font == 'BebasNeueRegular, arial, sans-serif' %}
+{% if settings.header_font == 'BebasNeueRegular, arial, sans-serif' %}
 /**
  * See: http://www.fontsquirrel.com/fonts/bebas-neue
  * Redistributed in this theme with permission from Dharma Type - March 26, 2011
@@ -782,14 +781,13 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
   }
 
 
-
 /**
  * Content
  */
 
 .content{
   padding-bottom: 20px;
-  {% unless ((settings.content_bg_colour == settings.bg_colour) and (settings.body_bg_img == "none")) %}
+  {% unless settings.content_bg_colour == settings.bg_colour and settings.body_bg_img == "none" %}
   padding: 20px;
   {% endunless %}
 
@@ -800,7 +798,7 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
   border-radius: 4px 4px 0 0;
   }
 .content.description{ /* collection descriptions */
-  {% unless (settings.content_bg_colour == settings.bg_colour) and (settings.body_bg_img == "none") %}
+  {% unless settings.content_bg_colour == settings.bg_colour and settings.body_bg_img == "none" %}
   padding: 10px 20px 0 20px;
   {% endunless %}
 

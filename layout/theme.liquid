@@ -159,7 +159,7 @@
 
       <div id="footer-left">
         <ul id="footer-nav" class="clearfix">
-        {% for link in linklists.[settings.footer_linklist].links %}
+        {% for link in linklists[settings.footer_linklist].links %}
           <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
         {% endfor %}
         </ul>
