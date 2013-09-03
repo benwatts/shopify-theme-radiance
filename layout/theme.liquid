@@ -185,14 +185,14 @@
       {% if settings.show_amex or settings.show_discover or settings.show_visa or settings.show_mastercard or settings.show_maestro or settings.show_cirrus or settings.show_paypal or settings.show_google %}
       <div id="footer-payment-methods">
         <p>Payment methods we accept</p>
-        {% if settings.show_amex %}       {{ 'cc-amex.png' | asset_url | img_tag }} {% endif %}
-        {% if settings.show_discover %}   {{ 'cc-discover.png' | asset_url | img_tag }} {% endif %}
-        {% if settings.show_visa %}       {{ 'cc-visa.png' | asset_url | img_tag }} {% endif %}
-        {% if settings.show_mastercard %} {{ 'cc-mastercard.png' | asset_url | img_tag }} {% endif %}
-        {% if settings.show_maestro %}    {{ 'cc-maestro.png' | asset_url | img_tag }} {% endif %}
-        {% if settings.show_cirrus %}     {{ 'cc-cirrus.png' | asset_url | img_tag }} {% endif %}
-        {% if settings.show_paypal %}     {{ 'cc-paypal.png' | asset_url | img_tag }} {% endif %}
-        {% if settings.show_google %}     {{ 'cc-google.png' | asset_url | img_tag }} {% endif %}
+        {% if settings.show_amex %}       {{ 'cc-amex.png' | asset_url | img_tag: 'We accept Amex' }} {% endif %}
+        {% if settings.show_discover %}   {{ 'cc-discover.png' | asset_url | img_tag: 'We accept Discover' }} {% endif %}
+        {% if settings.show_visa %}       {{ 'cc-visa.png' | asset_url | img_tag: 'We accept Visa' }} {% endif %}
+        {% if settings.show_mastercard %} {{ 'cc-mastercard.png' | asset_url | img_tag: 'We accept Mastercard' }} {% endif %}
+        {% if settings.show_maestro %}    {{ 'cc-maestro.png' | asset_url | img_tag: 'We accept Maestro' }} {% endif %}
+        {% if settings.show_cirrus %}     {{ 'cc-cirrus.png' | asset_url | img_tag: 'We accept Cirrus' }} {% endif %}
+        {% if settings.show_paypal %}     {{ 'cc-paypal.png' | asset_url | img_tag: 'You can check out using Paypal' }} {% endif %}
+        {% if settings.show_google %}     {{ 'cc-google.png' | asset_url | img_tag: 'You can check out using Google Wallet' }} {% endif %}
       </div>
       {% endif %}
 
