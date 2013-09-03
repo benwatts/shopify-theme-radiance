@@ -5,7 +5,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
   <link rel="canonical" href="{{ canonical_url }}" />
 
   {% if page_description %}
@@ -269,7 +269,7 @@
   {{ 'hoverintent.jquery.js' | asset_url | script_tag }}
   {{ 'radiance.js' | asset_url | script_tag }}
 
-  <script type="text/javascript" charset="utf-8">
+  <script>
   //<![CDATA[
 
   // Including api.jquery.js conditionnally.
