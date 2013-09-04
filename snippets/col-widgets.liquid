@@ -7,7 +7,7 @@
       <h3>{{ settings.textwidget_title }}</h3>
     </div>
     <div class="widget-content">
-      {{ settings.textwidget_content }}
+      {{ settings.textwidget_content | newline_to_br }}
     </div>
   </section>
   {% endif %}
