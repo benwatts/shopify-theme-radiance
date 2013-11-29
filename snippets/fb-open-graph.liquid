@@ -7,7 +7,7 @@ See the Facebook Linter: http://developers.facebook.com/tools/debug
   <meta property="og:url" content="{{ shop.url }}{{ product.url }}" />
   <meta property="og:title" content="{{ product.title }}" />
   <meta property="og:description" content="{{ product.description | strip_html | truncatewords: 100, '' | escape  }}" />
-  <meta property="og:image" content="{{ product.featured_image | product_img_url: 'medium' }}" />
+  <meta property="og:image" content="{{ product.featured_image | product_img_url: 'medium' | prepend: 'http:' }}" />
 {% elsif template contains 'article' %}
   <meta property="og:url" content="{{ shop.url }}{{ article.url }}" />
   <meta property="og:title" content="{{ article.title }}" />
@@ -19,6 +19,6 @@ See the Facebook Linter: http://developers.facebook.com/tools/debug
  {% endif %}
 {% else %}
   {% if settings.logo_image == 'logo.png' %}
-    <meta property="og:image" content="{{ 'logo.png' | asset_url }}" />
+    <meta property="og:image" content="{{ 'logo.png' | asset_url | prepend: 'http:' }}" />
   {% endif %}
 {% endif %}
