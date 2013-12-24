@@ -12,15 +12,9 @@
   <meta name="description" content="{{ page_description }}" />
   {% endif %}
 
-  {% if template == 'index'and page_title == 'Welcome' %}
-  <title>{{ shop.name }} | Welcome</title>
-  {% elsif template == 'index' %}
-  <title>{{ page_title }}</title>
-  {% elsif template == '404' %}
-  <title>Page Not Found | {{ shop.name }}</title>
-  {% else %}
-  <title>{{ page_title }} | {{ shop.name }}</title>
-  {% endif %}
+  <title>
+    {% if template == 'index' %}{% if page_title contains 'Welcome' %}{{ shop.name }} &ndash; Welcome{% else %}{{ page_title }}{% endif %}{% elsif template == '404' %}Page Not Found{% elsif page_title contains shop.name %}{{ page_title }}{% else %}{{ page_title }} &ndash; {{ shop.name }}{% endif %}
+  </title>
 
   {% include 'fb-open-graph' %}
 
