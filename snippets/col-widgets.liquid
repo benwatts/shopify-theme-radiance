@@ -70,7 +70,7 @@
     <div class="widget-header">
       <h3>{{ blogs[settings.widget_blog].title}}</h3>
     </div>
-      {% for a in blogs.news.articles limit: 3 %}
+      {% for a in blogs[settings.widget_blog].articles limit: 3 %}
         <h4><a href="{{ a.url }}">{{ a.title }}</a></h4>
         <p>{{ a.content | strip_html | truncatewords:30 }}</p>
     {% endfor %}
