@@ -229,7 +229,7 @@ body { text-align: center; }
   }
 
 #site-title{
-  font: {{settings.header_font_style}} {{settings.header_font_size}}/1.0 {{settings.header_font}};
+  font: {{settings.logo_font_style}} {{settings.logo_font_size}}/1.0 {{settings.header_font}};
   color: {{settings.logo_colour}};
   margin: 0;
   }
@@ -467,8 +467,8 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
   }
 
  .section-title{
-  font: {{settings.grid_header_font_style}} {{settings.grid_header_font_size}}/1 {{settings.header_font}};
-  color: {{ settings.grid_header_colour}};
+  font: {{settings.header_font_style}} {{settings.header_font_size}}/1 {{settings.header_font}};
+  color: {{ settings.content_header_colour}};
   float: left;
   margin: 0;
   }
@@ -555,7 +555,7 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
   border-radius: 0 0 4px 4px;
   }
 .product-information h3{
-  font: {{settings.home_featured_product_font_style}} {{settings.home_featured_product_font_size}}/1 {{settings.header_font}};
+  font: {{settings.header_font_style}} 24px/1 {{settings.header_font}};
   margin: 5px 0 10px 0;
   }
 .product-information p{
@@ -650,8 +650,8 @@ body{ border-top: solid 4px {{settings.cart_bg_colour}}; }
   }
 #product-title{
   margin: 0 0 5px 0;
-  font-size: {{ settings.product_name_font_size }};
-  font-style: {{ settings.product_name_font_style }};
+  font-size: {{settings.header_font_size}};
+  font-style: {{settings.header_font_style}};
   }
 #product-vendor{
   font-size: 12px;
@@ -1478,6 +1478,12 @@ col.checkout-delete{ width: 80px; }
   margin: 0 0 5px 0;
   text-transform: uppercase;
   }
+#footer-payment-methods img{
+  width: 50px;
+  }
+.ie6 #footer-payment-methods, .ie7 #footer-payment-methods, .ie8 #footer-payment-methods {
+  display: none;
+  } 
 
 /**
  * Homepage Carousel
@@ -1771,4 +1777,3 @@ a.btn:hover{
   line-height: 2;
   color: red;
 }
-

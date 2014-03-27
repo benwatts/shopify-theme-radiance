@@ -4,12 +4,13 @@
     <h2 id="page-title">Shopping Cart</h2>
   </div>
 
-  {% if cart.items == empty %} 
-    <p class="empty">Your shopping cart is empty. Check out our <a href="/collections/all">catalog</a> to see what's available.</p>
-	{% if settings.show_right_column == false %}{% assign limit = 4 %}{% else %}{% assign limit = 5 %}{% endif %}
-	{% include 'featured-products' %}
+  {% if cart.item_count == 0 %} 
+  <p class="empty">Your shopping cart is empty. Check out our <a href="/collections/all">catalog</a> to see what's available.</p>
+	{% if settings.show_right_column %}{% assign limit = 5 %}{% else %}{% assign limit = 4 %}{% endif %}
+	{% include 'featured-products' with limit %}
   {% else %}
-    <form action="/cart" method="post" id="cartform" class="clearfix">
+  
+  <form action="/cart" method="post" id="cartform" class="clearfix">
 
       <table class="items">
         <colgroup>

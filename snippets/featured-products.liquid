@@ -1,23 +1,21 @@
-{% if settings.featured_collection_visible == true %}
-    {% if settings.featured_collection_name and settings.featured_collection_name != "" %}
-    {% if collections[settings.featured_collection_name].products.size > 0 %}
-
-<section id="featured-products" class="clearfix {% if template == "search" or settings.show_right_column == false %}featured-narrow{% endif %}">
+{% if settings.featured_collection_visible %}
+  {% unless settings.featured_collection_name == blank or collections[settings.featured_collection_name].empty? or collections[settings.featured_collection_name].products_count == 0 %}
+  <section id="featured-products" class="clearfix {% if template == "search" or settings.show_right_column == false %}featured-narrow{% endif %}">
     <header class="section-details clearfix">
       <h2 class="section-title">{{ settings.featured_collection_title }}</h2>
-    </header>
-  
+    </header>  
 		<ul class="product-grid clearfix">
-          {% for product in collections[settings.featured_collection_name].products | limit: limit %}
-          <li{% if template == "search" or settings.show_right_column == false %}{% cycle '', '', '', ' class="last-in-row"' %}{% else %}{% cycle '', '', '', '', ' class="last-in-row"' %}{% endif %}>
-            {% include 'product-grid-item' %}
-          </li>
+    {% for product in collections[settings.featured_collection_name].products limit: featured-products %}
+      <li
+        {% if featured-products == 4 %}
+        {% cycle '', '', '', ' class="last-in-row"' %}
+        {% else %}
+        {% cycle '', '', '', '', ' class="last-in-row"' %}
+        {% endif %}>
+        {% include 'product-grid-item' %}
+      </li>
         {% endfor %}
-        </ul>
-</section>
-    {% endif %}
-    
-    {% else %}
-      <p class="notice">Please select a collection of items to display here on the <a href="/admin/themes/current/settings">settings page</a>, or disable this item so it no longer appears here on the product page.</p>
-    {% endif %} 
+     </ul>
+  </section>
+  {% endunless %}
 {% endif %}

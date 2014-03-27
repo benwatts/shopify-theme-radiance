@@ -34,8 +34,9 @@
     {% include 'pagination' %}
     {% endpaginate %}
   {% endif %}
+  
   {% if search.results == empty %}
-      {% assign limit = 4 %}
-      {% include 'featured-products' %}
+    {% include 'featured-products' with 4 %}
   {% endif %}
+  
 </div><!-- /#col-main -->
