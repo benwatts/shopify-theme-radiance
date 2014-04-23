@@ -9,11 +9,11 @@
   <link rel="canonical" href="{{ canonical_url }}" />
 
   {% if page_description %}
-  <meta name="description" content="{{ page_description }}" />
+  <meta name="description" content="{{ page_description | escape }}" />
   {% endif %}
 
   <title>
-    {% if template == 'index' %}{% if page_title contains 'Welcome' %}{{ shop.name }} &ndash; Welcome{% else %}{{ page_title }}{% endif %}{% elsif template == '404' %}Page Not Found{% elsif page_title contains shop.name %}{{ page_title }}{% else %}{{ page_title }} &ndash; {{ shop.name }}{% endif %}
+  {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
   </title>
 
   {% include 'fb-open-graph' %}
@@ -21,17 +21,17 @@
 
   {% case settings.header_font %}
   {% when "Rancho, cursive" %}
-    <link href='http://fonts.googleapis.com/css?family=Rancho' rel='stylesheet' type='text/css'>
+    {{ '//fonts.googleapis.com/css?family=Rancho' | stylesheet_tag }}
   {% when "'Amatic SC', cursive" %}
-    <link href='http://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' type='text/css'>
+    {{ '//fonts.googleapis.com/css?family=Amatic+SC:700' | stylesheet_tag }}
   {% when "'Sancreek', cursive" %}
-    <link href='http://fonts.googleapis.com/css?family=Sancreek' rel='stylesheet' type='text/css'>
+    {{ '//fonts.googleapis.com/css?family=Sancreek' | stylesheet_tag }}
   {% when "'Ubuntu Condensed', sans-serif" %}
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+    {{ '//fonts.googleapis.com/css?family=Ubuntu+Condensed' | stylesheet_tag }}
   {% endcase %}
 
-  {{ 'style.scss.css' | asset_url | stylesheet_tag }}{% if template contains 'product' and settings.main_image_display == 'Lightbox' %}
-  {{ 'jquery.fancybox-1.3.4.css' | asset_url | stylesheet_tag }}{% endif %}
+  {{ 'style.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'jquery.fancybox-1.3.4.css' | asset_url | stylesheet_tag }}
   {{ 'modernizr.js' | asset_url | script_tag }}
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
 
@@ -177,14 +177,14 @@
         </ul>
       </div>
 
-      {% if shop.enabled_payment_types.size > 0 %}
+      {% unless shop.enabled_payment_types == empty %}
       <div id="footer-payment-methods">
         <p>Payment methods we accept</p>
         {% for type in shop.enabled_payment_types %}
         <img src="{{ type | payment_type_img_url }}" />
         {% endfor %}
       </div>
-      {% endif %}
+      {% endunless %}
 
     </footer>
 
@@ -205,9 +205,9 @@
         // selected a valid variant
         $('#add-to-cart').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
         if(variant.compare_at_price == null){
-          $('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}")+'</strong>');
+          $('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{ shop.money_with_currency_format }}")+'</strong>');
         } else {
-          $('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}") + '</strong> <span class="compare_at_price">was <del>' + Shopify.formatMoney(variant.compare_at_price, "{{shop.money_with_currency_format}}") + '</del></span>');
+          $('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{ shop.money_with_currency_format }}") + '</strong> <span class="compare_at_price">was <del>' + Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_with_currency_format }}") + '</del></span>');
         }
       } else {
         $('#add-to-cart').addClass('disabled').attr('disabled', 'disabled'); // set add-to-cart button to unavailable class and disable button
@@ -244,31 +244,18 @@
     {{ 'jquery.tools.min.js' | asset_url | script_tag }}
   {% endif %}
 
-  {% if template contains 'product' and settings.main_image_display == 'Lightbox' %}
   {{ 'jquery.easing-1.3.pack.js' | asset_url | script_tag }}
   {{ 'jquery.mousewheel-3.0.4.pack.js' | asset_url | script_tag }}
   {{ 'jquery.fancybox-1.3.4.pack.js' | asset_url | script_tag }}
   <script>
-  $("a[rel='fancybox']").fancybox({
+  $('a[rel="fancybox"]').fancybox({
     'hideOnContentClick': true
   });
   </script>
-  {% endif %}
 
   {{ 'enhance.jquery.js' | asset_url | script_tag }}
   {{ 'hoverintent.jquery.js' | asset_url | script_tag }}
   {{ 'radiance.js' | asset_url | script_tag }}
-
-  <script>
-  //<![CDATA[
-
-  // Including api.jquery.js conditionnally.
-  if (typeof Shopify.onCartShippingRatesUpdate === 'undefined') {
-    document.write({{ "api.jquery.js" | shopify_asset_url | script_tag | json }});
-  }
-
-  //]]>
-  </script>
 
 </body>
 </html>

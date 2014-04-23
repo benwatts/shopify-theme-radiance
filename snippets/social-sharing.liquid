@@ -13,7 +13,7 @@
   {% if settings.share_prod_on_pinterest %}
   <li style="margin-left:10px; width:80px">
     <a href="http://pinterest.com/pin/create/button/?url={{ shop.url }}{{ product.url }}&description={{ product.title | strip_html | escape | replace: ' ', '%20' }}&media={{ product.featured_image | product_img_url: 'original' }}" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
-    <script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+    <script src="//assets.pinterest.com/js/pinit.js"></script>
   </li>
   {% endif %}
 
@@ -52,7 +52,7 @@
 <script defer type="text/javascript">
   (function() {
     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
+    po.src = '//apis.google.com/js/plusone.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
   })();
 </script>
