@@ -191,10 +191,11 @@ function setupDropdownMenus(){
  * Ajaxy add-to-cart
  */
 function addToCart(e){
+	
+	var form = $(this);
+	if (form !== 'undefined' and form.attr('enctype') === "multipart/form-data") return;
 
   if (typeof e !== 'undefined') e.preventDefault();
-
-  var form      = $(this);
 
   $.ajax({
     type: 'POST',
